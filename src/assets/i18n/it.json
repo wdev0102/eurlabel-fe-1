@@ -1,0 +1,348 @@
+{
+    "global" : {
+      "demo-message" : "1 demo product left",
+      "save" : "Salva"
+    },
+    "categories" : {
+        "labels" : {
+          "main_ingredient" : {
+            "main_ingredient" : "Ingrediente principale",
+            "concentrated_grape_must" : "Mosto d'Uva Concentrato",
+            "distillate_of_agricultural_origin" : "Distillato di origine agricola",
+            "dosage_syrup" : "Sciroppo di dosaggio",
+            "dried_grape_alcohol" : "Alcool d'uva secca",
+            "dried_grape_distillate" : "Distillato di uva secca",
+            "ethyl_alcohol" : "Alcool etilico di origine agricola",
+            "grape_marc_spirit" : "Grape marc spirit",
+            "grape_must" : "Mosto d'uva",
+            "grapes" : "Uva",
+            "partially_fermented" : "Mosto d'uva parzialmente fermentato",
+            "rectified_concentrated" : "Mosto d'Uva Concentrato Rettificato",
+            "spirit_drinks_distilled" : "Bevande spiritose distillate da uve secche distillate",
+            "sucrose" : "Saccarosio",
+            "water" : "Acqua",
+            "wine_alcohol" : "Alcool del vino",
+            "wine_distillate" : "Alcool distillato",
+            "wine_spirit" : "Spirito del vino"
+          },
+          "acidity_regulator" : {
+            "acidity_regulator" : "Correttore di acidità",
+            "calcium_sulfate" : "Calcio solfato",
+            "citric_acid" : "Acido citrico",
+            "lactic_acid" : "Acido lattico",
+            "malic_acid" : "Acido malico",
+            "tartaric_acid" : "Acido tartarico"
+          },
+          "clarifying_agent" : {
+            "clarifying_agent" : "Agente chiarificante",
+            "casein" : "Caseina del latte",
+            "egg" : "Uova",
+            "egg_albumin" : "Albume",
+            "egg_lysozyme" : "Lisozima dell'uovo",
+            "egg_product" : "Derivati dell'uovo",
+            "egg_protein" : "Proteine ​​dell'uovo",
+            "gelatin" : "Gelatina",
+            "milk" : "Latte",
+            "milk_products" : "Latticini",
+            "milk_protein" : "Proteine ​​del latte",
+            "pea_protein" : "Proteine ​​del pisello",
+            "potassium_caseinate" : "Caseinato di potassio",
+            "potato_protein" : "Proteine ​​della patata",
+            "wheat_protein" : "Proteine ​​del grano"
+          },
+          "expedition_liqueur" : {
+            "expedition_liqueur" : "liquore da spedizione",
+            "concentrated" : "Mosto d'Uva Concentrato",
+            "grape" : "Mosto d'uva",
+            "partially" : "Mosto d'uva parzialmente fermentato",
+            "sucrose" : "Saccarosio",
+            "wine" : "Vino",
+            "rectified" : "Mosto d'Uva Concentrato Rettificato"
+          },
+          "preservatives_and_antioxidant" : {
+            "preservatives_and_antioxidant" : "conservanti e antiossidanti",
+            "lascorbic" : "Acido L-ascorbico",
+            "dimethyldicarbonate" : "Dimetildicarbonato (DMDC)",
+            "lysozyme" : "Lisozima",
+            "potassium_hydrogen" : "Solfito di idrogeno di potassio",
+            "potassium_metabisulphite" : "Metabisolfito di potassio",
+            "potassium_sorbate" : "Sorbato di potassio",
+            "sulphur_dioxide" : "Solfiti/anidride solforosa",
+            "sulphites" : "Solfiti",
+            "bisulphite" : "Bisolfito di potassio"
+          },
+          "stabilising_agent" : {
+            "stabilising_agent" : "agente stabilizzante",
+            "carboxymethylcellulose" : "carbossimetilcellulosa",
+            "citric_acid" : "acido citrico",
+            "fumaric_acid" : "acido fumarico",
+            "gum_arabic" : "gomma arabica",
+            "metatartaric_acid" : "acido metatartarico",
+            "potassium_polyaspartate" : "poliaspartato di potassio",
+            "potassium_sorbate" : "sorbato di potassio",
+            "yeast_mannoproteins" : "mannoproteine ​​del lievito"
+          },
+          "sweetener" : {
+            "sweetener" : "Dolcificante",
+            "burned" : "Zucchero bruciato",
+            "syrup" : "Sciroppo di carruba",
+            "concentrated" : "Mosto d'Uva Concentrato",
+            "dextrose" : "Destrosio",
+            "extrawhite" : "Zucchero Extra-Bianco",
+            "fructose" : "Fruttosio",
+            "glucose" : "Sciroppo di glucosio",
+            "must" : "Mosto d'uva",
+            "honey" : "Miele",
+            "invertsugar" : "Soluzione di zucchero invertito",
+            "invertsugarsyrup" : "Sciroppo di zucchero invertito",
+            "rectified" : "Mosto d'Uva Concentrato Rettificato",
+            "semiwhite" : "Zucchero semibianco",
+            "sugar" : "Zucchero",
+            "sugarsolution" : "Soluzione di zucchero",
+            "whitesugar" : "Zucchero bianco"
+          },
+          "tirage_liqueur" : {
+            "tirage_liqueur" : "liquore al tiraggio",
+            "concentrated" : "Mosto d'Uva Concentrato",
+            "grape" : "Mosto d'uva",
+            "partially" : "Mosto d'uva parzialmente fermentato",
+            "rectified" : "Mosto d'Uva Concentrato Rettificato",
+            "sucrose" : "Saccarosio",
+            "wine" : "Vino"
+          },
+          "packaging_gases" : {
+            "packaging_gases" : "",
+            "argon" : "Argon",
+            "carbon" : "Diossido di carbonio",
+            "nitrogen" : "Nitrogeno"
+          }
+
+        },
+        "acidity_regulator": "Calcola di acidità",
+        "anti_caking_agent": "Agente antiagglomerante",
+        "anti_foaming_agent": "Agente antischiuma",
+        "antioxidant": "Antiossidante",
+        "bulking_agent": "Agente di carica",
+        "clarifying_agents": "Agenti chiarificanti",
+        "colour": "Colorante",
+        "emulsifier": "Emulsionatore",
+        "emulsifying_salts": "Sali emulsionanti",
+        "expedition_liqueur": "Liquore da spedizione",
+        "firming_agent": "Agente rassodante",
+        "flavour_enhancer": "Esaltatore di sapidità",
+        "flour_treatment_agent": "Agente di trattamento della farina",
+        "foaming_agent": "Agente schiumogeno",
+        "gelling_agent": "Agente gelificante",
+        "glazing_agent": "Agente di rivestimento",
+        "humectant": "Umettante",
+        "main_ingredient": "Ingrediente principale",
+        "modified_starch": "Amido modificato",
+        "other": "Altro",
+        "packaging_gases": "Gas di imballaggio",
+        "preservatives_and_antioxidants": "Conservanti e antiossidanti",
+        "propellent_gas": "Gas propellente",
+        "raising_agent": "Agente lievitante",
+        "sequestrant": "Sequestrante",
+        "stabilising_agents": "Agenti stabilizzanti",
+        "sweetener": "Dolcificante",
+        "thickener": "Addensante",
+        "tirage_liqueur": "Liquore al tiraggio"
+    },
+    "pages" : {
+      "dashboard" : {
+        "title" : "Overview",
+        "cards" : {
+          "profile" : "Profilo della compagnia",
+          "elabel" : "E-label",
+          "feedback" : {
+            "title" : "Teniamo in considerazione il tuo feedback"
+          }
+        }
+      },
+      "elabel" : {
+        "title" : "Titolo",
+        "subtitle" : "Sottotitolo",
+        "cards" : {
+          "tab1" : "Informazioni",
+          "tab2" : "Impostazioni"
+        },
+        "form" : {
+          "id" : "Identificativo",
+          "productName" : "Nome del prodotto",
+          "upload" : {
+            "label" : "",
+            "helper" : ""
+          },
+          "product_name" : {
+            "label" : "Nome del prodotto",
+            "helper" : ""
+          },
+          "sku" : {
+            "label" : "Identificativo pubblico",
+            "helper" : ""
+          },
+          "type" : {
+            "label" : "Tipo di alcolico",
+            "helper" : ""
+          },
+          "vintage_year" : {
+            "label" : "Anno di edizione",
+            "helper" : ""
+          },
+          "product_varieties" : {
+            "label" : "Varietà",
+            "helper" : ""
+          },
+          "geographical_indication" : {
+            "label" : "Denominazione geografica",
+            "helper" : ""
+          },
+          "alcohol_content_percentage" : {
+            "label" : "Percentuale di contenuto alcolico",
+            "helper" : ""
+          },
+          "net_content" : {
+            "label" : "Contenuto netto",
+            "helper" : ""
+          },
+          "description" : {
+            "label" : "Descrizione",
+            "helper" : ""
+          },
+          "packages" : {
+            "label" : "Gas di imbottigliamento",
+            "helper" : ""
+          },
+          "nutrition" : {
+            "label" : "Nutrienti dichiarati",
+            "helper" : ""
+          }
+        }
+      },
+      "ingredients" : {
+        "title" : "Ingredienti",
+        "subtitle" : "Aggiungi tutti gli ingredienti utilizzati nel prodotto selezionandoli nell'elenco.",
+        "info" : "Aggiungere gli ingredienti nell'ordine della loro percentuale nel prodotto, iniziando dall'ingrediente con la percentuale più alta.",
+        "note" : "Nota:"
+      },
+      "recycling" : {
+        "sub" : {
+          "title" : "Consumo responsabile",
+          "subtitle" : "Sensibilizzare i consumatori con simboli per il consumo responsabile"
+        },
+        "title" : "Regole di riciclo",
+        "link" : "D.lgs 116/2020)",
+        "subtitle" : "Etichettatura ambientale per gli imballaggi (i prodotti venduti in Italia devono indicare i materiali di imballaggio e altri dettagli secondo la normativa italiana",
+        "field" : {
+          "container" : "Contenitore",
+          "material" : "Materiale"
+        }
+      },
+      "sustainability" : {
+        "title" : "Sostenibilità",
+        "subtitle" : "Le informazioni sulla sostenibilità, così come altre informazioni fornite volontariamente, devono rispettare i seguenti principi: non dovrebbero fuorviare o confondere i consumatori, dovrebbero essere basate sui fatti e non dovrebbero fungere da marketing indiretto attraverso dichiarazioni accattivanti ma infondate",
+        "form" : {
+          "field1" : {
+            "label" : "Bio",
+            "helper" : ""
+          },
+          "field2" : {
+            "label" : "Messaggio",
+            "helper" : ""
+          },
+          "field3" : {
+            "label" : "Etichetta",
+            "helper" : ""
+          }
+        }
+      },
+      "nutritions" : {
+        "title" : "Nutrienti dichiarati",
+        "subtitle" : "Inserisci i valori nutrizionali medi per 100 ml e osserva l'arrotondamento nell'anteprima a destra. Il calcolatore può aiutarti a calcolare il valore energetico in kJ e kcal. Per ulteriori informazioni, leggi la Guida alla dichiarazione degli ingredienti UE",
+        "button" : "Calcola energia",
+        "info" : "Guida sulla dichiarazione degli ingredienti UE",
+        "note" : "",
+        "table" : "Valori approssimati",
+        "energy_kj" : "Energia (Kj)",
+        "energy_kcal" : "Energia (Kcal)",
+        "fat" : "Grassi",
+        "fat_sat" : "Grassi saturi",
+        "carb" : "Carboidrati",
+        "carb_sugar" : "Zuccheri",
+        "protein" : "Proteine",
+        "salt" : "Sale"
+      }
+    },
+    "product" : {
+      "container" : {
+        "empty" : "Nessuno",
+        "bottleTop" : "Nessuno",
+        "packaging" : "Pacchetto",
+        "can" : "Lattina",
+        "bottle" : "Bottiglia",
+        "tetraPak" : "Tetra Pak",
+        "bagInBox" : "Nessuno",
+        "otherContainer" : "Altro contenitore",
+        "label" : "Etichetta",
+        "cork" : "Nessuno",
+        "screwCap" : "Nessuno",
+        "crownCap" : "Nessuno",
+        "capsule" : "Capsula",
+        "wireCage" : "Nessuno",
+        "otherClosure" : "Altra chiusura",
+        "bag" : "Borsa",
+        "case" : "Nessuno",
+        "box" : "Scatola",
+        "giftBox" : "Pacco regalo",
+        "tray" : "Nessuno",
+        "separator" : "Separatore",
+        "wrapper" : "Nessuno",
+        "otherPackaging" : "Altro"
+      },
+      "material" : {
+        "plastic" : "Plastica",
+        "separate" : "Separato",
+        "paper" : "Carta",
+        "metal" : "Metallo",
+        "organic" : "Organico",
+        "textile" : "Tessuto",
+        "glass" : "Vetro"
+      },
+      "types" : {
+        "beer" : "Birra",
+        "marketing" : "Marketing",
+        "oil" : "Olio",
+        "spirits" : "Spirito",
+        "vinegard" : "Aceto",
+        "wine" : "Vino"
+      },
+      "type" : {
+        "dessert_wine": "Vino da dessert",
+        "fortified_wine": "Vino liquoroso",
+        "fully_sparkling_wine": "Vino completamente frizzante",
+        "red_wine": "Vino rosso",
+        "rosé_wine": "Vino rosè",
+        "semi_sparkling_wine": "Vino frizzante",
+        "sparkling_red_wine": "Vino rosso frizzante",
+        "sparkling_rosé_wine": "Vino rosè frizzante",
+        "sparkling_white_wine": "Vino bianco frizzante"
+      },
+      "bottling" : {
+        "may" : "L'imbottigliamento può avvenire in atmosfera protettiva",
+        "is" : "Imbottigliato in atmosfera protettiva"
+      },
+      "geographicalIndication" : {
+        "doc" : "DOC",
+        "docg" : "DOCG",
+        "dop" : "DOP",
+        "doq" : "DOQ",
+        "igp" : "IGP",
+        "igt" : "IGT",
+        "vdt" : "VDT",
+        "vp" : "VP"
+      }
+    },
+
+    "HELLO": "Ciao2",
+    "WELCOME": "Benvenuto nella nostra applicazione!"
+  }
