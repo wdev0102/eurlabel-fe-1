@@ -23,12 +23,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InfobuttonModule } from '../uikit/infobutton/infobutton.module';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CalendarModule } from 'primeng/calendar';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [ElabelComponent],
   imports: [
     CommonModule,
     PanelModule,
+    QRCodeModule,
     BreadcrumbModule,
     TabViewModule,
     CardModule,

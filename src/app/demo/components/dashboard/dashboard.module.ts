@@ -20,6 +20,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { TabViewModule } from 'primeng/tabview';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
     imports: [
@@ -28,6 +29,7 @@ import { InputTextModule } from 'primeng/inputtext';
         FormsModule,
         ChartModule,
         MenuModule,
+        FileUploadModule,
         TableModule,
         StyleClassModule,
         PanelMenuModule,

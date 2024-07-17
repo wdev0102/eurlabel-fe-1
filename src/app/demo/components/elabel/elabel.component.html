@@ -308,9 +308,9 @@
                                                     <label class="col-12 md:col-10">{{ 'pages.sustainability.form.field2.label' | translate }} <app-infobutton [label]="'pages.sustainability.form.field2.helper'"></app-infobutton></label>
                                                     <textarea id="description" pInputTextarea [formControl]="form.get('sustainibility_message')" required rows="3" cols="20"></textarea>
                                                 </div>
-                                                <div>
+                                                <div class="flex flex-column gap-2">
                                                     <label class="col-12 md:col-10">{{ 'pages.sustainability.form.field3.label' | translate }} <app-infobutton [label]="'pages.sustainability.form.field3.helper'"></app-infobutton></label>
-                                                   <img *ngIf="preview_image" src="{{preview_image}}">
+                                                   <img class="w-4" *ngIf="preview_image" src="//{{preview_image}}">
                                                     <p-fileUpload 
                                                     mode="basic" 
                                                     name="image" 
@@ -318,14 +318,16 @@
                                                     url="https://vps-600cbc6a.vps.ovh.net/backend/upload-preview/{{id}}" 
                                                     accept="image/*" maxFileSize="1000000" 
                                                     [auto]="true" 
+                                                    (onUpload)="onBasicUpload()"
                                                     chooseLabel="Browse" />
+                                             
                                                 </div>
                                             </div>
                                             </div>
                                         </div>
-                                        <div class="w-3 border-1">
+                                        <div class="w-3 border-1 flex flex-column gap-2">
                                             <label class="col-12 md:col-10">{{ 'pages.elabel.form.upload.label' | translate }} <app-infobutton [label]="'pages.elabel.form.upload.helper'"></app-infobutton></label>
-                                            <img *ngIf="sub_image" src="{{sub_image}}">
+                                            <img *ngIf="sub_image" src="//{{sub_image}}">
                                             <p-fileUpload 
                                             mode="basic" 
                                             name="image" 
@@ -333,8 +335,13 @@
                                             url="https://vps-600cbc6a.vps.ovh.net/backend/upload-sub/{{id}}" 
                                             accept="image/*" maxFileSize="1000000" 
                                             [auto]="true" 
+                                            (onUpload)="onBasicUpload()"
                                             chooseLabel="Browse" />
-
+                                            <div class="p-2 border-1">
+                                                <label class="col-12 md:col-10">{{ 'global.qr' | translate }}</label>
+                                                <img *ngIf="!form.get('qr').value" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRixw6KcZuLECch8GPKfYHgUYXPJqXElFou1w&s">
+                                                <qrcode *ngIf="form.get('qr').value" [qrdata]="form.get('qr').value" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                                            </div>   
                                         </div>
                                         </div>
                                 </ng-container>  

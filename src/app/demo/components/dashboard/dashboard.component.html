@@ -9,7 +9,7 @@
                 </p-tag>
             </div>
             <div class="flex  m-2">
-                <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add.elabel' | translate }}</button>
+                <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
             </div>
         </div>
     </div>
@@ -24,27 +24,49 @@
                             <div class="flex align-items-center justify-content-center"><b>{{ 'pages.dashboard.cards.profile' | translate }}</b></div>
                         </div>
                         <div class="flex align-content-center flex-wrap gap-2">
-                            <div class="flex align-items-center justify-content-center"><b>{{ 'global.edit' | translate }}</b></div>
-                            <div class="flex align-items-center justify-content-center"><i class="pi pi-file-edit"></i></div>
+                            <div *ngIf="!edit" (click)="edit=true" class="flex gap-2">
+                                <div class="flex align-items-center justify-content-center"><b>{{ 'global.edit' | translate }}</b></div>
+                                <div  class="flex align-items-center justify-content-center"><i class="pi pi-file-edit"></i></div>
+                            </div>
+                            <div *ngIf="edit" (click)="save()" class="flex gap-2">
+                                <div class="flex align-items-center justify-content-center"><b>{{ 'global.save' | translate }}</b></div>
+                                <div class="flex align-items-center justify-content-center"><i class="pi pi-save"></i></div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="flex h-full min-w-full flex-row gap-2 ">
                         <div class="flex-initial flex align-items-start justify-content-center w-6 dashboard-min-height-card">         
                             <div class="card w-full h-full flex align-items-center justify-content-center dashboard-min-height-card">
-                                {{ 'global.user.company_name' | translate }}                        
+                                <div *ngIf="!edit">
+                                    {{ companyName.value }}  
+                                </div>                      
+                                <div *ngIf="edit">
+                                    <input type="text" pInputText [formControl]="companyName" required autofocus/> 
+                                </div>                      
                             </div>    
                         </div>
                         <div class="flex-initial flex flex-column align-items-center justify-content-center w-6 dashboard-min-height-card">
                             <div class="card w-full flex align-items-center justify-content-center dashboard-min-height-card">
-                                <i class="pi pi-image"></i>
-                            </div>     
-                            <button pButton pRipple type="button" class="flex align-content-start flex-wrap gap-2">
+                                <i *ngIf="!edit && !user.image" class="pi pi-image"></i>
+                                <img src="//{{user.image}}">
+                                <p-fileUpload 
+                                *ngIf="edit"
+                                mode="basic" 
+                                name="image" 
+                                chooseIcon="pi pi-upload" 
+                                url="https://vps-600cbc6a.vps.ovh.net/backend/profile/{{userid}}" 
+                                accept="image/*" maxFileSize="1000000" 
+                                [auto]="true" 
+                                (onUpload)="onBasicUpload()"
+                                chooseLabel="Browse" />
+                            </div>
+                            <button (click)="display=true" pButton pRipple type="button" class="flex align-content-start flex-wrap gap-2">
                                 <div class="flex align-items-center justify-content-center">
                                     <i class="pi pi-palette"></i>
                                 </div>
                                 <div class="flex align-items-center justify-content-center">
-                                    {{ 'global.add.elabel' | translate }}
+                                    {{ 'global.add' | translate }}
                                 </div>
                             </button>
                         </div>
@@ -76,9 +98,9 @@
                                 <label for="category3">{{ 'pages.dashboard.cards.feedback.tab3' | translate }}</label>
                             </div>
                         </div>
-                        <div style="height: 180px;" class="flex align-items-center justify-content-center col-12 border-bottom-1">diocane</div>
+                        <div style="height: 180px;" class="flex align-items-center justify-content-center col-12 border-bottom-1"></div>
                         
-                        <button pButton pRipple type="button" class="m-auto flex align-content-start flex-wrap gap-2 w-3">
+                        <button [disabled]="true" pButton pRipple type="button" class="m-auto flex align-content-start flex-wrap gap-2 w-3">
                             <div class="flex align-items-center justify-content-center">
                                 <i class="pi pi-save"></i>
                             </div>
@@ -126,7 +148,7 @@
                                 <div class="flex align-content-center justify-content-center"> <i class="pi pi-apple"></i></div>
                                 <div class="flex align-content-center justify-content-center">{{ 'pages.dashboard.cards.label' | translate }}</div>
                                 <div class="flex align-content-center justify-content-center">
-                                    <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add.elabel' | translate }}</button>
+                                    <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +183,7 @@
                                 <div class="flex align-content-center justify-content-center"> <i class="pi pi-apple"></i></div>
                                 <div class="flex align-content-center justify-content-center">{{ 'pages.dashboard.cards.label' | translate }}</div>
                                 <div class="flex align-content-center justify-content-center">
-                                    <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add.elabel' | translate }}</button>
+                                    <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
                                 </div>
                             </div>
                         </div>                        
@@ -196,7 +218,7 @@
                                 <div class="flex align-content-center justify-content-center"> <i class="pi pi-apple"></i></div>
                                 <div class="flex align-content-center justify-content-center">{{ 'pages.dashboard.cards.label' | translate }}</div>
                                 <div class="flex align-content-center justify-content-center">
-                                    <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add.elabel' | translate }}</button>
+                                    <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
                                 </div>
                             </div>
                         </div>                        
@@ -210,7 +232,7 @@
         <div class="line-height-3 m-0">
             <div class="flex flex-column">
                 <div class="flex flex-column">
-                    <div>
+                    <div *ngIf="false">
                         <label for="name" class="block text-900 text-xl font-medium mb-2">{{ 'pages.elabel.form.id' | translate }}</label>
                         <input type="text" pInputText [formControl]="id" required autofocus/>
                     </div>
@@ -218,7 +240,7 @@
                         <label for="name" class="block text-900 text-xl font-medium mb-2">{{ 'pages.elabel.form.productName' | translate }}</label>
                         <input type="text" pInputText [formControl]="name" required autofocus/>
                     </div>
-                    <div>
+                    <div *ngIf="false">
                         <label for="sku" class="block text-900 text-xl font-medium mb-2">{{ 'pages.elabel.form.sku.label' | translate }}</label>
                         <input type="text" pInputText [formControl]="sku" required/>
                     </div>

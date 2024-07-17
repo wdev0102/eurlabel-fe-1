@@ -1,5 +1,8 @@
 {
     "global" : {
+      "qr" : "Codice Qr",
+      "add" : "Aggiungi",
+      "edit" : "Modifica",
       "demo-message" : "1 demo product left",
       "save" : "Salva"
     },
@@ -152,9 +155,16 @@
       "dashboard" : {
         "title" : "Overview",
         "cards" : {
+          "label" : "Etichette",
+          "published" : "Pubblicate",
+          "draft" : "Bozze",
+
           "profile" : "Profilo della compagnia",
           "elabel" : "E-label",
           "feedback" : {
+            "tab1" : "Generale",
+            "tab2" : "Suggerimenti",
+            "tab3" : "Segnalazioni",
             "title" : "Teniamo in considerazione il tuo feedback"
           }
         }

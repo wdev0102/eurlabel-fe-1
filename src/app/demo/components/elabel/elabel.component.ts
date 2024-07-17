@@ -18,7 +18,7 @@ export class ElabelComponent {
   sub_image = ''
   breadcrumbItems: MenuItem[] = [];
   filteredCountries: any[] = [];
-  geographical_indication = []
+  geographical_indication = 0
   options = []
   uploadedFiles = []
   type = new FormControl()
@@ -43,6 +43,7 @@ export class ElabelComponent {
   constructor(private fb: FormBuilder, private t: TranslateService, private service: ElabelService, private confirmationService: ConfirmationService, private messageService: MessageService, private _location: Location, private route: ActivatedRoute) {
     this.form = this.fb.group({
       id: [null, Validators.required],
+      qr: [null, Validators.required],
       public_id: [null, Validators.required],
       name: [null, Validators.required],
       alcohol_content_percentage: [null, Validators.required],
@@ -149,35 +150,7 @@ export class ElabelComponent {
 
       if (id) {
         this.id = id
-        this.service.get(this.id).subscribe((response) => {
-          this.form.patchValue(response.data)
-
-          debugger
-
-          if(response.data.geographical_indication) {
-            this.form.get('geographical_indication').setValue(response.data.geographical_indication[0].id)
-          }
-
-          if(response.data.type) {
-            this.form.get('type').setValue(parseInt(response.data.type))
-          }
-
-          if(response.data.packages.length) {
-            this.form.get('packages').setValue(parseInt(response.data.packages[0].id))
-          }
-
-          if(response.data.sub_image) {
-            this.sub_image = response.data.sub_image
-          }
-
-          if(response.data.preview_image) {
-            this.preview_image = response.data.preview_image
-          }
-
-
-          this.breadcrumbItems.push({ label: this.form.get('public_id').value });
-          this.breadcrumbItems = [...this.breadcrumbItems]
-        })
+        this.get()
       }
     });
   }
@@ -248,6 +221,41 @@ export class ElabelComponent {
 
   get formIngredients(): FormArray {
     return this.form.get('ingredients') as FormArray;
+  }
+
+  onBasicUpload() {
+    debugger
+    this.get()
+  }
+
+  get() {
+    this.service.get(this.id).subscribe((response) => {
+      this.form.patchValue(response.data)
+
+      if(response.data.geographical_indication) {
+        this.form.get('geographical_indication').setValue(response.data.geographical_indication[0].id)
+      }
+
+      if(response.data.type) {
+        this.form.get('type').setValue(parseInt(response.data.type))
+      }
+
+      if(response.data.packages.length) {
+        this.form.get('packages').setValue(parseInt(response.data.packages[0].id))
+      }
+
+      if(response.data.sub_image) {
+        this.sub_image = response.data.sub_image
+      }
+
+      if(response.data.preview_image) {
+        this.preview_image = response.data.preview_image
+      }
+
+
+      this.breadcrumbItems.push({ label: this.form.get('public_id').value });
+      this.breadcrumbItems = [...this.breadcrumbItems]
+    })
   }
 
 }

@@ -28,6 +28,7 @@
         "@fullcalendar/timegrid": "^6.0.3",
         "@ngx-translate/core": "^15.0.0",
         "@ngx-translate/http-loader": "^8.0.0",
+        "angularx-qrcode": "^17.0.1",
         "autoprefixer": "^10.4.19",
         "chart.js": "^3.3.2",
         "file-saver": "^2.0.5",
