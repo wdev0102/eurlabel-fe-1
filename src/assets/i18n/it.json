@@ -152,6 +152,24 @@
         "tirage_liqueur": "Liquore al tiraggio"
     },
     "pages" : {
+      "register" : {
+        "title" : "Registrazione",
+        "subtitle" : "Per proseguire registra il tuo profilo personale",
+        "company" : "Azienda",
+        "username" : "Username",
+        "password" : "Password",
+        "address" : "Indirizzo",
+        "cap" : "CAP",
+        "location" : "Località",
+        "pr" : "Provincia",
+        "state" : "Stato",
+        "phone" : "Telefono",
+        "email" : "Email",
+        "website" : "Website",
+        "piva" : "P.Iva",
+        "submit" : "Registrati",
+        "sdi" : "Codice SDI"
+      },
       "dashboard" : {
         "title" : "Overview",
         "cards" : {

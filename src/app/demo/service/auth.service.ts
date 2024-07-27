@@ -19,12 +19,24 @@ export class AuthService {
         
         return this._http.post(this._loginUrl, { email, password }).pipe(
             map(async (response: any) => {
+                response.from = new Date()
                 localStorage.setItem('jwt', JSON.stringify(response));
                 localStorage.setItem('user', JSON.stringify(response.user));
                 return response;
             })
         );
-        
+    }
+
+    isLoginValid() {
+        let jwt: any = localStorage.getItem("jwt");
+        if (jwt != undefined && jwt != null) {
+            jwt = JSON.parse(jwt);
+            let t = new Date()     
+            t.setSeconds(t.getSeconds() + jwt.expires_in);
+            return new Date() < t
+        } else {
+            return false;
+        }
     }
 
     getAuthorizationToken(): any {
@@ -52,7 +64,7 @@ export class AuthService {
     }
 
     // You need to make a request to the server as well
-    Logout() {
+    logout() {
         this._http.post(baseUrl + "logout", {}).subscribe(async response => {
             console.log("Logout: ", response);
 

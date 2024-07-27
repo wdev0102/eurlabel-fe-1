@@ -28,6 +28,9 @@ export class LoginComponent {
     valCheck: string[] = ['remember'];
 
     constructor(public layoutService: LayoutService, private authService: AuthService, public router: Router, private route: ActivatedRoute, private http: HttpClient, public messageService: MessageService,) {
+        const valid = this.authService.isLoginValid()
+        if(valid)
+            this.router.navigate(['/dashboard']);
     }
 
     ngOnInit() {
@@ -38,12 +41,16 @@ export class LoginComponent {
         this.loading = true;
         this.authService.Login(this.email, this.password).subscribe(response => {
             this.loading = false;
-            this.router.navigate(['/']);
+            this.router.navigate(['/dashboard']);
         },
             error => {
                 this.loading = false;
                 this.messageService.add({ severity: 'error', summary: 'Accesso fallito', detail: 'Username o password non validi' });
             });
+    }
+
+    register() {
+        this.router.navigate(['/register']);
     }
 
 }

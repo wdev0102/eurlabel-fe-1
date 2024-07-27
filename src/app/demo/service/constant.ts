@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 //export const baseUrl = "http://localhost:8000/";
-export const baseUrl = "https://vps-600cbc6a.vps.ovh.net/backend/";
+export const baseUrl = "https://app.eulabel.it/backend/";
 
 export function dateToSql(string) {
     if (!string)

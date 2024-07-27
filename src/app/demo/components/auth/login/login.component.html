@@ -32,6 +32,9 @@
 
                     </div>
                     <button pButton pRipple label="Login" (click)="login()" class="w-full p-3 text-xl"></button>
+                    <div (click)="register()">
+                        <p>{{ 'global.register.text' | translate}} <a >{{ 'global.register.button' | translate}}</a></p>
+                    </div>
                 </div>
             </div>
         </div>

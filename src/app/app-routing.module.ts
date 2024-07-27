@@ -11,7 +11,7 @@ import { AppLayoutComponent } from './layout/app.layout.component';
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+                    { path: '', redirectTo: '/login', pathMatch: 'full' },
                     { path: 'dashboard', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'login', loadChildren: () => import('./demo/components/auth/login/login.module').then(m => m.LoginModule) },
@@ -21,8 +21,9 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                 canActivate: [AuthGuard]
             },
             {
-                path: 'uikit', component: FormLayoutDemoComponent
+                path: 'uikit', component: FormLayoutDemoComponent,
             },
+            { path: 'register', loadChildren: () => import('./demo/components/auth/register/register.module').then(m => m.RegisterModule) },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
             { path: 'notfound', component: NotfoundComponent },
             { path: '**', redirectTo: '/notfound' },
