@@ -221,7 +221,7 @@
                                                 <h2>{{ 'pages.recycling.title' | translate }}</h2>
                                                 <p>{{ 'pages.recycling.subtitle' | translate }}<a href="https://www.gazzettaufficiale.it/eli/id/2020/09/11/20G00135/sg">{{ 'pages.recycling.link' | translate }}</a></p>
                                             </div>
-                                            <ng-container *ngFor="let rule of rules.controls; let i = index">
+                                            <ng-container *ngFor="let rule of rules.controls; let i = index" [formGroupName]="i">
                                                 <div class="flex w-full pt-2 pb-2" >
                                                     <div class="w-3">
                                                         <div class="border-1 flex flex-column">
@@ -243,7 +243,7 @@
                                                             <div>{{ 'pages.recycling.field.container' | translate }}</div>
                                                             <div class="w-full">
                                                                 <p-dropdown [formControl]="rules.at(i).get('recycling_rule_containers_id')" [options]="containers" [group]="true" 
-                                                                
+                                                                    formControlName="recycling_rule_containers_id"
                                                                     [showClear]="true" placeholder="Seleziona">
                                                                     <ng-template let-group pTemplate="group">
                                                                         <div class="flex align-items-center">
@@ -260,6 +260,7 @@
                                                             <div>{{ 'pages.recycling.field.material' | translate }}</div>
                                                             <div class="w-full">
                                                                 <p-dropdown [options]="materials" [group]="true" [formControl]="rules.at(i).get('recycling_rule_materials_id')"
+                                                                    formControlName="recycling_rule_materials_id"
                                                                     [showClear]="true" placeholder="Seleziona">
                                                                     <ng-template let-group pTemplate="group">
                                                                         <div class="flex align-items-center">

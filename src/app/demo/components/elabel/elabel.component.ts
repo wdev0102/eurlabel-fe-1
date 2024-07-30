@@ -69,7 +69,7 @@ export class ElabelComponent {
       age: [false, Validators.required],
       sustainibility_bio: [null, Validators.required],
       sustainibility_message: [null, Validators.required],
-      rules: new FormArray([]),
+      rules: this.fb.array([]),
       ingredients: new FormArray([]),
       type: [null, Validators.required]
     })
