@@ -62,7 +62,6 @@
                                                 <div class="field col-6 md:col-6">
                                                     <label class="col-12 md:col-10">{{ 'pages.elabel.form.geographical_indication.label' | translate }} <app-infobutton [label]="'pages.elabel.form.geographical_indication.helper'"></app-infobutton></label>
                                                     <div class="col-12 md:col-10">
-                                                        {{form.get('geographical_indication').value | json}}
                                                         <p-dropdown [options]="geographical_indication" [formControl]="form.get('geographical_indication')"
                                                             [showClear]="true" placeholder="Seleziona">
                                                             <ng-template let-option pTemplate="selectedItem">
@@ -240,9 +239,10 @@
                                                     </div>
                                                     <div class="w-9">
                                                         <div class="flex w-full">
+                                                            {{rules.at(i).value | json}}
                                                             <div>{{ 'pages.recycling.field.container' | translate }}</div>
                                                             <div class="w-full">
-                                                                <p-dropdown [formControl]="rules.at(i).get('container')" [options]="containers" [group]="true" 
+                                                                <p-dropdown [formControl]="rules.at(i).get('recycling_rule_containers_id')" [options]="containers" [group]="true" 
                                                                 
                                                                     [showClear]="true" placeholder="Seleziona">
                                                                     <ng-template let-group pTemplate="group">
@@ -259,7 +259,7 @@
                                                         <div class="flex w-full">
                                                             <div>{{ 'pages.recycling.field.material' | translate }}</div>
                                                             <div class="w-full">
-                                                                <p-dropdown [options]="materials" [group]="true" [formControl]="rules.at(i).get('material')"
+                                                                <p-dropdown [options]="materials" [group]="true" [formControl]="rules.at(i).get('recycling_rule_materials_id')"
                                                                     [showClear]="true" placeholder="Seleziona">
                                                                     <ng-template let-group pTemplate="group">
                                                                         <div class="flex align-items-center">

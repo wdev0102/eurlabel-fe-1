@@ -207,7 +207,7 @@ export class ElabelComponent {
   }
 
   addRule() {
-    const rule = this.fb.group({container : new FormControl(), material : new FormControl()})
+    const rule = this.fb.group({recycling_rule_containers_id : new FormControl(), recycling_rule_materials_id : new FormControl()})
     this.rules.push(rule)
   }
 
@@ -238,14 +238,21 @@ export class ElabelComponent {
       if(response.data.geographical_indication.length) {
         this.form.get('geographical_indication').setValue(parseInt(response.data.geographical_indication[0].geographical_indication_id))
       }
+
+      for(let option of response.data.ingredients)
+        this.ingredientPicked.push(option)
       debugger
+      for(let option of response.data.recycling_rules) {
+        option.recycling_rule_materials_id = parseInt(option.recycling_rule_materials_id)
+        option.recycling_rule_containers_id = parseInt(option.recycling_rule_containers_id)
+        this.rules.push(this.fb.group(option))
+      }
 
       if(response.data.type) {
         this.form.get('type').setValue(parseInt(response.data.type))
       }
-
       if(response.data.packages.length) {
-        this.form.get('packages').setValue(parseInt(response.data.packages[0].id))
+        this.form.get('packages').setValue(parseInt(response.data.packages[0].package_id))
       }
 
       if(response.data.sub_image) {
