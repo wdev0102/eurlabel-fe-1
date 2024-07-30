@@ -236,7 +236,7 @@ export class ElabelComponent {
       }
 
       if(response.data.geographical_indication.length) {
-        this.form.get('geographical_indication').setValue(response.data.geographical_indication[0].id)
+        this.form.get('geographical_indication').setValue(parseInt(response.data.geographical_indication[0].geographical_indication_id))
       }
       debugger
 
