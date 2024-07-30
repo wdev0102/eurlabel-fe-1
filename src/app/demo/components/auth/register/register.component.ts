@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Password } from 'primeng/password';
 import { AuthService } from 'src/app/demo/service/auth.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
@@ -24,17 +25,19 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 })
 export class RegisterComponent {
     form = this.fb.group({
-        company : [null, Validators.required],
-        address : [null, Validators.required],
-        cap : [null, Validators.required],
-        location : [null, Validators.required],
-        pr : [null, Validators.required],
-        state : [null, Validators.required],
-        phone : [null, Validators.required],
-        email : [null, Validators.required],
-        website : [null, Validators.required],
-        piva : [null, Validators.required],
-        sdi : [null, Validators.required],
+        username : ['test', Validators.required],
+        password : ['12341234', Validators.required],
+        company : ['test', Validators.required],
+        address : ['test', Validators.required],
+        cap : ['00000', Validators.required],
+        location : ['test', Validators.required],
+        pr : ['ss', Validators.required],
+        state : ['test', Validators.required],
+        phone : ['123', Validators.required],
+        email : ['test@test.it', Validators.required],
+        website : ['test', Validators.required],
+        piva : ['123', Validators.required],
+        sdi : ['123', Validators.required],
     })
 
     constructor(public layoutService: LayoutService, private fb: FormBuilder, private authService: AuthService, public router: Router, private route: ActivatedRoute, private http: HttpClient, public messageService: MessageService,) {
@@ -43,7 +46,14 @@ export class RegisterComponent {
     ngOnInit() {
     }
 
-    register() {}
+    register() {
+        this.authService.register(this.form.value).subscribe(()=>{
+            this.authService.login(this.form.get('email').value, this.form.get('password').value).subscribe(()=>{
+                this.router.navigate(['/dashboard']);
+            })
+            
+        })
+    }
 
 
 

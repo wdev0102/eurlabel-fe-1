@@ -25,13 +25,14 @@ export class DashboardComponent implements OnInit {
     user : any = {}
 
     constructor(private router: Router, private userService: UserService, private service: ElabelService, public layoutService: LayoutService) {
-        this.service.all().subscribe((response: any) => {
-            this.labels = response.data
-        })
+
         let request = JSON.parse(localStorage.getItem('user'))
         this.companyName.setValue(request.company_name)   
         this.userid = request.id     
         this.user = request
+        this.service.all(this.userid).subscribe((response: any) => {
+            this.labels = response.data
+        })        
     }
 
     onBasicUpload() {

@@ -49,7 +49,7 @@
                         <div class="flex-initial flex flex-column align-items-center justify-content-center w-6 dashboard-min-height-card">
                             <div class="card w-full flex align-items-center justify-content-center dashboard-min-height-card">
                                 <i *ngIf="!edit && !user.image" class="pi pi-image"></i>
-                                <img src="//{{user.image}}">
+                                <img *ngIf="user.image" src="//{{user.image}}">
                                 <p-fileUpload 
                                 *ngIf="edit"
                                 mode="basic" 
@@ -137,7 +137,7 @@
                                     <td style="width: 35%; min-width: 8rem;">{{label.product_name}}</td>
                                     <td style="width: 25%;">
                                         <a [routerLink]="['/elabel/' + label.id]">
-                                            <button pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-search"></i>{{ 'global.add.view' | translate }}</button>
+                                            <button pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-search"></i>{{ 'global.view' | translate }}</button>
                                         </a>
                                     </td>
                                 </tr>

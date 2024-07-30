@@ -10,8 +10,13 @@ export class AuthService {
     private userDetails = null;
     private refreshInterval = null;
     constructor(private _http: HttpClient) { }
+
+    register(data:any) {
+        return this._http.post<any>(baseUrl + 'register', data)
+    }
+    
     // login method
-    Login(email: string, password: string): Observable<any> {
+    login(email: string, password: string): Observable<any> {
         if (this.refreshInterval != null) {
             clearInterval(this.refreshInterval);
             this.refreshInterval = null;

@@ -16,18 +16,17 @@ import { PanelModule } from 'primeng/panel';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { ToastModule } from 'primeng/toast';
-import { ElabelRoutingModule } from './elabel-routing.module';
-import { ElabelComponent } from './elabel.component';
+import { PreviewRoutingModule } from './preview-routing.module';
+import { PreviewComponent } from './preview.component';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { TranslateModule } from '@ngx-translate/core';
 import { InfobuttonModule } from '../uikit/infobutton/infobutton.module';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CalendarModule } from 'primeng/calendar';
 import { QRCodeModule } from 'angularx-qrcode';
-import { PreviewComponent } from '../preview/preview.component';
 
 @NgModule({
-  declarations: [ElabelComponent, PreviewComponent],
+  declarations: [PreviewComponent],
   imports: [
     CommonModule,
     PanelModule,
@@ -53,7 +52,7 @@ import { PreviewComponent } from '../preview/preview.component';
     CheckboxModule,
     InputTextareaModule,
     InputTextModule,
-    ElabelRoutingModule
+    PreviewRoutingModule
   ]
 })
-export class ElabelModule { }
+export class PreviewModule { }

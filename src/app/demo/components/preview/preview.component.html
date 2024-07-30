@@ -1,0 +1,102 @@
+<div class="flex flex-column gap-2 p-4">
+    <div class="flex border-1 flex-column">
+        <div class="flex flex-column gap-2" *ngIf="form.get('product_name').value">
+            <div><b>{{ 'pages.elabel.form.product_name.label' | translate }}</b></div>
+            <div>{{form.get('product_name').value}}</div>
+        </div>
+        <div class="flex flex-column gap-2" *ngIf="form.get('type').value">
+            <div><b>{{ 'pages.elabel.form.type.label' | translate }}</b></div>
+            <div>{{form.get('type').value}}</div>
+        </div>
+        <div class="flex flex-column gap-2" *ngIf="form.get('vintage_year').value">
+            <div><b>{{ 'pages.elabel.form.vintage_year.label' | translate }}</b></div>
+            <div>{{form.get('vintage_year').value | date : 'Y'}}</div>
+        </div>
+        <div class="flex flex-column gap-2" *ngIf="form.get('product_varieties').value">
+            <div><b>{{ 'pages.elabel.form.product_varieties.label' | translate }}</b></div>
+            <div>{{form.get('product_varieties').value}}</div>
+        </div>
+        <div class="flex flex-column gap-2" *ngIf="form.get('geographical_indication').value">
+            <div><b>{{ 'pages.elabel.form.geographical_indication.label' | translate }}</b></div>
+            <div>{{form.get('geographical_indication').value}}</div>
+        </div>
+        <div class="flex flex-column gap-2" *ngIf="form.get('alcohol_content_percentage').value">
+            <div><b>{{ 'pages.elabel.form.alcohol_content_percentage.label' | translate }}</b></div>
+            <div>{{form.get('alcohol_content_percentage').value}}</div>
+        </div>
+        <div class="flex flex-column gap-2" *ngIf="form.get('net_content').value">
+            <div><b>{{ 'pages.elabel.form.net_content.label' | translate }}</b></div>
+            <div>{{form.get('net_content').value}}</div>
+        </div>
+        <div class="flex flex-column gap-2" *ngIf="form.get('description').value">
+            <div><b>{{ 'pages.elabel.form.description.label' | translate }}</b></div>
+            <div>{{form.get('description').value}}</div>
+        </div>
+
+        <h2>{{ 'pages.ingredients.title' | translate }}</h2>
+
+        <div class="flex flex-column gap-2" *ngIf="form.get('packages').value">
+            <div><b>{{ 'pages.elabel.form.packages.label' | translate }}</b></div>
+            <div>{{form.get('packages').value}}</div>
+        </div>
+
+
+        <div class="flex flex-column gap-2" *ngIf="form.get('packages').value">
+            <div><b>{{ 'pages.elabel.form.packages.label' | translate }}</b></div>
+            <div>{{form.get('packages').value}}</div>
+        </div>
+
+        <h2>{{ 'pages.nutritions.title' | translate }}</h2>
+        <div class="flex gap-2" *ngIf="form.get('energy_kj').value">
+            <div><b>{{ 'pages.nutritions.energy_kj' | translate }}</b></div>
+            <div>{{form.get('energy_kj').value}}</div>
+        </div>
+        <div class="flex gap-2" *ngIf="form.get('energy_kcal').value">
+            <div><b>{{ 'pages.nutritions.energy_kcal' | translate }}</b></div>
+            <div>{{form.get('energy_kcal').value}}</div>
+        </div>
+        <div class="flex gap-2" *ngIf="form.get('fat').value">
+            <div><b>{{ 'pages.nutritions.fat' | translate }}</b></div>
+            <div>{{form.get('fat').value}}</div>
+        </div>
+        <div class="flex gap-2" *ngIf="form.get('fat_sat').value">
+            <div><b>{{ 'pages.nutritions.fat_sat' | translate }}</b></div>
+            <div>{{form.get('fat_sat').value}}</div>
+        </div>
+        <div class="flex gap-2" *ngIf="form.get('carb').value">
+            <div><b>{{ 'pages.nutritions.carb' | translate }}</b></div>
+            <div>{{form.get('carb').value}}</div>
+        </div>
+        <div class="flex gap-2" *ngIf="form.get('carb_sugar').value">
+            <div><b>{{ 'pages.nutritions.carb_sugar' | translate }}</b></div>
+            <div>{{form.get('carb_sugar').value}}</div>
+        </div>
+        <div class="flex gap-2" *ngIf="form.get('protein').value">
+            <div><b>{{ 'pages.nutritions.protein' | translate }}</b></div>
+            <div>{{form.get('protein').value}}</div>
+        </div>
+        <div class="flex gap-2" *ngIf="form.get('salt').value">
+            <div><b>{{ 'pages.nutritions.salt' | translate }}</b></div>
+            <div>{{form.get('salt').value}}</div>
+        </div>
+
+        <h2>{{ 'pages.recycling.title' | translate }}</h2>
+
+
+        <div class="w-full flex gap-2">
+            <img class="w-2" *ngIf="form.get('drive').value" src="https://firebasestorage.googleapis.com/v0/b/label-scan-1c165.appspot.com/o/public%2FresponsibleConsumption%2Fdriving.svg?alt=media&amp;token=9190dac0-4b69-4535-bb4e-c893665a8467" alt="Don't Drink and Drive">
+            <img class="w-2" *ngIf="form.get('pregnant').value" src="https://firebasestorage.googleapis.com/v0/b/label-scan-1c165.appspot.com/o/public%2FresponsibleConsumption%2Fpregnant.svg?alt=media&amp;token=bae940be-54fd-4437-93f4-4ed6e8fc0644" alt="Pregnancy">
+            <img class="w-2" *ngIf="form.get('age').value" src="https://firebasestorage.googleapis.com/v0/b/label-scan-1c165.appspot.com/o/public%2FresponsibleConsumption%2Funderage.svg?alt=media&amp;token=ff71068d-93fc-42ec-9fd5-0c0a5cb799d0" alt="Underaged Consumption">
+        </div>
+        <h2>{{ 'pages.sustainability.title' | translate }}</h2>
+        <div class="flex flex-column gap-2" *ngIf="form.get('sustainibility_bio').value">
+            <div><b>{{ 'pages.sustainability.form.field1.label' | translate }}</b></div>
+            <div>{{form.get('sustainibility_bio').value}}</div>
+        </div>
+        <div class="flex flex-column gap-2" *ngIf="form.get('sustainibility_message').value">
+            <div><b>{{ 'pages.sustainability.form.field2.label' | translate }}</b></div>
+            <div>{{form.get('sustainibility_message').value}}</div>
+        </div>
+
+    </div>
+</div>

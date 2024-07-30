@@ -9,8 +9,8 @@ export class ElabelService {
 
   constructor(private http: HttpClient) { }
 
-  all() {
-    return this.http.get<any>(baseUrl + 'elabels')
+  all(userid : number) {
+    return this.http.get<any>(baseUrl + 'elabels/' + userid)
   }
 
   get(id: string) {

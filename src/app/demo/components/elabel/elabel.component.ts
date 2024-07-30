@@ -224,7 +224,6 @@ export class ElabelComponent {
   }
 
   onBasicUpload() {
-    debugger
     this.get()
   }
 
@@ -232,9 +231,14 @@ export class ElabelComponent {
     this.service.get(this.id).subscribe((response) => {
       this.form.patchValue(response.data)
 
-      if(response.data.geographical_indication) {
+      if(response.data.vintage_year) {
+        this.form.get('vintage_year').setValue(new Date(response.data.vintage_year))
+      }
+
+      if(response.data.geographical_indication.length) {
         this.form.get('geographical_indication').setValue(response.data.geographical_indication[0].id)
       }
+      debugger
 
       if(response.data.type) {
         this.form.get('type').setValue(parseInt(response.data.type))

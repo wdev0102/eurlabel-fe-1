@@ -1,10 +1,31 @@
 {
     "global" : {
+      "view" : "Dettagli",
       "qr" : "Codice Qr",
       "add" : "Aggiungi",
       "edit" : "Modifica",
       "demo-message" : "1 demo product left",
-      "save" : "Salva"
+      "save" : "Salva",
+      "register" : {
+        "title" : "Registrazione",
+        "subtitle" : "Crea il tuo profilo aziendale per proseguire",
+        "username" : "Username",
+        "password" : "Password",
+        "company" : "Azienda",
+        "address" : "Indirizzo",
+        "cap" : "CAP",
+        "location" : "Località",
+        "pr" : "Provincia",
+        "state" : "Stato",
+        "phone" : "Telefono",
+        "email" : "Email",
+        "website" : "Sito Web",
+        "piva" : "Partita iva",
+        "sdi" : "Codice SDI",
+        "submit" : "Prosegui",
+        "text" : "Per registrarti premi qui: ",
+        "button" : "Registrati"
+      }
     },
     "categories" : {
         "labels" : {
@@ -154,10 +175,10 @@
     "pages" : {
       "register" : {
         "title" : "Registrazione",
-        "subtitle" : "Per proseguire registra il tuo profilo personale",
-        "company" : "Azienda",
+        "subtitle" : "Crea il tuo profilo aziendale per proseguire",
         "username" : "Username",
         "password" : "Password",
+        "company" : "Azienda",
         "address" : "Indirizzo",
         "cap" : "CAP",
         "location" : "Località",
@@ -165,10 +186,12 @@
         "state" : "Stato",
         "phone" : "Telefono",
         "email" : "Email",
-        "website" : "Website",
-        "piva" : "P.Iva",
-        "submit" : "Registrati",
-        "sdi" : "Codice SDI"
+        "website" : "Sito Web",
+        "piva" : "Partita iva",
+        "sdi" : "Codice SDI",
+        "submit" : "Prosegui",
+        "text" : "Per registrarti premi qui: ",
+        "button" : "Registrati"
       },
       "dashboard" : {
         "title" : "Overview",
@@ -262,6 +285,8 @@
         "link" : "D.lgs 116/2020)",
         "subtitle" : "Etichettatura ambientale per gli imballaggi (i prodotti venduti in Italia devono indicare i materiali di imballaggio e altri dettagli secondo la normativa italiana",
         "field" : {
+          "addrule" : "Aggiungi regola",
+          "removerule" : "Rimuovi regola",
           "container" : "Contenitore",
           "material" : "Materiale"
         }
