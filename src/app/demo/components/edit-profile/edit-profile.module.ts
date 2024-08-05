@@ -7,14 +7,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
-import { RegisterRoutingModule } from './register-routing.module';
-import { RegisterComponent } from './register.component';
+
+import { EditProfileComponent } from './edit-profile.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { EditProfileRoutingModule } from './edit-profile-routing.module';
+import { RegisterModule } from '../auth/register/register.module';
 
 @NgModule({
     imports: [
         CommonModule,
-        RegisterRoutingModule,
+        RegisterModule,
+        EditProfileRoutingModule,
         ProgressSpinnerModule,
         TranslateModule,
         FormsModule,
@@ -27,7 +30,6 @@ import { TranslateModule } from '@ngx-translate/core';
         FormsModule,
         PasswordModule
     ],
-    declarations: [RegisterComponent],
-    exports: [RegisterComponent],
+    declarations: [EditProfileComponent]
 })
-export class RegisterModule { }
+export class EditProfileModule { }

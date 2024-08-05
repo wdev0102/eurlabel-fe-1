@@ -10,7 +10,6 @@ import { MenuItem } from 'primeng/api';
     templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {
-
     labels = []
     published = []
     draft = []
@@ -21,7 +20,6 @@ export class DashboardComponent implements OnInit {
     sku = new FormControl()
     id = new FormControl()
     types = []
-    edit = false
     userid = 0
     user : any = {}
     items: MenuItem[];
@@ -67,6 +65,7 @@ export class DashboardComponent implements OnInit {
     }
 
     save() {
+        /*
         this.edit = false
         let request = JSON.parse(localStorage.getItem('user'))
         request.company_name = this.companyName.value;
@@ -75,5 +74,10 @@ export class DashboardComponent implements OnInit {
             this.user = response
             this.edit = false;
         })
+        */
+    }
+
+    edit() {
+        this.router.navigateByUrl('edit')
     }
 }

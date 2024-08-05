@@ -24,6 +24,7 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                 path: 'uikit', component: FormLayoutDemoComponent,
             },
             { path: 'register', loadChildren: () => import('./demo/components/auth/register/register.module').then(m => m.RegisterModule) },
+            { path: 'edit', loadChildren: () => import('./demo/components/edit-profile/edit-profile.module').then(m => m.EditProfileModule) },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
             { path: 'notfound', component: NotfoundComponent },
             { path: '**', redirectTo: '/notfound' },

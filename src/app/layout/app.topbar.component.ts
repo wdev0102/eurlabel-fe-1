@@ -24,15 +24,14 @@ export class AppTopBarComponent {
         this.menuItems = [
             {
                 label: 'Logout', icon: 'pi pi-sign-out', command: () => {
-                    console.log("LOGOUT");
                     this.authService.logout();
-                    this.router.navigate(['/frontend'])
+                    this.router.navigate([''])
                 }
             },
         ];
     }
     logout() {
         this.authService.logout()
-        this.router.navigate(['/frontend'])
+        this.router.navigate([''])
     }
 }
