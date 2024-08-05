@@ -26,13 +26,13 @@ export class AppTopBarComponent {
                 label: 'Logout', icon: 'pi pi-sign-out', command: () => {
                     console.log("LOGOUT");
                     this.authService.logout();
-                    this.router.navigate(['/auth/login'])
+                    this.router.navigate(['/frontend'])
                 }
             },
         ];
     }
     logout() {
         this.authService.logout()
-        this.router.navigate(['/login'])
+        this.router.navigate(['/frontend'])
     }
 }

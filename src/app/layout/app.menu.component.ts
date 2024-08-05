@@ -16,7 +16,8 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Collegamenti rapidi',
                 items: [
-                    { label: 'Dasbhoarad', icon: 'pi pi-fw pi-home', routerLink: ['/customers'] },
+                    { label: 'Dasbhoarad', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
+                    { label: 'Brand', icon: 'pi pi-fw pi-box', routerLink: ['/'] },
                     { label: 'E-labels', icon: 'pi pi-fw pi-id-card', routerLink: ['/elabel'] }
                 ]
             }

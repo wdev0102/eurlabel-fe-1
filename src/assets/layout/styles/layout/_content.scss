@@ -10,3 +10,10 @@
 .layout-main {
     flex: 1 1 auto;
 }
+
+
+@media (min-width: 992px) {
+.layout-wrapper.layout-static .layout-main-container {
+    margin-left: 300px;
+}
+}

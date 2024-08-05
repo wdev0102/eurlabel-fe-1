@@ -25,6 +25,8 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { CalendarModule } from 'primeng/calendar';
 import { QRCodeModule } from 'angularx-qrcode';
 import { PreviewComponent } from '../preview/preview.component';
+import { TagModule } from 'primeng/tag';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [ElabelComponent, PreviewComponent],
@@ -53,7 +55,9 @@ import { PreviewComponent } from '../preview/preview.component';
     CheckboxModule,
     InputTextareaModule,
     InputTextModule,
-    ElabelRoutingModule
+    ElabelRoutingModule,
+    TagModule,
+    DividerModule
   ]
 })
 export class ElabelModule { }

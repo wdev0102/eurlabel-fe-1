@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -18,6 +18,9 @@ import { AppMenuitemComponent } from './app.menuitem.component';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppTopBarComponent } from './app.topbar.component';
 import { AppConfigModule } from './config/config.module';
+import { DividerModule } from 'primeng/divider';
+import { ButtonModule } from 'primeng/button';
+
 
 @NgModule({
     declarations: [
@@ -27,10 +30,12 @@ import { AppConfigModule } from './config/config.module';
         AppMenuComponent,
         AppSidebarComponent,
         AppLayoutComponent,
+        
     ],
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         MenuModule,
         BrowserAnimationsModule,
@@ -41,7 +46,10 @@ import { AppConfigModule } from './config/config.module';
         InputSwitchModule,
         RippleModule,
         RouterModule,
-        AppConfigModule
+        AppConfigModule,
+        DividerModule,
+        ButtonModule
+        
     ],
     exports: [AppLayoutComponent]
 })

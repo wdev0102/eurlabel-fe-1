@@ -2,10 +2,12 @@
     "global" : {
       "view" : "Dettagli",
       "qr" : "Codice Qr",
-      "add" : "Aggiungi",
+      "add" : "Crea una nuova E-Label",
+      "new_brand" : "Crea nuovo Brand",
       "edit" : "Modifica",
       "demo-message" : "1 demo product left",
       "save" : "Salva",
+      "send" : "Invia",
       "register" : {
         "title" : "Registrazione",
         "subtitle" : "Crea il tuo profilo aziendale per proseguire",
@@ -25,6 +27,16 @@
         "submit" : "Prosegui",
         "text" : "Per registrarti premi qui: ",
         "button" : "Registrati"
+      },
+      "forgot" : {
+        "title" : "Reimposta la password",
+        "subtitle" : "Inserisci nei campi qui sotto la nuova password",
+        "username" : "Username",
+        "password" : "Nuova Password",
+        "password_check" : "Conferma Password",
+        "submit" : "Prosegui",
+        "text" : "Password dimenticata? clicca qui ",
+        "button" : "Reimposta password"
       }
     },
     "categories" : {
@@ -194,13 +206,13 @@
         "button" : "Registrati"
       },
       "dashboard" : {
-        "title" : "Overview",
+        "title" : "Dashboard",
         "cards" : {
-          "label" : "Etichette",
+          "label" : "Nuova E-Label",
           "published" : "Pubblicate",
           "draft" : "Bozze",
-
-          "profile" : "Profilo della compagnia",
+          "brand" : "Brand",
+          "profile" : "Profilo dell'azienda",
           "elabel" : "E-label",
           "feedback" : {
             "tab1" : "Generale",
@@ -221,7 +233,7 @@
           "id" : "Identificativo",
           "productName" : "Nome del prodotto",
           "upload" : {
-            "label" : "",
+            "label" : "Immagine del prodotto",
             "helper" : ""
           },
           "product_name" : {
@@ -229,7 +241,11 @@
             "helper" : ""
           },
           "sku" : {
-            "label" : "Identificativo pubblico",
+            "label" : "Lotto",
+            "helper" : ""
+          },
+          "country" : {
+            "label" : "Nazione di produzione",
             "helper" : ""
           },
           "type" : {
@@ -237,15 +253,15 @@
             "helper" : ""
           },
           "vintage_year" : {
-            "label" : "Anno di edizione",
+            "label" : "Annata",
             "helper" : ""
           },
           "product_varieties" : {
-            "label" : "Varietà",
+            "label" : "Uvaggio",
             "helper" : ""
           },
           "geographical_indication" : {
-            "label" : "Denominazione geografica",
+            "label" : "Indicazione geografica",
             "helper" : ""
           },
           "alcohol_content_percentage" : {

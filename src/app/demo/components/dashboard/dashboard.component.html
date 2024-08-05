@@ -1,254 +1,359 @@
-<div class="grid">
-    <div class="flex flex-row flex-wrap w-full justify-content-between">
-        <div class="flex align-items-center justify-content-center w-4rem h-4rem border-round m-2">
-            <i class="pi pi-apple"></i>{{ 'pages.dashboard.title' | translate }}
-        </div>
-        <div class="flex">
-            <div class="flex align-items-center justify-content-center border-round m-2">
-                <p-tag severity="warning" value="{{ 'global.demo-message' | translate }}" class="p-element">
-                </p-tag>
-            </div>
-            <div class="flex  m-2">
-                <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
-            </div>
-        </div>
-    </div>
+<!--BREAD CRUMBS-->
+<div class="grid p-fluid mb-2">
+    <div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-3 w-full">
+        <p-card class="col-12 md:col-12 lg:col-12 ">
 
-    <div class="flex flex-wrap w-full">
-        <div class="w-full flex justify-content-between dashboard-min-height gap-1">
-            <div class="w-6 h-full">
-                <div class="card h-full">
-                    <div class="flex align-content-center justify-content-between flex-wrap border-bottom-1 pb-2">
-                        <div class="flex align-content-center flex-wrap gap-2">
-                            <div class="flex align-items-center justify-content-center"><i class="pi pi-id-card"></i></div>
-                            <div class="flex align-items-center justify-content-center"><b>{{ 'pages.dashboard.cards.profile' | translate }}</b></div>
-                        </div>
-                        <div class="flex align-content-center flex-wrap gap-2">
-                            <div *ngIf="!edit" (click)="edit=true" class="flex gap-2">
-                                <div class="flex align-items-center justify-content-center"><b>{{ 'global.edit' | translate }}</b></div>
-                                <div  class="flex align-items-center justify-content-center"><i class="pi pi-file-edit"></i></div>
-                            </div>
-                            <div *ngIf="edit" (click)="save()" class="flex gap-2">
-                                <div class="flex align-items-center justify-content-center"><b>{{ 'global.save' | translate }}</b></div>
-                                <div class="flex align-items-center justify-content-center"><i class="pi pi-save"></i></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex h-full min-w-full flex-row gap-2 ">
-                        <div class="flex-initial flex align-items-start justify-content-center w-6 dashboard-min-height-card">         
-                            <div class="card w-full h-full flex align-items-center justify-content-center dashboard-min-height-card">
-                                <div *ngIf="!edit">
-                                    {{ companyName.value }}  
-                                </div>                      
-                                <div *ngIf="edit">
-                                    <input type="text" pInputText [formControl]="companyName" required autofocus/> 
-                                </div>                      
-                            </div>    
-                        </div>
-                        <div class="flex-initial flex flex-column align-items-center justify-content-center w-6 dashboard-min-height-card">
-                            <div class="card w-full flex align-items-center justify-content-center dashboard-min-height-card">
-                                <i *ngIf="!edit && !user.image" class="pi pi-image"></i>
-                                <img *ngIf="user.image" src="//{{user.image}}">
-                                <p-fileUpload 
-                                *ngIf="edit"
-                                mode="basic" 
-                                name="image" 
-                                chooseIcon="pi pi-upload" 
-                                url="https://app.eulabel.it/backend//profile/{{userid}}" 
-                                accept="image/*" maxFileSize="1000000" 
-                                [auto]="true" 
-                                (onUpload)="onBasicUpload()"
-                                chooseLabel="Browse" />
-                            </div>
-                            <button (click)="display=true" pButton pRipple type="button" class="flex align-content-start flex-wrap gap-2">
-                                <div class="flex align-items-center justify-content-center">
-                                    <i class="pi pi-palette"></i>
-                                </div>
-                                <div class="flex align-items-center justify-content-center">
-                                    {{ 'global.add' | translate }}
-                                </div>
-                            </button>
-                        </div>
-                    </div>
+            <div class="flex flex-column md:flex-row gap-3 align-items-center justify-content-between">
+                <div class="flex align-items-left justify-content-center">
+                    <i class="pi pi-home mr-2 mt-1"></i> {{ 'pages.dashboard.title' | translate }}
+                </div>
+                <div class="flex align-items-right ">
+                    <p-tag styleClass="p-mr-2" con="pi pi-exclamation-triangle" severity="warning"
+                        value="{{ 'global.demo-message' | translate }}"></p-tag>
+                </div>
+                <div class="flex align-items-center md:align-items-right text-center">
+                    <button (click)="display=true" pButton pRipple type="button"
+                        class="p-button bg-primary p-component p-button-text text-white text-center align-items-center "><i
+                            class="pi pi-qrcode mr-2"></i>{{ 'global.add' | translate }}</button>
                 </div>
             </div>
 
-            <div class="w-6  h-full">
-                <div class="card h-full">
-                    <div class="flex align-content-center justify-content-start flex-wrap border-bottom-1 pb-2">
-                        <div class="flex align-content-center flex-wrap gap-2">
-                            <div class="flex align-items-center justify-content-center"><i class="pi pi-id-card"></i></div>
-                            <div class="flex align-items-center justify-content-center"><b>{{ 'pages.dashboard.cards.feedback.title' | translate }}</b></div>
-                        </div>
-                    </div>
 
-                    <div class="flex h-full min-w-full flex-column gap-2">
-                        <div class="flex flex-row">
-                            <div class="field-radiobutton col-4">
-                                <p-radioButton [formControl]="radio"></p-radioButton>
-                                <label for="category1">{{ 'pages.dashboard.cards.feedback.tab1' | translate }}</label>
-                            </div>
-                            <div class="field-radiobutton col-4">
-                                <p-radioButton [formControl]="radio"></p-radioButton>
-                                <label for="category2">{{ 'pages.dashboard.cards.feedback.tab2' | translate }}</label>
-                            </div>
-                            <div class="field-radiobutton col-4">
-                                <p-radioButton [formControl]="radio"></p-radioButton>
-                                <label for="category3">{{ 'pages.dashboard.cards.feedback.tab3' | translate }}</label>
-                            </div>
-                        </div>
-                        <div style="height: 180px;" class="flex align-items-center justify-content-center col-12 border-bottom-1"></div>
-                        
-                        <button [disabled]="true" pButton pRipple type="button" class="m-auto flex align-content-start flex-wrap gap-2 w-3">
-                            <div class="flex align-items-center justify-content-center">
-                                <i class="pi pi-save"></i>
-                            </div>
-                            <div class="flex align-items-center justify-content-center">
-                                {{ 'global.save' | translate }}
-                            </div>
-                        </button>
+        </p-card>
 
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="w-full mt-2">
-            <div class="card">
-                <p-tabView orientation="left">
-                    <p-tabPanel header="{{ 'pages.dashboard.cards.label' | translate }}" class="line-height-3 m-0">
-                        <p-table *ngIf="labels.length > 0" [value]="labels"
-                            [paginator]="true" [rows]="5" responsiveLayout="scroll">
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <th>Nome</th>
-                                    <th pSortableColumn="name">Cognome <p-sortIcon field="name"></p-sortIcon></th>
-                                    <th pSortableColumn="price">Motivo <p-sortIcon field="price"></p-sortIcon></th>
-                                    <th></th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-label>
-                                <tr class="customers-table-row" (click)="open(customer)">
-                                    <td style="width: 15%; min-width: 5rem;">
-                                        {{label.id}}
-                                    </td>
-                                    <td style="width: 35%; min-width: 7rem;">{{label.id}}</td>
-                                    <td style="width: 35%; min-width: 8rem;">{{label.product_name}}</td>
-                                    <td style="width: 25%;">
-                                        <a [routerLink]="['/elabel/' + label.id]">
-                                            <button pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-search"></i>{{ 'global.view' | translate }}</button>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </ng-template>
-                        </p-table>
-                        <div class="container ng-star-inserted flex align-content-center justify-content-center" *ngIf="labels.length == 0">
-                            <div class="flex flex-column align-content-center justify-content-center">
-                                <div class="flex align-content-center justify-content-center"> <i class="pi pi-apple"></i></div>
-                                <div class="flex align-content-center justify-content-center">{{ 'pages.dashboard.cards.label' | translate }}</div>
-                                <div class="flex align-content-center justify-content-center">
-                                    <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
-                                </div>
-                            </div>
-                        </div>
-                    </p-tabPanel>
-                    <p-tabPanel header="{{ 'pages.dashboard.cards.published' | translate }} (0)" class="line-height-3 m-0">
-                        <p-table *ngIf="published.length > 0" [value]="customers"
-                            [paginator]="true" [rows]="5" responsiveLayout="scroll">
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <th>Nome</th>
-                                    <th pSortableColumn="name">Cognome <p-sortIcon field="name"></p-sortIcon></th>
-                                    <th pSortableColumn="price">Motivo <p-sortIcon field="price"></p-sortIcon></th>
-                                    <th></th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-customer>
-                                <tr class="customers-table-row" (click)="open(customer)">
-                                    <td style="width: 15%; min-width: 5rem;">
-                            
-                                    </td>
-                                    <td style="width: 35%; min-width: 7rem;"></td>
-                                    <td style="width: 35%; min-width: 8rem;"></td>
-                                    <td style="width: 15%;">
-                                        <button pButton pRipple type="button" icon="pi pi-search"
-                                            class="p-button p-component p-button-text p-button-icon-only"></button>
-                                    </td>
-                                </tr>
-                            </ng-template>
-                        </p-table>
-                        <div class="container ng-star-inserted flex align-content-center justify-content-center" *ngIf="labels.length == 0">
-                            <div class="flex flex-column align-content-center justify-content-center">
-                                <div class="flex align-content-center justify-content-center"> <i class="pi pi-apple"></i></div>
-                                <div class="flex align-content-center justify-content-center">{{ 'pages.dashboard.cards.label' | translate }}</div>
-                                <div class="flex align-content-center justify-content-center">
-                                    <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
-                                </div>
-                            </div>
-                        </div>                        
-                    </p-tabPanel>
-                    <p-tabPanel header="{{ 'pages.dashboard.cards.draft' | translate }} (0)" class="line-height-3 m-0">
-                        <p-table *ngIf="draft.length > 0" [value]="customers"
-                            [paginator]="true" [rows]="5" responsiveLayout="scroll">
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <th>Nome</th>
-                                    <th pSortableColumn="name">Cognome <p-sortIcon field="name"></p-sortIcon></th>
-                                    <th pSortableColumn="price">Motivo <p-sortIcon field="price"></p-sortIcon></th>
-                                    <th></th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-customer>
-                                <tr class="customers-table-row" (click)="open(customer)">
-                                    <td style="width: 15%; min-width: 5rem;">
-                            
-                                    </td>
-                                    <td style="width: 35%; min-width: 7rem;"></td>
-                                    <td style="width: 35%; min-width: 8rem;"></td>
-                                    <td style="width: 15%;">
-                                        <button pButton pRipple type="button" icon="pi pi-search"
-                                            class="p-button p-component p-button-text p-button-icon-only"></button>
-                                    </td>
-                                </tr>
-                            </ng-template>
-                        </p-table>
-                        <div class="container ng-star-inserted flex align-content-center justify-content-center" *ngIf="labels.length == 0">
-                            <div class="flex flex-column align-content-center justify-content-center">
-                                <div class="flex align-content-center justify-content-center"> <i class="pi pi-apple"></i></div>
-                                <div class="flex align-content-center justify-content-center">{{ 'pages.dashboard.cards.label' | translate }}</div>
-                                <div class="flex align-content-center justify-content-center">
-                                    <button (click)="display=true" pButton pRipple type="button" class="p-button bg-primary p-component p-button-text text-white"><i class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
-                                </div>
-                            </div>
-                        </div>                        
-                    </p-tabPanel>
-                </p-tabView>
-            </div>
-        </div>    
     </div>
-
-    <p-dialog header="{{ 'pages.dashboard.cards.label' | translate }}" [(visible)]="display" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
-        <div class="line-height-3 m-0">
-            <div class="flex flex-column">
-                <div class="flex flex-column">
-                    <div *ngIf="false">
-                        <label for="name" class="block text-900 text-xl font-medium mb-2">{{ 'pages.elabel.form.id' | translate }}</label>
-                        <input type="text" pInputText [formControl]="id" required autofocus/>
-                    </div>
-                    <div>
-                        <label for="name" class="block text-900 text-xl font-medium mb-2">{{ 'pages.elabel.form.productName' | translate }}</label>
-                        <input type="text" pInputText [formControl]="name" required autofocus/>
-                    </div>
-                    <div *ngIf="false">
-                        <label for="sku" class="block text-900 text-xl font-medium mb-2">{{ 'pages.elabel.form.sku.label' | translate }}</label>
-                        <input type="text" pInputText [formControl]="sku" required/>
-                    </div>
-                </div>        
-            </div>
-        </div>
-        <ng-template pTemplate="footer">
-                <button pButton icon="pi pi-check" (click)="submit()" label="{{ 'global.save' | translate }}" class="p-button-outlined"></button>
-        </ng-template>
-    </p-dialog>
 </div>
+
+
+<div class="grid p-fluid mb-2">
+    <!--PROFILO AZIENDALE-->
+    <div class="col-12 md:col-6">
+
+
+        <div class="card" style="border-radius: 0px;">
+            <div class="grid p-fluid mb-2">
+                <div class="col-6">
+                    <i class="pi pi-id-card mr-2"></i> <b>{{
+                        'pages.dashboard.cards.profile' | translate }}</b>
+                </div>
+                <div class="col-6 text-right">
+                    <span *ngIf="!edit" (click)="edit=true" style="cursor: pointer;"><i
+                            class="pi pi-file-edit mr-2"></i> <b>{{ 'global.edit' | translate }}</b></span>
+                    <span *ngIf="edit" (click)="save()" style="cursor: pointer;"><i class="pi pi-save mr-2"></i> <b>{{
+                            'global.save' | translate }}</b></span>
+                </div>
+            </div>
+            <p-divider></p-divider>
+
+
+
+
+            <div class="grid flex p-fluid mb-2">
+                <!--IMMAGINE-->
+
+                <div class="col-12 md:col-5">
+                    <div class="row">
+                        <div class="col-12 flex justify-content-center align-items-center">
+                            <i *ngIf="!edit && !user.image" class="pi pi-image"></i>
+                            <img *ngIf="user.image" src="//{{user.image}}" style="max-height:150px;">
+                            <p-fileUpload *ngIf="edit" mode="basic" name="image" chooseIcon="pi pi-upload"
+                                url="https://app.eulabel.it/backend//profile/{{userid}}" accept="image/*"
+                                maxFileSize="1000000" [auto]="true" (onUpload)="onBasicUpload()" chooseLabel="Browse" />
+                        </div>
+                        <p-divider></p-divider>
+                        <div class="col-12 mt-3 flex justify-content-center align-items-center"
+                            style="background-color: rgb(189, 185, 82);"><img src="assets/icon/color.svg"
+                                style="width:20px;"></div>
+                    </div>
+                </div>
+                <!--DATI-->
+                <div class="col-12 md:col-7 flex justify-content-center align-items-center text-center">
+                    <span *ngIf="!edit">
+                        <h4>{{ companyName.value }}</h4>
+                    </span>
+                    <span *ngIf="edit">
+                        <input type="text" pInputText [formControl]="companyName" required autofocus />
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--BRAND-->
+    <div class="col-12 md:col-6">
+        <div class="card" style="border-radius: 0px;">
+            <div class="grid p-fluid mb-2">
+                <div class="col-6">
+                    <i class="pi pi-box mr-2"></i> <b>{{
+                        'pages.dashboard.cards.brand' | translate }}</b>
+                </div>
+                <div class="col-6 text-right">
+                    <i class="pi pi-plus mr-2"></i> <b>{{ 'global.new_brand' | translate }}</b>
+                </div>
+
+            </div>
+            <p-divider></p-divider>
+
+            <!--BRAND LIST-->
+            <div class="flex m-0 h-16 w-full items-center justify-between rounded-sm  bg-white px-2 md:pr-4 md:pl-2 my-1"
+                style="border-color: rgb(203, 213, 225);">
+                <div class="flex min-w-0 items-center gap-2">
+                    <img alt="Brand image" src="assets/brand_test.jpg" width="50" height="50" decoding="async"
+                        loading="lazy" class="p-2"
+                        style="color: transparent;max-height:50px;border-style: solid !important;border-color: rgb(21, 91, 176);border-width: 3px;">
+                    <a [routerLink]="['/elabel/']" class="truncate font-semibold xl:text-base"
+                        href="javascript:void(0)">Sasso di Luna</a>
+
+                </div>
+
+                <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2">
+
+                    <p-button icon="pi pi-pencil" pTooltip="Modifica Brand"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                        [routerLink]="['/elabel/']"></p-button>
+                    <p-button icon="pi pi-qrcode" pTooltip="QrCode"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                        [routerLink]="['/elabel/' ]"></p-button>
+                    <p-button icon="pi pi-plus" pTooltip="Nuova E-Label"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                        [routerLink]="['/elabel/' ]"></p-button>
+                </div>
+            </div>
+
+            <p-divider></p-divider>
+            <div class="flex m-0 h-16 w-full items-center justify-between rounded-sm  bg-white px-2 md:pr-4 md:pl-2 my-1"
+                style="border-color: rgb(203, 213, 225);">
+                <div class="flex min-w-0 items-center gap-2">
+                    <img alt="Brand image" src="assets/brand_test.jpg" width="50" height="50" decoding="async"
+                        loading="lazy" class="p-2"
+                        style="color: transparent;max-height:50px;border-style: solid !important;border-color: rgb(110, 19, 57);border-width: 3px;">
+                    <a [routerLink]="['/elabel/']" class="truncate font-semibold xl:text-base"
+                        href="javascript:void(0)">Sasso di Mare</a>
+
+                </div>
+
+                <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2">
+
+                    <p-button icon="pi pi-pencil" pTooltip="Modifica Brand"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                        [routerLink]="['/elabel/']"></p-button>
+                    <p-button icon="pi pi-qrcode" pTooltip="QrCode"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                        [routerLink]="['/elabel/' ]"></p-button>
+                    <p-button icon="pi pi-plus" pTooltip="Nuovo E-Label"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                        [routerLink]="['/elabel/' ]"></p-button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!--ELABEL LIST-->
+    <div class="col-12">
+        <div class="card" style="border-radius: 0px;">
+            <div class="grid p-fluid mb-2">
+                <div class="col-12">
+                    <i class="pi pi-qrcode mr-2"></i> <b>E-Label</b>
+                </div>
+
+            </div>
+
+            <p-tabView orientation="left" class="p-0">
+                <p-tabPanel header="{{ 'pages.dashboard.cards.label' | translate }}" class="line-height-3 p-0 m-0 mb-3">
+
+                    <div *ngFor="let label of labels"
+                        class="flex m-0 h-16 w-full items-center justify-between rounded-sm border border-solid bg-white px-2 md:pr-4 md:pl-2 my-1"
+                        style="border-color: rgb(203, 213, 225);">
+
+                        <div class="flex min-w-0 items-center gap-2">
+
+                            <!--BRAND-->
+                            <img alt="Brand image" src="assets/brand_test.jpg" width="50" height="50" decoding="async"
+                                loading="lazy" class="p-2"
+                                style="color: transparent;max-height:50px;border-style: solid !important;border-color: rgb(110, 19, 57);border-width: 3px;">
+
+                            <img *ngIf="!label.sub_image" alt="Product image preview"
+                                src="assets/placeholder_bottle.webp" width="50" height="50" decoding="async"
+                                loading="lazy" class="p-2" style="color: transparent;">
+                            <img *ngIf="label.sub_image" alt="Product image preview" src="https://{{label.sub_image}}"
+                                width="50" height="50" decoding="async" loading="lazy" class="p-2"
+                                style="color: transparent;max-height:50px">
+                            <a [routerLink]="['/elabel/' + label.id]" class="truncate font-semibold xl:text-base"
+                                href="javascript:void(0)">{{label.product_name}}</a><span *ngIf="label.sku!=''">- {{label.sku}}</span>
+                            <div class="ml-1 hidden md:block">
+                                <span *ngIf="label.status==''"><p-tag severity="warning" value="Bozza"></p-tag></span>
+                                <span *ngIf="label.status!=''"><p-tag severity="success" value="Pubblicato"></p-tag></span>
+                            </div>
+                        </div>
+
+                        <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2">
+
+                            <p-button icon="pi pi-pencil" pTooltip="Modifica"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                            <p-button icon="pi pi-qrcode" pTooltip="QrCode"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                            <p-button icon="pi pi-copy" pTooltip="Duplica"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                        </div>
+
+                    </div>
+                    <div class="container ng-star-inserted flex align-content-center justify-content-center"
+                        *ngIf="labels.length == 0">
+                        <div class="flex flex-column align-content-center justify-content-center">
+                            <div class="flex align-content-center justify-content-center"> <i class="pi pi-apple"></i>
+                            </div>
+                            <div class="flex align-content-center justify-content-center">{{
+                                'pages.dashboard.cards.label' | translate }}</div>
+                            <div class="flex align-content-center justify-content-center">
+                                <button (click)="display=true" pButton pRipple type="button"
+                                    class="p-button bg-primary p-component p-button-text text-white"><i
+                                        class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </p-tabPanel>
+                <p-tabPanel header="{{ 'pages.dashboard.cards.published' | translate }} (0)" class="line-height-3 m-0">
+                    <div *ngFor="let label of labels"
+                        class="flex m-0 h-16 w-full items-center justify-between rounded-sm border border-solid bg-white px-2 md:pr-4 md:pl-2 my-1"
+                        style="border-color: rgb(203, 213, 225);">
+
+                        <div class="flex min-w-0 items-center gap-2">
+
+                            <img *ngIf="!label.sub_image" alt="Product image preview"
+                                src="assets/placeholder_bottle.webp" width="50" height="50" decoding="async"
+                                loading="lazy" class="p-2" style="color: transparent;">
+                            <img *ngIf="label.sub_image" alt="Product image preview" src="https://{{label.sub_image}}"
+                                width="50" height="50" decoding="async" loading="lazy" class="p-2"
+                                style="color: transparent;max-height:50px">
+                            <a [routerLink]="['/elabel/' + label.id]" class="truncate font-semibold xl:text-base"
+                                href="javascript:void(0)">{{label.product_name}}</a>
+                            <div class="ml-1 hidden md:block">
+                                <span *ngIf="label.status==''"><p-tag severity="warning" value="Bozza"></p-tag></span>
+                                <span *ngIf="label.status!=''"><p-tag severity="success" value="Bozza"></p-tag></span>
+                            </div>
+                        </div>
+
+                        <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2">
+
+                            <p-button icon="pi pi-pencil" pTooltip="Modifica"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                            <p-button icon="pi pi-qrcode" pTooltip="QrCode"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                            <p-button icon="pi pi-copy" pTooltip="Duplica"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                        </div>
+
+                    </div>
+                    <div class="container ng-star-inserted flex align-content-center justify-content-center"
+                        *ngIf="labels.length == 0">
+                        <div class="flex flex-column align-content-center justify-content-center">
+                            <div class="flex align-content-center justify-content-center"> <i class="pi pi-apple"></i>
+                            </div>
+                            <div class="flex align-content-center justify-content-center">{{
+                                'pages.dashboard.cards.label' | translate }}</div>
+                            <div class="flex align-content-center justify-content-center">
+                                <button (click)="display=true" pButton pRipple type="button"
+                                    class="p-button bg-primary p-component p-button-text text-white"><i
+                                        class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </p-tabPanel>
+                <p-tabPanel header="{{ 'pages.dashboard.cards.draft' | translate }} (0)" class="line-height-3 m-0">
+                    <div *ngFor="let label of labels"
+                        class="flex m-0 h-16 w-full items-center justify-between rounded-sm border border-solid bg-white px-2 md:pr-4 md:pl-2 my-1"
+                        style="border-color: rgb(203, 213, 225);">
+
+                        <div class="flex min-w-0 items-center gap-2">
+
+                            <img *ngIf="!label.sub_image" alt="Product image preview"
+                                src="assets/placeholder_bottle.webp" width="50" height="50" decoding="async"
+                                loading="lazy" class="p-2" style="color: transparent;">
+                            <img *ngIf="label.sub_image" alt="Product image preview" src="https://{{label.sub_image}}"
+                                width="50" height="50" decoding="async" loading="lazy" class="p-2"
+                                style="color: transparent;max-height:50px">
+                            <a [routerLink]="['/elabel/' + label.id]" class="truncate font-semibold xl:text-base"
+                                href="javascript:void(0)">{{label.product_name}}</a>
+                            <div class="ml-1 hidden md:block">
+                                <span *ngIf="label.status==''"><p-tag severity="warning" value="Bozza"></p-tag></span>
+                                <span *ngIf="label.status!=''"><p-tag severity="success" value="Bozza"></p-tag></span>
+                            </div>
+                        </div>
+
+                        <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2">
+
+                            <p-button icon="pi pi-pencil" pTooltip="Modifica"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                            <p-button icon="pi pi-qrcode" pTooltip="QrCode"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                            <p-button icon="pi pi-copy" pTooltip="Duplica"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                        </div>
+
+                    </div>
+                    <div class="container ng-star-inserted flex align-content-center justify-content-center"
+                        *ngIf="labels.length == 0">
+                        <div class="flex flex-column align-content-center justify-content-center">
+                            <div class="flex align-content-center justify-content-center"> <i class="pi pi-apple"></i>
+                            </div>
+                            <div class="flex align-content-center justify-content-center">{{
+                                'pages.dashboard.cards.label' | translate }}</div>
+                            <div class="flex align-content-center justify-content-center">
+                                <button (click)="display=true" pButton pRipple type="button"
+                                    class="p-button bg-primary p-component p-button-text text-white"><i
+                                        class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+    </div>
+
+</div>
+
+
+<p-dialog header="{{ 'pages.dashboard.cards.label' | translate }}" [(visible)]="display" [modal]="true"
+    showEffect="fade" [style]="{'width': '40vw' , 'background-color':'#213B8D!important'}"
+    [breakpoints]="{'960px': '75vw'}">
+    <div class="line-height-3 m-0">
+        <div class="flex flex-column">
+            <div class="flex flex-column col-12 p-0">
+                <div *ngIf="false">
+                    <label for="name" class="block text-900 text-xl font-medium mb-2">{{ 'pages.elabel.form.id' |
+                        translate }}</label>
+                    <input type="text" pInputText [formControl]="id" required autofocus />
+                </div>
+                <div>
+                    <label for="name" class="block text-900 text-xl font-medium mb-2">{{
+                        'pages.elabel.form.productName' | translate }}</label>
+                    <input type="text" pInputText [formControl]="name" required autofocus class="w-full" />
+                </div>
+                <div *ngIf="false">
+                    <label for="sku" class="block text-900 text-xl font-medium mb-2">{{
+                        'pages.elabel.form.sku.label' | translate }}</label>
+                    <input type="text" pInputText [formControl]="sku" required />
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton icon="pi pi-check" (click)="submit()" label="{{ 'global.save' | translate }}"
+            class="p-button-outlined"></button>
+    </ng-template>
+</p-dialog>

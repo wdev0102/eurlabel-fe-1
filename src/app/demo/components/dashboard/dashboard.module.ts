@@ -21,6 +21,9 @@ import { TabViewModule } from 'primeng/tabview';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
+import { CardModule } from 'primeng/card';
+import { DividerModule } from 'primeng/divider';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
     imports: [
@@ -44,7 +47,10 @@ import { FileUploadModule } from 'primeng/fileupload';
         TabViewModule,
         RadioButtonModule,
         DialogModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        CardModule,
+        DividerModule,
+        TooltipModule
     ],
     providers: [
         ConfirmationService

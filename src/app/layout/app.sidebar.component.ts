@@ -1,5 +1,8 @@
 import { Component, ElementRef } from '@angular/core';
 import { LayoutService } from "./service/app.layout.service";
+import { TranslateModule } from '@ngx-translate/core';
+
+
 
 @Component({
     selector: 'app-sidebar',

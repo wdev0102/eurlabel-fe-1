@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { ElabelService } from '../../service/elabel.service';
 import { UserService } from '../../service/user.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -23,6 +24,7 @@ export class DashboardComponent implements OnInit {
     edit = false
     userid = 0
     user : any = {}
+    items: MenuItem[];
 
     constructor(private router: Router, private userService: UserService, private service: ElabelService, public layoutService: LayoutService) {
 
@@ -43,6 +45,9 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.items = [
+            {label: 'Duplica', icon: 'pi pi-fw pi-copy'}
+        ];
 
     }
 

@@ -34,12 +34,12 @@ export class LayoutService {
     };
 
     state: LayoutState = {
-        staticMenuDesktopInactive: true,
-        overlayMenuActive: true,
-        profileSidebarVisible: true,
-        configSidebarVisible: true,
-        staticMenuMobileActive: true,
-        menuHoverActive: true
+        staticMenuDesktopInactive: false,
+        overlayMenuActive: false,
+        profileSidebarVisible: false,
+        configSidebarVisible: false,
+        staticMenuMobileActive: false,
+        menuHoverActive: false
     };
 
     private configUpdate = new Subject<AppConfig>();

@@ -69,7 +69,7 @@ export class ElabelComponent {
       age: [false, Validators.required],
       sustainibility_bio: [null, Validators.required],
       sustainibility_message: [null, Validators.required],
-      rules: this.fb.array([]),
+      rules: new FormArray([]),
       ingredients: new FormArray([]),
       type: [null, Validators.required]
     })
@@ -241,6 +241,7 @@ export class ElabelComponent {
 
       for(let option of response.data.ingredients)
         this.ingredientPicked.push(option)
+      debugger
       for(let option of response.data.recycling_rules) {
         option.recycling_rule_materials_id = parseInt(option.recycling_rule_materials_id)
         option.recycling_rule_containers_id = parseInt(option.recycling_rule_containers_id)
@@ -263,7 +264,7 @@ export class ElabelComponent {
       }
 
 
-      this.breadcrumbItems.push({ label: this.form.get('public_id').value });
+      this.breadcrumbItems.push({ label: this.form.get('product_name').value });
       this.breadcrumbItems = [...this.breadcrumbItems]
     })
   }
