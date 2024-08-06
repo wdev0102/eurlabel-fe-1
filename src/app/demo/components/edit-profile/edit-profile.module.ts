@@ -14,10 +14,11 @@ import { EditProfileRoutingModule } from './edit-profile-routing.module';
 import { RegisterModule } from '../auth/register/register.module';
 
 @NgModule({
+    declarations: [EditProfileComponent],
     imports: [
         CommonModule,
-        RegisterModule,
         EditProfileRoutingModule,
+        RegisterModule,
         ProgressSpinnerModule,
         TranslateModule,
         FormsModule,
@@ -28,8 +29,7 @@ import { RegisterModule } from '../auth/register/register.module';
         ToastModule,
         InputTextModule,
         FormsModule,
-        PasswordModule
+        PasswordModule,
     ],
-    declarations: [EditProfileComponent]
 })
 export class EditProfileModule { }
