@@ -38,10 +38,8 @@
                         'pages.dashboard.cards.profile' | translate }}</b>
                 </div>
                 <div class="col-6 text-right">
-                    <span *ngIf="!edit" (click)="edit=true" style="cursor: pointer;"><i
+                    <span (click)="edit()" style="cursor: pointer;"><i
                             class="pi pi-file-edit mr-2"></i> <b>{{ 'global.edit' | translate }}</b></span>
-                    <span *ngIf="edit" (click)="save()" style="cursor: pointer;"><i class="pi pi-save mr-2"></i> <b>{{
-                            'global.save' | translate }}</b></span>
                 </div>
             </div>
             <p-divider></p-divider>
