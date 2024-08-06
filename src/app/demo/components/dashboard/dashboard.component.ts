@@ -23,7 +23,9 @@ export class DashboardComponent implements OnInit {
     userid = 0
     user : any = {}
     items: MenuItem[];
-
+    items_brand: MenuItem[];
+    items_elabel: MenuItem[];
+    
     constructor(private router: Router, private userService: UserService, private service: ElabelService, public layoutService: LayoutService) {
 
         let request = JSON.parse(localStorage.getItem('user'))
@@ -44,8 +46,20 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         this.items = [
-            {label: 'Duplica', icon: 'pi pi-fw pi-copy'}
+            { label: 'Duplica', icon: 'pi pi-fw pi-copy' }
         ];
+        this.items_brand = [
+            { label: 'Modifica Brand', icon: 'pi pi-fw pi-pencil' },
+            { label: 'Qr Code', icon: 'pi pi-fw pi-qrcode' },
+            { label: 'Nuova E-Label', icon: 'pi pi-fw pi-plus' },
+        ];
+        this.items_elabel = [
+            { label: 'Modifica Brand', icon: 'pi pi-fw pi-pencil' },
+            { label: 'Qr Code', icon: 'pi pi-fw pi-qrcode' },
+            { label: 'Duplica', icon: 'pi pi-fw pi-copy' },
+        ];
+
+
 
     }
 
@@ -77,7 +91,4 @@ export class DashboardComponent implements OnInit {
         */
     }
 
-    edit() {
-        this.router.navigateByUrl('edit')
-    }
 }

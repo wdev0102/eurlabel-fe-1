@@ -25,22 +25,40 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 })
 export class RegisterComponent {
     form = this.fb.group({
-        username : ['test', Validators.required],
-        password : ['12341234', Validators.required],
-        company : ['test', Validators.required],
-        address : ['test', Validators.required],
-        cap : ['00000', Validators.required],
-        location : ['test', Validators.required],
-        pr : ['ss', Validators.required],
-        state : ['test', Validators.required],
-        phone : ['123', Validators.required],
-        email : ['test@test.it', Validators.required],
-        website : ['test', Validators.required],
-        piva : ['123', Validators.required],
-        sdi : ['123', Validators.required],
+        username : ['', Validators.required],
+        password : ['', Validators.required],
+        company : ['', Validators.required],
+        address : ['', Validators.required],
+        cap : ['', Validators.required],
+        location : ['', Validators.required],
+        pr : ['', Validators.required],
+        state : ['', Validators.required],
+        phone : ['', Validators.required],
+        email : ['', Validators.required],
+        website : ['', Validators.required],
+        piva : ['', Validators.required],
+        sdi : ['', Validators.required],
     })
 
+    dummyData : {
+        username : 'test',
+        password : '12341234',
+        company : 'test',
+        address : 'test',
+        cap : '00000',
+        location : 'test',
+        pr : 'ss',
+        state : 'test',
+        phone : '123',
+        email : 'test@test.it',
+        website : 'test',
+        piva : '123',
+        sdi : '123',
+    }
+
     constructor(public layoutService: LayoutService, private fb: FormBuilder, private authService: AuthService, public router: Router, private route: ActivatedRoute, private http: HttpClient, public messageService: MessageService,) {
+        if(this.dummyData)
+            this.form.patchValue(this.dummyData)
     }
 
     ngOnInit() {

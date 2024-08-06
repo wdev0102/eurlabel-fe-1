@@ -34,4 +34,9 @@ export class AppTopBarComponent {
         this.authService.logout()
         this.router.navigate([''])
     }
+
+    
+    edit() {
+        this.router.navigateByUrl('edit')
+    }
 }
