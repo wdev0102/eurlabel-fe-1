@@ -10,7 +10,7 @@ import { AppLayoutModule } from './layout/app.layout.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { EditProfileComponent } from './demo/components/edit-profile/edit-profile.component';
+// import { EditProfileComponent } from './demo/components/edit-profile/edit-profile.component';
 
 
 // Funzione di fabbrica per creare il TranslateLoader
@@ -20,7 +20,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent, EditProfileComponent
+        AppComponent, NotfoundComponent
     ],
     imports: [
         AppRoutingModule,
