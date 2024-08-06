@@ -241,7 +241,7 @@ export class ElabelComponent {
 
       for(let option of response.data.ingredients)
         this.ingredientPicked.push(option)
-      debugger
+      //debugger
       for(let option of response.data.recycling_rules) {
         option.recycling_rule_materials_id = parseInt(option.recycling_rule_materials_id)
         option.recycling_rule_containers_id = parseInt(option.recycling_rule_containers_id)

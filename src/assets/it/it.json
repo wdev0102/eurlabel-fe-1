@@ -295,13 +295,13 @@
       "recycling" : {
         "sub" : {
           "title" : "Consumo responsabile",
-          "subtitle" : "Sensibilizzare i consumatori con simboli per il consumo responsabile"
+          "subtitle" : "Sensibilizza i consumatori con i simboli per il consumo responsabile"
         },
-        "title" : "Regole di riciclo",
+        "title" : "Etichetta ambientale",
         "link" : "D.lgs 116/2020)",
         "subtitle" : "Etichettatura ambientale per gli imballaggi (i prodotti venduti in Italia devono indicare i materiali di imballaggio e altri dettagli secondo la normativa italiana",
         "field" : {
-          "addrule" : "Aggiungi regola",
+          "addrule" : "Aggiungi regola di riciclaggio",
           "removerule" : "Rimuovi regola",
           "container" : "Contenitore",
           "material" : "Materiale"
@@ -312,15 +312,15 @@
         "subtitle" : "Le informazioni sulla sostenibilità, così come altre informazioni fornite volontariamente, devono rispettare i seguenti principi: non dovrebbero fuorviare o confondere i consumatori, dovrebbero essere basate sui fatti e non dovrebbero fungere da marketing indiretto attraverso dichiarazioni accattivanti ma infondate",
         "form" : {
           "field1" : {
-            "label" : "Bio",
+            "label" : "Messaggio Bio",
             "helper" : ""
           },
           "field2" : {
-            "label" : "Messaggio",
+            "label" : "Messaggio sulla sostenibilità",
             "helper" : ""
           },
           "field3" : {
-            "label" : "Etichetta",
+            "label" : "Etichette di sostenibilità",
             "helper" : ""
           }
         }
@@ -331,7 +331,7 @@
         "button" : "Calcola energia",
         "info" : "Guida sulla dichiarazione degli ingredienti UE",
         "note" : "",
-        "table" : "Valori approssimati",
+        "table" : "Valori medi",
         "energy_kj" : "Energia (Kj)",
         "energy_kcal" : "Energia (Kcal)",
         "fat" : "Grassi",

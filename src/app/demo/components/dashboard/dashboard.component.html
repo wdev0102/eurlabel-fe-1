@@ -109,17 +109,20 @@
 
                 </div>
 
-                <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2">
+                <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2 hidden">
+                    <p-menu #menu [model]="items_brand" [popup]="true" />
+                    <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" class="flez md:hidden" />
 
                     <p-button icon="pi pi-pencil" pTooltip="Modifica Brand"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary"
-                        [routerLink]="['/elabel/']"></p-button>
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/']"
+                        class="hidden md:flex"></p-button>
                     <p-button icon="pi pi-qrcode" pTooltip="QrCode"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary"
-                        [routerLink]="['/elabel/' ]"></p-button>
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/' ]"
+                        class="hidden md:flex"></p-button>
                     <p-button icon="pi pi-plus" pTooltip="Nuova E-Label"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary"
-                        [routerLink]="['/elabel/' ]"></p-button>
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/' ]"
+                        class="hidden md:flex"></p-button>
                 </div>
             </div>
 
@@ -135,17 +138,20 @@
 
                 </div>
 
-                <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2">
+                <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2 hidden">
+                    <p-menu #menu [model]="items_brand" [popup]="true" />
+                    <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" class="flez md:hidden" />
 
                     <p-button icon="pi pi-pencil" pTooltip="Modifica Brand"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary"
-                        [routerLink]="['/elabel/']"></p-button>
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/']"
+                        class="hidden md:flex"></p-button>
                     <p-button icon="pi pi-qrcode" pTooltip="QrCode"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary"
-                        [routerLink]="['/elabel/' ]"></p-button>
-                    <p-button icon="pi pi-plus" pTooltip="Nuovo E-Label"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary"
-                        [routerLink]="['/elabel/' ]"></p-button>
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/' ]"
+                        class="hidden md:flex"></p-button>
+                    <p-button icon="pi pi-plus" pTooltip="Nuova E-Label"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/' ]"
+                        class="hidden md:flex"></p-button>
                 </div>
             </div>
 
@@ -168,41 +174,42 @@
                 <p-tabPanel header="{{ 'pages.dashboard.cards.label' | translate }}" class="line-height-3 p-0 m-0 mb-3">
 
                     <div *ngFor="let label of labels"
-                        class="flex m-0 h-16 w-full items-center justify-between rounded-sm border border-solid bg-white px-2 md:pr-4 md:pl-2 my-1"
+                        class="flex m-0 h-16 p-0 w-full items-center justify-between rounded-sm border border-solid bg-white px-2 md:pr-4 md:pl-2 my-1"
                         style="border-color: rgb(203, 213, 225);">
 
                         <div class="flex min-w-0 items-center gap-2">
 
-                            <!--BRAND-->
-                            <img alt="Brand image" src="assets/brand_test.jpg" width="50" height="50" decoding="async"
-                                loading="lazy" class="p-2"
-                                style="color: transparent;max-height:50px;border-style: solid !important;border-color: rgb(110, 19, 57);border-width: 3px;">
 
                             <img *ngIf="!label.sub_image" alt="Product image preview"
-                                src="assets/placeholder_bottle.webp" width="50" height="50" decoding="async"
-                                loading="lazy" class="p-2" style="color: transparent;">
+                                src="assets/placeholder_bottle.webp" width="auto" height="50" decoding="async"
+                                loading="lazy" class="p-2" style="color: transparent;max-height:50px" class="hidden md:flex">
                             <img *ngIf="label.sub_image" alt="Product image preview" src="https://{{label.sub_image}}"
-                                width="50" height="50" decoding="async" loading="lazy" class="p-2"
-                                style="color: transparent;max-height:50px">
+                                width="auto" height="50" decoding="async" loading="lazy" class="p-2"
+                                style="color: transparent;max-height:50px" class="hidden md:flex">
                             <a [routerLink]="['/elabel/' + label.id]" class="truncate font-semibold xl:text-base"
-                                href="javascript:void(0)">{{label.product_name}}</a><span *ngIf="label.sku!=''">- {{label.sku}}</span>
+                                href="javascript:void(0)" class="truncate">{{label.product_name}}</a><span *ngIf="label.sku!=''" class="truncate">-
+                                {{label.sku}}</span>
                             <div class="ml-1 hidden md:block">
                                 <span *ngIf="label.status==''"><p-tag severity="warning" value="Bozza"></p-tag></span>
-                                <span *ngIf="label.status!=''"><p-tag severity="success" value="Pubblicato"></p-tag></span>
+                                <span *ngIf="label.status!=''"><p-tag severity="success"
+                                        value="Pubblicato"></p-tag></span>
                             </div>
                         </div>
 
-                        <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2">
+                        <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2 hidden">
+                            <p-menu #menu [model]="items_elabel" [popup]="true" />
+                            <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary" class="flex md:hidden" />
 
                             <p-button icon="pi pi-pencil" pTooltip="Modifica"
                                 styleClass="p-button-sm p-button-outlined p-button-secondary"
-                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                                [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
                             <p-button icon="pi pi-qrcode" pTooltip="QrCode"
                                 styleClass="p-button-sm p-button-outlined p-button-secondary"
-                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                                [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
                             <p-button icon="pi pi-copy" pTooltip="Duplica"
                                 styleClass="p-button-sm p-button-outlined p-button-secondary"
-                                [routerLink]="['/elabel/' + label.id]"></p-button>
+                                [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
                         </div>
 
                     </div>

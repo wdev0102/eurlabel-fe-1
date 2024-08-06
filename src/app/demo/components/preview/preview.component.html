@@ -1,3 +1,111 @@
+<section>
+    <div class="outside-border">
+        <div class="silencer"></div>
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+        <div class="button-on"></div>
+        <div class="inside-border">
+
+            <!-- Camera -->
+
+            <div class="camera">
+                <div class="camera-dot">
+                    <div class="camera-dot-2"></div>
+                    <div class="camera-dot-3"></div>
+                </div>
+                <div class="camera-speaker">
+                </div>
+            </div>
+
+            <!-- Lock -->
+
+            <div class="lock">
+                <div class="grid p-2">
+                    <div class="col-12">
+                        <div *ngIf="form.get('product_name').value">
+                            <span class="titolo">{{form.get('product_name').value}}</span>
+                        </div>
+                    </div>
+                    <!--IMMAGINE PRODOTTO -->
+                    <div class="col-12" style="margin-bottom:-25px;z-index: 9999;">
+                        <div class="grid">
+                            <div class="col"></div>
+                            <div class="col-5 text-center" style="background-color: white">
+                                <img src="assets/product_image.svg" class="image-fluid">
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                    </div>
+                    <!--BANDA COLORATA-->
+                    <div class="col-12 pt-3" style="background-color: rgb(189, 185, 82);">
+
+                        <div class="grid">
+
+                            <div class="col-12  align-items-center justify-content-between text-center text-white">
+                                <b>{{form.get('product_name').value}}</b>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col-8 text-center" style="background-color: white">
+                                <span *ngIf="form.get('type').value" class="info">
+                                    {{form.get('type').value}}
+                                </span>
+                                <span *ngIf="form.get('net_content').value" class="info">
+                                    • {{form.get('net_content').value}} ml
+                                </span>
+                                <span *ngIf="form.get('alcohol_content_percentage').value" class="info">
+                                    • {{form.get('alcohol_content_percentage').value}} % vol.
+                                </span>
+
+
+                            </div>
+                            <div class="col"></div>
+
+                        </div>
+
+                    </div>
+                    <!--INGREDIENTI-->
+                    <div class="col-12 text-center">
+                        <div class="grid">
+                            <div class="col-12">
+                                <span class="titolo" style="color: rgb(189, 185, 82);">{{ 'pages.ingredients.title' |
+                                    translate }}</span><br>
+                                    <span  class="info" *ngIf="form.get('ingredients').value">
+                                        {{form.get('ingredients').value}}
+                                    </span><br>
+                                    <span  class="info" *ngIf="form.get('packages').value">
+                                        <i>{{form.get('packages').value}}</i>
+                                    </span>
+                           </div>
+                            
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+            <!-- Battery and Signal -->
+
+            <div class="t-r-info">
+                <div class="dots">...</div>
+                <div class="battery">
+                    <div class="bar"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+
+
+
+            <!-- Bottom Line -->
+
+            <div class="bottom-line"></div>
+
+        </div>
+    </div>
+</section>
+
 <div class="flex flex-column gap-2 p-4">
     <div class="flex border-1 flex-column">
         <div class="flex flex-column gap-2" *ngIf="form.get('product_name').value">
@@ -84,9 +192,15 @@
 
 
         <div class="w-full flex gap-2">
-            <img class="w-2" *ngIf="form.get('drive').value" src="https://firebasestorage.googleapis.com/v0/b/label-scan-1c165.appspot.com/o/public%2FresponsibleConsumption%2Fdriving.svg?alt=media&amp;token=9190dac0-4b69-4535-bb4e-c893665a8467" alt="Don't Drink and Drive">
-            <img class="w-2" *ngIf="form.get('pregnant').value" src="https://firebasestorage.googleapis.com/v0/b/label-scan-1c165.appspot.com/o/public%2FresponsibleConsumption%2Fpregnant.svg?alt=media&amp;token=bae940be-54fd-4437-93f4-4ed6e8fc0644" alt="Pregnancy">
-            <img class="w-2" *ngIf="form.get('age').value" src="https://firebasestorage.googleapis.com/v0/b/label-scan-1c165.appspot.com/o/public%2FresponsibleConsumption%2Funderage.svg?alt=media&amp;token=ff71068d-93fc-42ec-9fd5-0c0a5cb799d0" alt="Underaged Consumption">
+            <img class="w-2" *ngIf="form.get('drive').value"
+                src="https://firebasestorage.googleapis.com/v0/b/label-scan-1c165.appspot.com/o/public%2FresponsibleConsumption%2Fdriving.svg?alt=media&amp;token=9190dac0-4b69-4535-bb4e-c893665a8467"
+                alt="Don't Drink and Drive">
+            <img class="w-2" *ngIf="form.get('pregnant').value"
+                src="https://firebasestorage.googleapis.com/v0/b/label-scan-1c165.appspot.com/o/public%2FresponsibleConsumption%2Fpregnant.svg?alt=media&amp;token=bae940be-54fd-4437-93f4-4ed6e8fc0644"
+                alt="Pregnancy">
+            <img class="w-2" *ngIf="form.get('age').value"
+                src="https://firebasestorage.googleapis.com/v0/b/label-scan-1c165.appspot.com/o/public%2FresponsibleConsumption%2Funderage.svg?alt=media&amp;token=ff71068d-93fc-42ec-9fd5-0c0a5cb799d0"
+                alt="Underaged Consumption">
         </div>
         <h2>{{ 'pages.sustainability.title' | translate }}</h2>
         <div class="flex flex-column gap-2" *ngIf="form.get('sustainibility_bio').value">

@@ -24,6 +24,8 @@ import { InfobuttonModule } from '../uikit/infobutton/infobutton.module';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CalendarModule } from 'primeng/calendar';
 import { QRCodeModule } from 'angularx-qrcode';
+import { DividerModule } from 'primeng/divider';
+
 
 @NgModule({
   declarations: [PreviewComponent],
