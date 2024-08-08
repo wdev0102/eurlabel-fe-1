@@ -7,15 +7,18 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
-import { RegisterRoutingModule } from './register-routing.module';
-import { RegisterComponent } from './register.component';
+
+import { EditProfileComponent } from './edit-profile.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { FileUploadModule } from 'primeng/fileupload';
+import { EditProfileRoutingModule } from './edit-profile-routing.module';
+import { RegisterModule } from '../auth/register/register.module';
 
 @NgModule({
+    declarations: [EditProfileComponent],
     imports: [
         CommonModule,
-        RegisterRoutingModule,
+        EditProfileRoutingModule,
+        RegisterModule,
         ProgressSpinnerModule,
         TranslateModule,
         FormsModule,
@@ -25,11 +28,8 @@ import { FileUploadModule } from 'primeng/fileupload';
         CheckboxModule,
         ToastModule,
         InputTextModule,
-        FileUploadModule,
         FormsModule,
-        PasswordModule
+        PasswordModule,
     ],
-    declarations: [RegisterComponent],
-    exports: [RegisterComponent],
 })
-export class RegisterModule { }
+export class EditProfileModule { }

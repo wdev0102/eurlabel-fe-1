@@ -15,6 +15,7 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                     { path: 'dashboard', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'login', loadChildren: () => import('./demo/components/auth/login/login.module').then(m => m.LoginModule) },
+                    { path: 'edit', loadChildren: () => import('./demo/components/edit-profile/edit-profile.module').then(m => m.EditProfileModule) },
                     { path: 'elabel', loadChildren: () => import('./demo/components/elabel/elabel.module').then(m => m.ElabelModule) },
                     { path: 'elabel/:id', loadChildren: () => import('./demo/components/elabel/elabel.module').then(m => m.ElabelModule) },
                 ],
@@ -24,6 +25,7 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                 path: 'uikit', component: FormLayoutDemoComponent,
             },
             { path: 'register', loadChildren: () => import('./demo/components/auth/register/register.module').then(m => m.RegisterModule) },
+            
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
             { path: 'notfound', component: NotfoundComponent },
             { path: '**', redirectTo: '/notfound' },

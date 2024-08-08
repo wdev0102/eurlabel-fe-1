@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, Message, MessageService } from 'primeng/api';
 import { ElabelService } from '../../service/elabel.service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -38,6 +38,7 @@ export class ElabelComponent {
   fullIngredientList = [ ];
   ingredientPicked = [ ];
   ingredients = [ ];
+  msgs: Message[] = [];
 
 
 
@@ -157,9 +158,15 @@ export class ElabelComponent {
   }
 
   save() {
-    this.service.save(this.form.value).subscribe((response) => {
+    this.service.save(this.form.value).subscribe(
+      (response) => {
       this.showBottomCenter()
-    })
+      this.messageService.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Message sent' });
+    },
+    error => {
+      this.messageService.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: 'Validation failed' });
+    }
+  )
   }
 
   back() {
@@ -173,11 +180,8 @@ export class ElabelComponent {
   }
 
   searchCountry(event: any) {
-      // in a real application, make a request to a remote url with the query and
-      // return filtered results, for demo we filter at client side
       const filtered: any[] = [];
       const query = event.query;
-      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.countries.length; i++) {
           const country = this.countries[i];
           if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
@@ -227,7 +231,6 @@ export class ElabelComponent {
   onBasicUpload() {
     this.get()
   }
-
   get() {
     this.service.get(this.id).subscribe((response) => {
       this.form.patchValue(response.data)
@@ -240,9 +243,10 @@ export class ElabelComponent {
         this.form.get('geographical_indication').setValue(parseInt(response.data.geographical_indication[0].geographical_indication_id))
       }
 
-      for(let option of response.data.ingredients)
+      for(let option of response.data.ingredients) {
         this.ingredientPicked.push(option)
-      //debugger
+        this.formIngredients.push(this.fb.group(option))
+      }
       for(let option of response.data.recycling_rules) {
         option.recycling_rule_materials_id = parseInt(option.recycling_rule_materials_id)
         option.recycling_rule_containers_id = parseInt(option.recycling_rule_containers_id)
@@ -269,5 +273,6 @@ export class ElabelComponent {
       this.breadcrumbItems = [...this.breadcrumbItems]
     })
   }
+
 
 }

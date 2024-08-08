@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/demo/service/auth.service';
+import { dummyData } from 'src/app/demo/service/constant';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 
@@ -23,8 +24,8 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 })
 export class LoginComponent {
     loading = false;
-    email = 'admin@gmail.com'
-    password = '12341234'
+    email = dummyData ? 'admin@gmail.com' : ''
+    password = dummyData ? '12341234' : ''
     valCheck: string[] = ['remember'];
 
     constructor(public layoutService: LayoutService, private authService: AuthService, public router: Router, private route: ActivatedRoute, private http: HttpClient, public messageService: MessageService,) {

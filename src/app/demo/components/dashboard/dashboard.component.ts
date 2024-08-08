@@ -10,7 +10,6 @@ import { MenuItem } from 'primeng/api';
     templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {
-
     labels = []
     published = []
     draft = []
@@ -26,8 +25,7 @@ export class DashboardComponent implements OnInit {
     items: MenuItem[];
     items_brand: MenuItem[];
     items_elabel: MenuItem[];
-
-
+    
     constructor(private router: Router, private userService: UserService, private service: ElabelService, public layoutService: LayoutService) {
 
         let request = JSON.parse(localStorage.getItem('user'))
@@ -93,7 +91,4 @@ export class DashboardComponent implements OnInit {
         */
     }
 
-    edit() {
-        this.router.navigateByUrl('diocane')
-    }
 }
