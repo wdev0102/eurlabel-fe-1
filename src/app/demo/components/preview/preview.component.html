@@ -48,7 +48,7 @@
                             <div class="col"></div>
                             <div class="col-8 text-center" style="background-color: white">
                                 <span *ngIf="form.get('type').value" class="info">
-                                    {{form.get('type').value}}
+                                    {{getType(form.get('type').value) | translate}}
                                 </span>
                                 <span *ngIf="form.get('net_content').value" class="info">
                                     • {{form.get('net_content').value}} ml
@@ -73,13 +73,16 @@
                             <div class="col-12">
                                 <span class="titolo" style="color: rgb(189, 185, 82);">{{ 'pages.ingredients.title' |
                                     translate }}</span><br>
-                                <p class="mb-0 info">Manca la lista degli ingrdienti inseriti</p>
-                                <span class="info" *ngIf="form.get('ingredients').value">
-                                    {{form.get('ingredients').value}}
-                                </span><br>
-                                <p class="mb-0 info">Fa vedere il numero e non il testo</p>
+                                    <ng-container *ngIf="form.get('ingredients').value">
+                                        <span class="info" *ngFor="let ingredient of form.get('ingredients').value">
+                                            {{ingredient.label | translate}}
+                                        </span><br>
+                                    </ng-container>
+
+                                <span class="titolo" style="color: rgb(189, 185, 82);">{{ 'pages.elabel.form.packages.label' |
+                                    translate }}</span><br>
                                 <span class="info" *ngIf="form.get('packages').value">
-                                    <i>{{form.get('packages').value}}</i>
+                                    <i>{{getPackages(form.get('packages').value) | translate}}</i>
                                 </span>
                             </div>
 
@@ -161,17 +164,27 @@
                 <div class="grid p-2">
                     <div class="col-12 text-center py-0 my-0">
                         <div class="grid">
-                            <div class="col-12">
+                            <div class="col-12 flex-column flex">
                                 <span class="titolo" style="color: rgb(189, 185, 82);">{{
                                     'pages.recycling.title_preview' |
-                                    translate }}</span><br>
+                                    translate }}</span>
+                                <div>
+                                    CONTENITORI
+                                    <ng-container *ngIf="form.get('rules').value">
+                                        <span class="info" *ngFor="let rule of form.get('rules').value">
+                                            {{getContainer(rule.recycling_rule_containers_id).label | translate}}
+                                        </span><br>
+                                    </ng-container>                                        
+                                </div>
+                                <div>
+                                    MATERIALI
+                                    <ng-container *ngIf="form.get('rules').value">
+                                        <span class="info" *ngFor="let rule of form.get('rules').value">
+                                            {{getMaterial(rule.recycling_rule_materials_id).label | translate}}
+                                        </span><br>
+                                    </ng-container>                                        
+                                </div>
                                 <span class="info"><i>{{ 'pages.recycling.description_preview' | translate }}</i></span>
-                                <span class="info" *ngIf="form.get('ingredients').value">
-                                    {{form.get('ingredients').value}}
-                                </span><br>
-                                <span class="info" *ngIf="form.get('packages').value">
-                                    <i>{{form.get('packages').value}}</i>
-                                </span>
                             </div>
 
                         </div>

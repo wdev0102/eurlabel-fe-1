@@ -376,6 +376,9 @@
         "wrapper" : "Nessuno",
         "otherPackaging" : "Altro"
       },
+      "materials" : {
+        "PET1" : "PET"
+      },
       "material" : {
         "plastic" : "Plastica",
         "separate" : "Separato",

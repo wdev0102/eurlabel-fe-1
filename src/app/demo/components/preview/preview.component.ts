@@ -17,7 +17,10 @@ export class PreviewComponent implements OnChanges, OnInit {
   @Input() preview_image = ''
   show_portion:boolean=false
   @Input() types = []
+  @Input() packages = []
   @Input() ingredients = []
+  @Input() containers = []
+  @Input() materials = []
 
   constructor(private fb: FormBuilder, private t: TranslateService, private service: ElabelService, private confirmationService: ConfirmationService, private messageService: MessageService, private _location: Location, private route: ActivatedRoute) {
 
@@ -53,6 +56,14 @@ export class PreviewComponent implements OnChanges, OnInit {
 
 
 
+  getPackages(n:number) {
+    if(this.packages.length) {
+      const item = this.packages.filter((e)=>e.id==n)
+      return item[0].label
+    }
+    return ''
+  }
+
   getType(n:number) {
     if(this.types.length) {
       const item = this.types.filter((e)=>e.id==n)
@@ -60,8 +71,32 @@ export class PreviewComponent implements OnChanges, OnInit {
     }
     return ''
   }
+
+  getContainer(n:number) {
+    for(let k in this.containers) {
+      for(let c of this.containers[k].items) {
+        if(c.id == n) {
+          return c
+        }
+      }
+    }
+    return ''
+  }
+
+  getMaterial(n:number) {
+    for(let k in this.materials) {
+      for(let c of this.materials[k].items) {
+        if(c.id == n) {
+          return c
+        }
+      }
+    }
+    return ''
+  }
+
   getIngredient(o:any) {
     if(o.length > 0)
       return o[0].label
   }
+
 }
