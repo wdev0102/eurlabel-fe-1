@@ -16,6 +16,7 @@ export class ElabelComponent {
   id = ''
   preview_image = ''
   sub_image = ''
+  user_id=''
   breadcrumbItems: MenuItem[] = [];
   filteredCountries: any[] = [];
   geographical_indication = 0
@@ -52,8 +53,8 @@ export class ElabelComponent {
       sku: [null, Validators.required],
       country: [null, Validators.required],
       vintage_year: [null, Validators.required],
-      packages: [null, Validators.required],
-      geographical_indication: [null, Validators.required],
+      packages: [null],
+      geographical_indication: [null],
       description: [null, Validators.required],
       product_varieties: [null, Validators.required],
       energy_kj: [null, Validators.required],
@@ -78,7 +79,7 @@ export class ElabelComponent {
     this.breadcrumbItems.push({ label: 'E-labels' });
     
     this.route.paramMap.subscribe((params: ParamMap) => {
-      const id = params.get('id');
+       const id = params.get('id');
 
       this.service.getOptions().subscribe((response) => {
         const data = response.data

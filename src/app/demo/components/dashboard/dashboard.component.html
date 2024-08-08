@@ -38,26 +38,20 @@
                         'pages.dashboard.cards.profile' | translate }}</b>
                 </div>
                 <div class="col-6 text-right">
-                    <span (click)="edit()" style="cursor: pointer;"><i
+                    <span [routerLink]="['/register']" style="cursor: pointer;"><i
                             class="pi pi-file-edit mr-2"></i> <b>{{ 'global.edit' | translate }}</b></span>
                 </div>
             </div>
             <p-divider></p-divider>
-
-
-
-
             <div class="grid flex p-fluid mb-2">
                 <!--IMMAGINE-->
 
                 <div class="col-12 md:col-5">
                     <div class="row">
                         <div class="col-12 flex justify-content-center align-items-center">
-                            <i *ngIf="!edit && !user.image" class="pi pi-image"></i>
+                            <i *ngIf="!user.image" class="pi pi-image"></i>
                             <img *ngIf="user.image" src="//{{user.image}}" style="max-height:150px;">
-                            <p-fileUpload *ngIf="edit" mode="basic" name="image" chooseIcon="pi pi-upload"
-                                url="https://app.eulabel.it/backend//profile/{{userid}}" accept="image/*"
-                                maxFileSize="1000000" [auto]="true" (onUpload)="onBasicUpload()" chooseLabel="Browse" />
+                            
                         </div>
                         <p-divider></p-divider>
                         <div class="col-12 mt-3 flex justify-content-center align-items-center"
@@ -67,12 +61,10 @@
                 </div>
                 <!--DATI-->
                 <div class="col-12 md:col-7 flex justify-content-center align-items-center text-center">
-                    <span *ngIf="!edit">
+                    <span>
                         <h4>{{ companyName.value }}</h4>
                     </span>
-                    <span *ngIf="edit">
-                        <input type="text" pInputText [formControl]="companyName" required autofocus />
-                    </span>
+                  
                 </div>
 
             </div>

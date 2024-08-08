@@ -292,12 +292,20 @@
         "info" : "Aggiungere gli ingredienti nell'ordine della loro percentuale nel prodotto, iniziando dall'ingrediente con la percentuale più alta.",
         "note" : "Nota:"
       },
+      "info_prodotto" : {
+        "title" : "Informazioni sul prodotto",
+        "subtitle" : "",
+        "info" : "",
+        "note" : "Nota:"
+      },
       "recycling" : {
         "sub" : {
           "title" : "Consumo responsabile",
           "subtitle" : "Sensibilizza i consumatori con i simboli per il consumo responsabile"
         },
         "title" : "Etichetta ambientale",
+        "title_preview" : "Riciclo",
+        "description_preview" : "Verifica le disposizioni del tuo Comune. Separa le componenti e conferiscile in modo corretto.",
         "link" : "D.lgs 116/2020)",
         "subtitle" : "Etichettatura ambientale per gli imballaggi (i prodotti venduti in Italia devono indicare i materiali di imballaggio e altri dettagli secondo la normativa italiana",
         "field" : {
@@ -326,7 +334,7 @@
         }
       },
       "nutritions" : {
-        "title" : "Nutrienti dichiarati",
+        "title" : "Dichiarazione nutrizionale",
         "subtitle" : "Inserisci i valori nutrizionali medi per 100 ml e osserva l'arrotondamento nell'anteprima a destra. Il calcolatore può aiutarti a calcolare il valore energetico in kJ e kcal. Per ulteriori informazioni, leggi la Guida alla dichiarazione degli ingredienti UE",
         "button" : "Calcola energia",
         "info" : "Guida sulla dichiarazione degli ingredienti UE",

@@ -149,7 +149,8 @@
     border-radius: 2px;
     border-bottom-left-radius: 29px;
     border-bottom-right-radius: 29px;
-    overflow: auto;
+    overflow-y: scroll;
+overflow-x: hidden;
   }
   
   .lock-locked {
@@ -332,10 +333,14 @@
   }
 
   .titolo{
-    font-size:0.8rem;
+    font-size:1rem;
     font-weight: bold;
   }
   .info{
     font-size:0.8rem;
 
+  }
+  .head_title{
+    font-size:0.7rem;
+    font-weight: bold;
   }

@@ -15,6 +15,7 @@ export class PreviewComponent implements OnInit {
   @Input() form: FormGroup
   @Input() sub_image = ''
   @Input() preview_image = ''
+  show_portion:boolean=false
 
   constructor(private fb: FormBuilder, private t: TranslateService, private service: ElabelService, private confirmationService: ConfirmationService, private messageService: MessageService, private _location: Location, private route: ActivatedRoute) {
 
