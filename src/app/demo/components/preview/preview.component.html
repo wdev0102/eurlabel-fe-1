@@ -47,7 +47,7 @@
                             <div class="col"></div>
                             <div class="col-8 text-center" style="background-color: white">
                                 <span *ngIf="form.get('type').value" class="info">
-                                    {{form.get('type').value}}
+                                    {{getType(form.get('type').value) | translate}}
                                 </span>
                                 <span *ngIf="form.get('net_content').value" class="info">
                                     • {{form.get('net_content').value}} ml
@@ -70,7 +70,7 @@
                                 <span class="titolo" style="color: rgb(189, 185, 82);">{{ 'pages.ingredients.title' |
                                     translate }}</span><br>
                                     <span  class="info" *ngIf="form.get('ingredients').value">
-                                        {{form.get('ingredients').value}}
+                                        {{getIngredient(form.get('ingredients').value) | translate}}
                                     </span><br>
                                     <span  class="info" *ngIf="form.get('packages').value">
                                         <i>{{form.get('packages').value}}</i>

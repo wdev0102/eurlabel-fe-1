@@ -12,9 +12,10 @@ import { UserService } from '../../service/user.service';
 })
 export class EditProfileComponent {
   form = this.fb.group({
+    id : [null, Validators.required],
     username : ['test', Validators.required],
-    password : ['12341234', Validators.required],
-    company : ['test', Validators.required],
+    password : ['12341234', Validators.required], // ignorata in backend 
+    company_name : ['test', Validators.required],
     address : ['test', Validators.required],
     cap : ['00000', Validators.required],
     location : ['test', Validators.required],
@@ -28,10 +29,22 @@ export class EditProfileComponent {
 })
 
   constructor(private router: Router, private fb: FormBuilder, private userService: UserService, private service: ElabelService, public layoutService: LayoutService) {
-    console.log("test")
-    debugger
+    
     let request = JSON.parse(localStorage.getItem('user'))
-    debugger
+    if(request.id)
+      this.form.get('username').setValue(request.id)
+    if(request.email)
+      this.form.get('username').setValue(request.email)
+    if(request.company_name)
+      this.form.get('company_name').setValue(request.company_name)
+    if(request.address)
+      this.form.get('address').setValue(request.address)
+    if(request.cap)
+      this.form.get('cap').setValue(request.cap)
+    if(request.location)
+      this.form.get('location').setValue(request.location)
+    if(request.pr)
+      this.form.get('pr').setValue(request.pr)
     /*
     this.service.all(this.userid).subscribe((response: any) => {
         this.labels = response.data

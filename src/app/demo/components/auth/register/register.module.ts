@@ -10,6 +10,7 @@ import { ToastModule } from 'primeng/toast';
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { TranslateModule } from '@ngx-translate/core';
         CheckboxModule,
         ToastModule,
         InputTextModule,
+        FileUploadModule,
         FormsModule,
         PasswordModule
     ],

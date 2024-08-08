@@ -1,3 +1,4 @@
+<p-toast key="tst"></p-toast>
 <!--BREAD CRUMBS-->
 <div class="grid p-fluid mb-2">
     <div class="flex flex-column gap-2 align-items-center justify-content-between mb-3 w-full">
@@ -158,7 +159,7 @@
                                 <img *ngIf="sub_image" src="//{{sub_image}}" class="mb-3">
                             </div>
                             <p-fileUpload mode="basic" name="image" chooseIcon="pi pi-upload"
-                                url="https://app.eulabel.it/backend//upload-sub/{{id}}" accept="image/*"
+                                url="https://app.eulabel.it/backend/upload-sub/{{id}}" accept="image/*"
                                 maxFileSize="1000000" [auto]="true" (onUpload)="onBasicUpload()" chooseLabel="Browse" />
                             <div class="card" style="border-radius: 0px;">
                                 <label>{{ 'global.qr' | translate }}</label>
@@ -489,7 +490,7 @@
                                                     mode="basic" 
                                                     name="image" 
                                                     chooseIcon="pi pi-upload" 
-                                                    url="https://app.eulabel.it/backend//upload-preview/{{id}}" 
+                                                    url="https://app.eulabel.it/backend/upload-preview/{{id}}" 
                                                     accept="image/*" maxFileSize="1000000" 
                                                     [auto]="true" 
                                                     (onUpload)="onBasicUpload()"
@@ -525,6 +526,6 @@
 
 
     <div class="col-12 md:col-3" >
-        <app-preview [preview_image]="preview_image" [sub_image]="sub_image" [form]="form"></app-preview>
+        <app-preview [ingredients]="ingredients" [types]="types" [preview_image]="preview_image" [sub_image]="sub_image" [form]="form"></app-preview>
     </div>
 </div>

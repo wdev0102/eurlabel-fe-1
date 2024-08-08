@@ -9,10 +9,10 @@ export class AuthService {
     private _loginUrl = baseUrl + "login";
     private userDetails = null;
     private refreshInterval = null;
-    constructor(private _http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
     register(data:any) {
-        return this._http.post<any>(baseUrl + 'register', data)
+        return this.http.post<any>(baseUrl + 'register', data)
     }
     
     // login method
@@ -22,7 +22,7 @@ export class AuthService {
             this.refreshInterval = null;
         }
         
-        return this._http.post(this._loginUrl, { email, password }).pipe(
+        return this.http.post(this._loginUrl, { email, password }).pipe(
             map(async (response: any) => {
                 response.from = new Date()
                 localStorage.setItem('jwt', JSON.stringify(response));
@@ -30,6 +30,10 @@ export class AuthService {
                 return response;
             })
         );
+    }
+    // login method
+    editProfile(request: any) : any {
+        return this.http.post(baseUrl + 'profile', request)
     }
 
     isLoginValid() {
@@ -70,7 +74,7 @@ export class AuthService {
 
     // You need to make a request to the server as well
     logout() {
-        this._http.post(baseUrl + "logout", {}).subscribe(async response => {
+        this.http.post(baseUrl + "logout", {}).subscribe(async response => {
             console.log("Logout: ", response);
 
         })
