@@ -54,7 +54,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
         CardModule,
         DividerModule,
         TooltipModule,
-        BreadcrumbModule
+        BreadcrumbModule,
     ],
     providers: [
         ConfirmationService
