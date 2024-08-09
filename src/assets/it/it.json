@@ -185,6 +185,19 @@
         "tirage_liqueur": "Liquore al tiraggio"
     },
     "pages" : {
+      "brand" : {
+        "dialog" : "Brand",
+        "form" : {
+          "name" : {
+            "label" : "Nome",
+            "helper" : ""
+          },
+          "image" : {
+            "label" : "Logo",
+            "helper" : ""
+          }
+        }
+      },      
       "register" : {
         "title" : "Registrazione",
         "subtitle" : "Crea il tuo profilo aziendale per proseguire",

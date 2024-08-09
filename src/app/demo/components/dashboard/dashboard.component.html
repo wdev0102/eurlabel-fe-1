@@ -1,3 +1,4 @@
+<p-toast key="tst"></p-toast>
 <!--BREAD CRUMBS-->
 <div class="grid p-fluid mb-2">
     <div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-3 w-full">
@@ -79,7 +80,7 @@
                     <i class="pi pi-box mr-2"></i> <b>{{
                         'pages.dashboard.cards.brand' | translate }}</b>
                 </div>
-                <div class="col-6 text-right">
+                <div class="col-6 text-right cursot-pointer">
                     <i class="pi pi-plus mr-2"></i> <b>{{ 'global.new_brand' | translate }}</b>
                 </div>
 
@@ -103,14 +104,14 @@
                     <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
                         styleClass="p-button-sm p-button-outlined p-button-secondary" class="flez md:hidden" />
 
-                    <p-button icon="pi pi-pencil" pTooltip="Modifica Brand"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/']"
+                    <p-button icon="pi pi-pencil" pTooltip="Modifica Brand" (click)="editBrand()"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
                         class="hidden md:flex"></p-button>
                     <p-button icon="pi pi-qrcode" pTooltip="QrCode"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/' ]"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
                         class="hidden md:flex"></p-button>
-                    <p-button icon="pi pi-plus" pTooltip="Nuova E-Label"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/' ]"
+                    <p-button icon="pi pi-plus" pTooltip="Nuova E-Label" (click)="createElabelByBrand()"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
                         class="hidden md:flex"></p-button>
                 </div>
             </div>
@@ -353,5 +354,26 @@
     <ng-template pTemplate="footer">
         <button pButton icon="pi pi-check" (click)="submit()" label="{{ 'global.save' | translate }}"
             class="p-button-outlined"></button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog header="Dialog" [(visible)]="brandModal" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+    <div>
+        <div class="col-12 md:col-8">
+            <label for="prodotto">{{ 'pages.brand.form.name.label' | translate }}</label>
+            <input pInputText [formControl]="name" />
+        </div>
+
+        <div class="col-12 mt-3">
+            <label>{{ 'pages.brand.form.image.label' | translate }} </label>
+            <img *ngIf="form.get('image').value" src="//{{form.get('image').value}}" style="width:150px;height:auto">
+            <p-fileUpload mode="basic" name="image" chooseIcon="pi pi-upload"
+                url="https://app.eulabel.it/backend/brand-image/{{id}}" accept="image/*"
+                maxFileSize="1000000" [auto]="true" (onUpload)="onBasicUploadBrand()"
+                chooseLabel="Browse" />
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+            <button pButton icon="pi pi-check" [disabled]="!form.get('image').value" (click)="saveBrand()" label="Ok" class="p-button-outlined"></button>
     </ng-template>
 </p-dialog>
