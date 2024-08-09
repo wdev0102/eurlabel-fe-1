@@ -158,7 +158,7 @@
                                     <img *ngIf="sub_image" src="//{{sub_image}}" class="mb-3">
                                 </div>
                                 <p-fileUpload mode="basic" name="image" chooseIcon="pi pi-upload"
-                                    url="https://app.eulabel.it/backend//upload-sub/{{id}}" accept="image/*"
+                                    url="https://app.eulabel.it/backend/upload-sub/{{id}}" accept="image/*"
                                     maxFileSize="1000000" [auto]="true" (onUpload)="onBasicUpload()"
                                     chooseLabel="Browse" />
                                 <!-- <div class="card" style="border-radius: 0px;">
@@ -526,7 +526,7 @@
                                         style="font-size:0.8rem;margin-left:5px;">(opzionale)</span></label>
                                 <img *ngIf="preview_image" src="//{{preview_image}}" style="width:150px;height:auto">
                                 <p-fileUpload mode="basic" name="image" chooseIcon="pi pi-upload"
-                                    url="https://app.eulabel.it/backend//upload-preview/{{id}}" accept="image/*"
+                                    url="https://app.eulabel.it/backend/upload-preview/{{id}}" accept="image/*"
                                     maxFileSize="1000000" [auto]="true" (onUpload)="onBasicUpload()"
                                     chooseLabel="Browse" />
                             </div>
