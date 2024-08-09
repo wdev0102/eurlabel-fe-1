@@ -24,6 +24,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
 import { TooltipModule } from 'primeng/tooltip';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 @NgModule({
     imports: [
@@ -50,7 +51,8 @@ import { TooltipModule } from 'primeng/tooltip';
         ConfirmDialogModule,
         CardModule,
         DividerModule,
-        TooltipModule
+        TooltipModule,
+        BreadcrumbModule
     ],
     providers: [
         ConfirmationService

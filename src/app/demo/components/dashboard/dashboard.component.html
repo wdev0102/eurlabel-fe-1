@@ -38,8 +38,8 @@
                         'pages.dashboard.cards.profile' | translate }}</b>
                 </div>
                 <div class="col-6 text-right">
-                    <span [routerLink]="['/register']" style="cursor: pointer;"><i
-                            class="pi pi-file-edit mr-2"></i> <b>{{ 'global.edit' | translate }}</b></span>
+                    <span [routerLink]="['/register']" style="cursor: pointer;"><i class="pi pi-file-edit mr-2"></i>
+                        <b>{{ 'global.edit' | translate }}</b></span>
                 </div>
             </div>
             <p-divider></p-divider>
@@ -51,12 +51,18 @@
                         <div class="col-12 flex justify-content-center align-items-center">
                             <i *ngIf="!user.image" class="pi pi-image"></i>
                             <img *ngIf="user.image" src="//{{user.image}}" style="max-height:150px;">
-                            
+
                         </div>
+                        <p-divider></p-divider>
+                        <div class="col-12 mt-3 flex justify-content-center align-items-center"
+                            style="background-color: rgb(189, 185, 82);"><img src="assets/icon/color.svg"
+                                style="width:20px;">
+                        </div>
+
                     </div>
                 </div>
                 <!--DATI-->
-                <div class="col-12 md:col-7 flex flex-column text-center">
+                <div class="col-12 md:col-7 flex justify-content-center align-items-center text-center">
                     <span>
                         <h4>{{ companyName.value }}</h4>
                     </span>
@@ -165,12 +171,14 @@
 
                             <img *ngIf="!label.sub_image" alt="Product image preview"
                                 src="assets/placeholder_bottle.webp" width="auto" height="50" decoding="async"
-                                loading="lazy" class="p-2" style="color: transparent;max-height:50px" class="hidden md:flex">
+                                loading="lazy" class="p-2" style="color: transparent;max-height:50px"
+                                class="hidden md:flex">
                             <img *ngIf="label.sub_image" alt="Product image preview" src="https://{{label.sub_image}}"
                                 width="auto" height="50" decoding="async" loading="lazy" class="p-2"
                                 style="color: transparent;max-height:50px" class="hidden md:flex">
                             <a [routerLink]="['/elabel/' + label.id]" class="truncate font-semibold xl:text-base"
-                                href="javascript:void(0)" class="truncate">{{label.product_name}}</a><span *ngIf="label.sku!=''" class="truncate">-
+                                href="javascript:void(0)" class="truncate">{{label.product_name}}</a><span
+                                *ngIf="label.sku!=''" class="truncate">-
                                 {{label.sku}}</span>
                             <div class="ml-1 hidden md:block">
                                 <span *ngIf="label.status==''"><p-tag severity="warning" value="Bozza"></p-tag></span>
