@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
             this.labels = response.data
         })        
         this.brandService.all(this.userid).subscribe((response)=>{
-            this.brands = response
+            this.brands = response.data
             this.brandModal = false
         })        
     }
@@ -116,7 +116,7 @@ export class DashboardComponent implements OnInit {
         this.brandService.save(this.form.value).subscribe((response)=>{
             this.form.patchValue(response)
             this.brandService.all(this.userid).subscribe((response)=>{
-                this.brands = response
+                this.brands = response.data
                 this.brandModal = false
                 this.messageService.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Message sent' });
             })
@@ -140,10 +140,10 @@ export class DashboardComponent implements OnInit {
         })
     }
 
-    editBrand() {
+    editBrand(id) {
         this.step = 0;
         debugger
-        this.brandService.get(29).subscribe((response)=>{
+        this.brandService.get(id).subscribe((response)=>{
             this.form.patchValue(response.data)
             this.name.setValue(response.data.name)
             this.brandModal = true
@@ -153,5 +153,8 @@ export class DashboardComponent implements OnInit {
     createElabelByBrand() {
 
     }
+
+
+    
 
 }

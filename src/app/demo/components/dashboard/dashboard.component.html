@@ -56,9 +56,10 @@
                         </div>
                         <p-divider></p-divider>
                         <div class="col-12 mt-3 flex justify-content-center align-items-center"
-                            style="background-color: rgb(189, 185, 82);"><img src="assets/icon/color.svg"
+                        [ngStyle]="{'background-color':(user.primary_color!='') ? user.primary_color : 'black' }"><img src="assets/icon/color.svg"
                                 style="width:20px;">
                         </div>
+
 
                     </div>
                 </div>
@@ -80,31 +81,29 @@
                     <i class="pi pi-box mr-2"></i> <b>{{
                         'pages.dashboard.cards.brand' | translate }}</b>
                 </div>
-                <div class="col-6 text-right cursot-pointer">
+                <div class="col-6 text-right cursor-pointer"  (click)="openBrandModal()">
                     <i class="pi pi-plus mr-2"></i> <b>{{ 'global.new_brand' | translate }}</b>
                 </div>
 
             </div>
             <p-divider></p-divider>
-
             <!--BRAND LIST-->
             <div class="flex m-0 h-16 w-full items-center justify-between rounded-sm  bg-white px-2 md:pr-4 md:pl-2 my-1"
-                style="border-color: rgb(203, 213, 225);">
+                style="border-color: rgb(203, 213, 225);" *ngFor="let item of brands">
                 <div class="flex min-w-0 items-center gap-2">
-                    <img alt="Brand image" src="assets/brand_test.jpg" width="50" height="50" decoding="async"
+                    <img alt="Brand image" src="https://{{item.image}}" width="50" height="50" decoding="async"
                         loading="lazy" class="p-2"
-                        style="color: transparent;max-height:50px;border-style: solid !important;border-color: rgb(21, 91, 176);border-width: 3px;">
+                        style="color: transparent;max-height:50px;border-style: solid !important;border-width: 3px;" [ngStyle]="{'border-color':(item.color!='') ? item.color : 'black' }">
                     <a [routerLink]="['/elabel/']" class="truncate font-semibold xl:text-base"
-                        href="javascript:void(0)">Sasso di Luna</a>
+                        href="javascript:void(0)">{{item.name}}</a>
 
                 </div>
-
                 <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2 hidden">
                     <p-menu #menu [model]="items_brand" [popup]="true" />
                     <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
                         styleClass="p-button-sm p-button-outlined p-button-secondary" class="flez md:hidden" />
 
-                    <p-button icon="pi pi-pencil" pTooltip="Modifica Brand" (click)="editBrand()"
+                    <p-button icon="pi pi-pencil" pTooltip="Modifica Brand" (click)="editBrand(item.id)"
                         styleClass="p-button-sm p-button-outlined p-button-secondary"
                         class="hidden md:flex"></p-button>
                     <p-button icon="pi pi-qrcode" pTooltip="QrCode"
@@ -116,34 +115,6 @@
                 </div>
             </div>
 
-            <p-divider></p-divider>
-            <div class="flex m-0 h-16 w-full items-center justify-between rounded-sm  bg-white px-2 md:pr-4 md:pl-2 my-1"
-                style="border-color: rgb(203, 213, 225);">
-                <div class="flex min-w-0 items-center gap-2">
-                    <img alt="Brand image" src="assets/brand_test.jpg" width="50" height="50" decoding="async"
-                        loading="lazy" class="p-2"
-                        style="color: transparent;max-height:50px;border-style: solid !important;border-color: rgb(110, 19, 57);border-width: 3px;">
-                    <a [routerLink]="['/elabel/']" class="truncate font-semibold xl:text-base"
-                        href="javascript:void(0)">Sasso di Mare</a>
-
-                </div>
-
-                <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2 hidden">
-                    <p-menu #menu [model]="items_brand" [popup]="true" />
-                    <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary" class="flez md:hidden" />
-
-                    <p-button icon="pi pi-pencil" pTooltip="Modifica Brand"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/']"
-                        class="hidden md:flex"></p-button>
-                    <p-button icon="pi pi-qrcode" pTooltip="QrCode"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/' ]"
-                        class="hidden md:flex"></p-button>
-                    <p-button icon="pi pi-plus" pTooltip="Nuova E-Label"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/' ]"
-                        class="hidden md:flex"></p-button>
-                </div>
-            </div>
 
         </div>
     </div>
@@ -357,18 +328,19 @@
     </ng-template>
 </p-dialog>
 
-<p-dialog header="Dialog" [(visible)]="brandModal" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
-    <div>
-        <div class="col-12 md:col-8">
+<p-dialog header="Nuovo Brand" [(visible)]="brandModal" [modal]="true" showEffect="fade" [style]="{width: '15vw'}" [breakpoints]="{'960px': '75vw'}">
+    <div class="grid flex flex-wrap justify-content-center">
+        <div class="col-12 md:col-12 flex flex-wrap justify-content-center">
             <label for="prodotto">{{ 'pages.brand.form.name.label' | translate }}</label>
             <input pInputText [formControl]="name" />
         </div>
 
-        <div class="col-12 mt-3">
-            <label>{{ 'pages.brand.form.image.label' | translate }} </label>
+        <div class="col-12 mt-3 md:col-12 flex flex-wrap justify-content-center">
+            <label>{{ 'pages.brand.form.image.label' | translate }} </label><br>
             <img *ngIf="form.get('image').value" src="//{{form.get('image').value}}" style="width:150px;height:auto">
+            
             <p-fileUpload mode="basic" name="image" chooseIcon="pi pi-upload"
-                url="https://app.eulabel.it/backend/brand-image/{{id}}" accept="image/*"
+                url="https://app.eulabel.it/backend/brand-image/{{form.get('id').value}}" accept="image/*"
                 maxFileSize="1000000" [auto]="true" (onUpload)="onBasicUploadBrand()"
                 chooseLabel="Browse" />
         </div>
