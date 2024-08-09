@@ -24,11 +24,13 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
 import { TooltipModule } from 'primeng/tooltip';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     imports: [
         CommonModule,
         TranslateModule,
+        ToastModule,
         FormsModule,
         ChartModule,
         MenuModule,
