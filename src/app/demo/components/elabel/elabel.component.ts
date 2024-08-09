@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class ElabelComponent {
   form: FormGroup
   id = ''
+  brand = ''
   preview_image = ''
   sub_image = ''
   user_id=''
@@ -75,13 +76,15 @@ export class ElabelComponent {
       ingredients: new FormArray([]),
       type: [null, Validators.required]
     })
-
+    
     this.breadcrumbItems = [];
     this.breadcrumbItems.push({ label: 'E-labels' });
     
     this.route.paramMap.subscribe((params: ParamMap) => {
        const id = params.get('id');
-
+       const brand = params.get('brand');
+      if(brand)
+        this.brand = brand
       this.service.getOptions().subscribe((response) => {
         const data = response.data
         this.consumption = data.consumption.map(e => {e.value = e.id; return e})

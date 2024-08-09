@@ -142,7 +142,6 @@ export class DashboardComponent implements OnInit {
 
     editBrand() {
         this.step = 0;
-        debugger
         this.brandService.get(29).subscribe((response)=>{
             this.form.patchValue(response.data)
             this.name.setValue(response.data.name)
@@ -151,7 +150,7 @@ export class DashboardComponent implements OnInit {
     }
 
     createElabelByBrand() {
-
+        this.router.navigate(['/elabel', 29]);
     }
 
 }

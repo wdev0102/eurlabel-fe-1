@@ -80,7 +80,7 @@
                     <i class="pi pi-box mr-2"></i> <b>{{
                         'pages.dashboard.cards.brand' | translate }}</b>
                 </div>
-                <div class="col-6 text-right cursot-pointer">
+                <div class="col-6 text-right cursot-pointer" (click)="openBrandModal()">
                     <i class="pi pi-plus mr-2"></i> <b>{{ 'global.new_brand' | translate }}</b>
                 </div>
 
@@ -368,7 +368,7 @@
             <label>{{ 'pages.brand.form.image.label' | translate }} </label>
             <img *ngIf="form.get('image').value" src="//{{form.get('image').value}}" style="width:150px;height:auto">
             <p-fileUpload mode="basic" name="image" chooseIcon="pi pi-upload"
-                url="https://app.eulabel.it/backend/brand-image/{{id}}" accept="image/*"
+                url="https://app.eulabel.it/backend/brand-image/{{form.get('id').value}}" accept="image/*"
                 maxFileSize="1000000" [auto]="true" (onUpload)="onBasicUploadBrand()"
                 chooseLabel="Browse" />
         </div>

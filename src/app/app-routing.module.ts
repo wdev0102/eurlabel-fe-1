@@ -18,6 +18,7 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                     { path: 'edit', loadChildren: () => import('./demo/components/edit-profile/edit-profile.module').then(m => m.EditProfileModule) },
                     { path: 'elabel', loadChildren: () => import('./demo/components/elabel/elabel.module').then(m => m.ElabelModule) },
                     { path: 'elabel/:id', loadChildren: () => import('./demo/components/elabel/elabel.module').then(m => m.ElabelModule) },
+                    { path: 'elabel/:brand', loadChildren: () => import('./demo/components/elabel/elabel.module').then(m => m.ElabelModule) },
                 ],
                 canActivate: [AuthGuard]
             },
