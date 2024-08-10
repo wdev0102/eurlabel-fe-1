@@ -7,16 +7,22 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
-import { RegisterRoutingModule } from './register-routing.module';
-import { RegisterComponent } from './register.component';
+
+import { UserProfileComponent } from './userprofile.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { FileUploadModule } from 'primeng/fileupload';
+import { UserProfileRoutingModule } from './userprofile-routing.module';
+import { RegisterModule } from '../auth/register/register.module';
+import { CardModule } from 'primeng/card';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DividerModule } from 'primeng/divider';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
+    declarations: [UserProfileComponent],
     imports: [
         CommonModule,
-        RegisterRoutingModule,
+        UserProfileRoutingModule,
+        RegisterModule,
         ProgressSpinnerModule,
         TranslateModule,
         FormsModule,
@@ -26,12 +32,12 @@ import { DividerModule } from 'primeng/divider';
         CheckboxModule,
         ToastModule,
         InputTextModule,
-        FileUploadModule,
         FormsModule,
         PasswordModule,
-        DividerModule
+        CardModule,
+        BreadcrumbModule,
+        DividerModule,
+        MenuModule
     ],
-    declarations: [RegisterComponent],
-    exports: [RegisterComponent],
 })
-export class RegisterModule { }
+export class UserProfileModule { }

@@ -37,6 +37,6 @@ export class AppTopBarComponent {
 
     
     edit() {
-        this.router.navigateByUrl('edit')
+        this.router.navigateByUrl('userprofile')
     }
 }

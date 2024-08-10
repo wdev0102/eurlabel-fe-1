@@ -39,7 +39,7 @@
                         'pages.dashboard.cards.profile' | translate }}</b>
                 </div>
                 <div class="col-6 text-right">
-                    <span [routerLink]="['/register']" style="cursor: pointer;"><i class="pi pi-file-edit mr-2"></i>
+                    <span [routerLink]="['/userprofile']" style="cursor: pointer;"><i class="pi pi-file-edit mr-2"></i>
                         <b>{{ 'global.edit' | translate }}</b></span>
                 </div>
             </div>
@@ -56,8 +56,8 @@
                         </div>
                         <p-divider></p-divider>
                         <div class="col-12 mt-3 flex justify-content-center align-items-center"
-                        [ngStyle]="{'background-color':(user.primary_color!='') ? user.primary_color : 'black' }"><img src="assets/icon/color.svg"
-                                style="width:20px;">
+                            [ngStyle]="{'background-color':(user.primary_color!='') ? user.primary_color : 'black' }">
+                            <img src="assets/icon/color.svg" style="width:20px;">
                         </div>
 
 
@@ -81,7 +81,7 @@
                     <i class="pi pi-box mr-2"></i> <b>{{
                         'pages.dashboard.cards.brand' | translate }}</b>
                 </div>
-                <div class="col-6 text-right cursor-pointer"  (click)="openBrandModal()">
+                <div class="col-6 text-right cursor-pointer" (click)="openBrandModal()">
                     <i class="pi pi-plus mr-2"></i> <b>{{ 'global.new_brand' | translate }}</b>
                 </div>
 
@@ -93,7 +93,8 @@
                 <div class="flex min-w-0 items-center gap-2">
                     <img alt="Brand image" src="https://{{item.image}}" width="50" height="50" decoding="async"
                         loading="lazy" class="p-2"
-                        style="color: transparent;max-height:50px;border-style: solid !important;border-width: 3px;" [ngStyle]="{'border-color':(item.color!='') ? item.color : 'black' }">
+                        style="color: transparent;max-height:50px;border-style: solid !important;border-width: 3px;"
+                        [ngStyle]="{'border-color':(item.color!='') ? item.color : 'black' }">
                     <a [routerLink]="['/elabel/']" class="truncate font-semibold xl:text-base"
                         href="javascript:void(0)">{{item.name}}</a>
 
@@ -104,14 +105,11 @@
                         styleClass="p-button-sm p-button-outlined p-button-secondary" class="flez md:hidden" />
 
                     <p-button icon="pi pi-pencil" pTooltip="Modifica Brand" (click)="editBrand(item.id)"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary"
-                        class="hidden md:flex"></p-button>
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" class="hidden md:flex"></p-button>
                     <p-button icon="pi pi-qrcode" pTooltip="QrCode"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary"
-                        class="hidden md:flex"></p-button>
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" class="hidden md:flex"></p-button>
                     <p-button icon="pi pi-plus" pTooltip="Nuova E-Label" (click)="createElabelByBrand()"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary"
-                        class="hidden md:flex"></p-button>
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" class="hidden md:flex"></p-button>
                 </div>
             </div>
 
@@ -178,11 +176,7 @@
                     </div>
                     <div class="container ng-star-inserted flex align-content-center justify-content-center"
                         *ngIf="labels.length == 0">
-                        <div class="flex flex-column align-content-center justify-content-center">
-                            <div class="flex align-content-center justify-content-center"> <i class="pi pi-apple"></i>
-                            </div>
-                            <div class="flex align-content-center justify-content-center">{{
-                                'pages.dashboard.cards.label' | translate }}</div>
+                        <div class="flex flex-column align-content-center justify-content-center mt-3">
                             <div class="flex align-content-center justify-content-center">
                                 <button (click)="display=true" pButton pRipple type="button"
                                     class="p-button bg-primary p-component p-button-text text-white"><i
@@ -328,7 +322,8 @@
     </ng-template>
 </p-dialog>
 
-<p-dialog header="Nuovo Brand" [(visible)]="brandModal" [modal]="true" showEffect="fade" [style]="{width: '15vw'}" [breakpoints]="{'960px': '75vw'}">
+<p-dialog header="Nuovo Brand" [(visible)]="brandModal" [modal]="true" showEffect="fade" [style]="{width: '15vw'}"
+    [breakpoints]="{'960px': '75vw'}">
     <div class="grid flex flex-wrap justify-content-center">
         <div class="col-12 md:col-12 flex flex-wrap justify-content-center">
             <label for="prodotto">{{ 'pages.brand.form.name.label' | translate }}</label>
@@ -336,16 +331,26 @@
         </div>
 
         <div class="col-12 mt-3 md:col-12 flex flex-wrap justify-content-center">
-            <label>{{ 'pages.brand.form.image.label' | translate }} </label><br>
-            <img *ngIf="form.get('image').value" src="//{{form.get('image').value}}" style="width:150px;height:auto">
-            
-            <p-fileUpload mode="basic" name="image" chooseIcon="pi pi-upload"
-                url="https://app.eulabel.it/backend/brand-image/{{form.get('id').value}}" accept="image/*"
-                maxFileSize="1000000" [auto]="true" (onUpload)="onBasicUploadBrand()"
-                chooseLabel="Browse" />
+            <div class="grid">
+                <div class="col-12 text-center">
+                    <label>{{ 'pages.brand.form.image.label' | translate }} </label>
+                </div>
+                <div class="col-12 mt-0">
+                    <img *ngIf="!form.get('image').value" src="assets/icona-immagine.jpg"
+                        style="width:150px;height:auto">
+                    <img *ngIf="form.get('image').value" src="//{{form.get('image').value}}"
+                        style="width:150px;height:auto">
+                </div>
+                <div class="col-12">
+                    <p-fileUpload mode="basic" name="image" chooseIcon="pi pi-upload"
+                        url="https://app.eulabel.it/backend/brand-image/{{form.get('id').value}}" accept="image/*"
+                        maxFileSize="1000000" [auto]="true" (onUpload)="onBasicUploadBrand()" chooseLabel="Browse" />
+                </div>
+            </div>
         </div>
     </div>
     <ng-template pTemplate="footer">
-            <button pButton icon="pi pi-check" [disabled]="!form.get('image').value" (click)="saveBrand()" label="Ok" class="p-button-outlined"></button>
+        <button pButton icon="pi pi-check" [disabled]="!form.get('image').value" (click)="saveBrand()" label="Ok"
+            class="p-button-outlined"></button>
     </ng-template>
 </p-dialog>

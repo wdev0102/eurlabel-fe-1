@@ -64,13 +64,13 @@ export class RegisterComponent implements OnInit{
     }
 
     constructor(public layoutService: LayoutService,private userService: UserService,  private service: MessageService, private fb: FormBuilder, private authService: AuthService, public router: Router, private route: ActivatedRoute, private http: HttpClient, public messageService: MessageService,) {
-        if(this.dummyData)
-            this.form.patchValue(this.dummyData)
+
     }
 
     ngOnInit() {
         if(this.edit) {
             let request = JSON.parse(localStorage.getItem('user'))
+            this.form.patchValue(request)
             this.user = request
             console.log(request)
         }
