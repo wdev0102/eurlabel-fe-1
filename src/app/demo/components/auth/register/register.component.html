@@ -29,6 +29,16 @@
     </div>
     <div class="col-12 md:col-9">
         <div class="grid">
+            <div class="col-6">
+                <label for="name">{{ 'pages.register.name' | translate}}</label>
+                <input [formControl]="form.get('name')" type="text" placeholder="Name" pInputText
+                    style="padding:1rem">
+            </div>
+            <div class="col-6">
+                <label for="surname">{{ 'pages.register.surname' | translate}}</label>
+                <input [formControl]="form.get('surname')" type="text" placeholder="Surname" pInputText
+                    style="padding:1rem">
+            </div>
             <div class="col-12">
                 <label for="company_name">{{ 'pages.register.company' | translate}}</label>
                 <input [formControl]="form.get('company_name')" type="text" placeholder="Good wine srl" pInputText
@@ -46,9 +56,9 @@
                 <input [formControl]="form.get('cap')" type="text" placeholder="00000" pInputText style="padding:1rem">
             </div>
             <div class="col-12 md:col-4">
-                <label for="location">{{ 'pages.register.location' |
+                <label for="locality">{{ 'pages.register.locality' |
                     translate}}</label>
-                <input [formControl]="form.get('location')" type="text" placeholder="Siena" pInputText
+                <input [formControl]="form.get('locality')" type="text" placeholder="localita" pInputText
                     style="padding:1rem">
             </div>
 
@@ -114,8 +124,9 @@
             <div class="col-12 md:col-6">
                 <label for="password">{{ 'pages.register.password' |
                     translate}}</label>
-                <input [formControl]="form.get('password')" type="text" placeholder="******" pInputText
-                     style="padding:1rem">
+                    <p-password [formControl]="form.get('password')" [toggleMask]="true" />
+              <!--   <input [formControl]="form.get('password')" type="password" placeholder="******" pInputText
+                     style="padding:1rem"> -->
             </div>
         </div>
 

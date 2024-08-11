@@ -49,6 +49,7 @@
                                     sull'etichetta fisica, sono contrassegnate con 🇪🇺 / 🇮🇹.</p>
                                 <p-divider></p-divider>
                                 <div class="grid">
+                                    <input pInputText id="user_id" [formControl]="form.get('user_id')" />
                                     <div class="col-12 md:col-8">
                                         <label for="prodotto">{{ 'pages.elabel.form.product_name.label' | translate }}
                                             <app-infobutton
@@ -483,7 +484,7 @@
                                             </div>
                                             <div
                                             class="flex align-items-center justify-content-center w-4rem h-4rem  m-2">
-                                            <div ngClass="{{form.get('pregnant').value ? '' : 'opacity-40'}}"
+                                            <div ngClass="{{form.get('age').value ? '' : 'opacity-40'}}"
                                                 class="flex align-items-center justify-content-center w-4rem h-4rem  m-2">
                                                 <img (click)="form.get('age').setValue(!form.get('age').value)"
                                                 src="https://firebasestorage.googleapis.com/v0/b/label-scan-1c165.appspot.com/o/public%2FresponsibleConsumption%2Funderage.svg?alt=media&amp;token=ff71068d-93fc-42ec-9fd5-0c0a5cb799d0"

@@ -35,9 +35,11 @@ export class RegisterComponent implements OnInit{
         username : ['', Validators.required],
         password : ['', Validators.required],
         company_name : ['', Validators.required],
+        name : ['', Validators.required],
+        surname : ['', Validators.required],
         address : ['', Validators.required],
         cap : ['', Validators.required],
-        location : ['', Validators.required],
+        locality : ['', Validators.required],
         pr : ['', Validators.required],
         state : ['', Validators.required],
         phone : ['', Validators.required],
@@ -53,7 +55,7 @@ export class RegisterComponent implements OnInit{
         company_name : 'test',
         address : 'test',
         cap : '00000',
-        location : 'test',
+        locality : 'test',
         pr : 'ss',
         state : 'test',
         phone : '123',
@@ -77,7 +79,7 @@ export class RegisterComponent implements OnInit{
     }
 
     save() {
-        debugger
+       // debugger
         this.edit ? this.editSubmit() : this.registerSubmit()
     }
 
@@ -85,7 +87,8 @@ export class RegisterComponent implements OnInit{
         this.authService.editProfile(this.form.value).subscribe(
             success => {
             this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Message sent' });
-            },
+                localStorage.setItem('user', JSON.stringify(success))
+        },
             error => {
                 this.service.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: 'Validation failed' });
             }

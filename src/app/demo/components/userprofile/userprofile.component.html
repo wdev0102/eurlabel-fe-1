@@ -28,7 +28,7 @@
 
 <div class="grid p-fluid mb-2">
     <!--PROFILO AZIENDALE-->
-    <div class="col-12 md:col-12">
+    <div class="col-12 md:col-9">
 
 
         <div class="card" style="border-radius: 0px;">
@@ -46,7 +46,29 @@
 </div>
         </div>
     </div>
+    <div class="col-12 md:col-3">
 
+
+        <div class="card" style="border-radius: 0px;">
+            <div class="grid p-fluid mb-2">
+                <div class="col-12">
+                    <i class="pi pi-money-bill mr-2"></i> <b>{{
+                        'pages.profile.subscription.title' | translate }}</b><br>
+                        {{'pages.profile.subscription.subtitle' | translate }}
+                </div>
+            </div>
+<p-divider></p-divider>
+<div class="grid">
+    <div class="col-12">
+    <p><b>{{
+        'pages.profile.subscription.freeplan.title' | translate }}</b><br>
+        {{
+            'pages.profile.subscription.freeplan.subtitle' | translate }}</p>
+    </div>
+    <div class="col-12"><p-button label="Upgrade" /></div>
+</div>
+        </div>
+    </div>
    
 
 </div>

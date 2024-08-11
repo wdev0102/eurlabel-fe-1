@@ -20,9 +20,11 @@ export class UserProfileComponent {
     username : ['test', Validators.required],
     password : ['12341234', Validators.required], // ignorata in backend 
     company_name : ['test', Validators.required],
+    name : ['test', Validators.required],
+    surname : ['test', Validators.required],
     address : ['test', Validators.required],
     cap : ['00000', Validators.required],
-    location : ['test', Validators.required],
+    locality : ['test', Validators.required],
     pr : ['ss', Validators.required],
     state : ['test', Validators.required],
     phone : ['123', Validators.required],
@@ -41,12 +43,16 @@ export class UserProfileComponent {
       this.form.get('username').setValue(request.email)
     if(request.company_name)
       this.form.get('company_name').setValue(request.company_name)
+    if(request.name)
+      this.form.get('name').setValue(request.name)
+    if(request.surname)
+      this.form.get('surname').setValue(request.surname)
     if(request.address)
       this.form.get('address').setValue(request.address)
     if(request.cap)
       this.form.get('cap').setValue(request.cap)
-    if(request.location)
-      this.form.get('location').setValue(request.location)
+    if(request.locality)
+      this.form.get('locality').setValue(request.locality)
     if(request.pr)
       this.form.get('pr').setValue(request.pr)
     /*

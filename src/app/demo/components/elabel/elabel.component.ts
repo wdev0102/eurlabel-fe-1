@@ -44,21 +44,25 @@ export class ElabelComponent {
 
 
   constructor(private fb: FormBuilder, private t: TranslateService, private service: ElabelService, private confirmationService: ConfirmationService, private messageService: MessageService, private _location: Location, private route: ActivatedRoute) {
+    let request = JSON.parse(localStorage.getItem('user'))
+    this.user_id = request.id   
+    
     this.form = this.fb.group({
       id: [null, Validators.required],
       qr: [null, Validators.required],
       public_id: [null, Validators.required],
+      user_id: [this.user_id],
       name: [null, Validators.required],
-      alcohol_content_percentage: [null, Validators.required],
-      net_content: [null, Validators.required],
+      alcohol_content_percentage: [null],
+      net_content: [null],
       product_name: [null, Validators.required],
-      sku: [null, Validators.required],
+      sku: [null],
       country: [null, Validators.required],
-      vintage_year: [null, Validators.required],
+      vintage_year: [null ],
       packages: [null],
       geographical_indication: [null],
-      description: [null, Validators.required],
-      product_varieties: [null, Validators.required],
+      description: [null],
+      product_varieties: [null],
       energy_kj: [null, Validators.required],
       energy_kcal: [null, Validators.required],
       fat: [null, Validators.required],
@@ -67,15 +71,19 @@ export class ElabelComponent {
       carb_sugar: [null, Validators.required],
       protein: [null, Validators.required],
       salt: [null, Validators.required],
-      drive: [false, Validators.required],
-      pregnant: [false, Validators.required],
-      age: [false, Validators.required],
-      sustainibility_bio: [null, Validators.required],
-      sustainibility_message: [null, Validators.required],
+      drive: [false],
+      pregnant: [false],
+      age: [false],
+      sustainibility_bio: [null],
+      sustainibility_message: [null],
       rules: new FormArray([]),
       ingredients: new FormArray([]),
       type: [null, Validators.required]
     })
+
+    
+
+  
     
     this.breadcrumbItems = [];
     this.breadcrumbItems.push({ label: 'E-labels' });
