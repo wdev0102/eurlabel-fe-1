@@ -49,7 +49,6 @@
                                     sull'etichetta fisica, sono contrassegnate con 🇪🇺 / 🇮🇹.</p>
                                 <p-divider></p-divider>
                                 <div class="grid">
-                                    <input pInputText id="user_id" [formControl]="form.get('user_id')" />
                                     <div class="col-12 md:col-8">
                                         <label for="prodotto">{{ 'pages.elabel.form.product_name.label' | translate }}
                                             <app-infobutton
@@ -202,7 +201,7 @@
                                         </div>
                                     </ng-template>
                                     <ng-template let-option pTemplate="item">
-                                        <span>{{option.label | translate}}</span>
+                                        <span>{{option.label | translate}}</span> <p-tag *ngIf="option.allergenies!=null" severity="warning" value="Allergene: "/>
                                     </ng-template>
                                 </p-dropdown>
                             </div>

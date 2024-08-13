@@ -86,30 +86,39 @@
             </div>
             <p-divider></p-divider>
             <!--BRAND LIST-->
-            <div class="flex m-0 h-16 w-full items-center justify-between rounded-sm  bg-white px-2 md:pr-4 md:pl-2 my-1"
-                style="border-color: rgb(203, 213, 225);" *ngFor="let item of brands">
-                <div class="flex min-w-0 items-center gap-2">
-                    <img alt="Brand image" src="https://{{item.image}}" width="50" height="50" decoding="async"
-                        loading="lazy" class="p-2"
-                        style="color: transparent;max-height:50px;border-style: solid !important;border-width: 3px;"
-                        [ngStyle]="{'border-color':(item.color!='') ? item.color : 'black' }">
-                    <a [routerLink]="['/elabel/']" class="truncate font-semibold xl:text-base"
-                        href="javascript:void(0)">{{item.name}}</a>
+            <!--BRAND LIST-->
+            <div class="grid">
+                <div class="col-12 my-0 py-0" *ngFor="let item of brands">
+                    <div class="grid flex my-0 py-0">
+                        <div class="col-6 flex justify-content-start align-content-center align-items-center my-0 py-0">
+                            <img alt="Brand image" src="https://{{item.image}}" width="50" height="50" decoding="async"
+                                loading="lazy" class="p-2"
+                                style="color: transparent;max-height:50px;border-style: solid !important;border-width: 3px;"
+                                [ngStyle]="{'border-color':(item.color!='') ? item.color : 'black' }">
+                            <a [routerLink]="['/elabel/']" class="truncate font-semibold xl:text-base ml-2"
+                                href="javascript:void(0)">{{item.name}}</a>
+                        </div>
+                        <div class="col-6 flex justify-content-end align-content-center align-items-center my-0 py-0">
+                            <p-menu #menu [model]="items_brand" [popup]="true" />
+                            <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary" class="flez md:hidden" />
 
+                            <p-button icon="pi pi-pencil" pTooltip="Modifica Brand" (click)="editBrand(item.id)"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                class="hidden md:flex mx-1"></p-button>
+                            <p-button icon="pi pi-qrcode" pTooltip="QrCode"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                class="hidden md:flex mx-1"></p-button>
+                            <p-button icon="pi pi-plus" pTooltip="Nuova E-Label" (click)="createElabelByBrand()"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                class="hidden md:flex mx-1"></p-button>
+                        </div>
+                    </div>
+                    <p-divider></p-divider>
                 </div>
-                <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2 hidden">
-                    <p-menu #menu [model]="items_brand" [popup]="true" />
-                    <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary" class="flez md:hidden" />
 
-                    <p-button icon="pi pi-pencil" pTooltip="Modifica Brand" (click)="editBrand(item.id)"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary" class="hidden md:flex"></p-button>
-                    <p-button icon="pi pi-qrcode" pTooltip="QrCode"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary" class="hidden md:flex"></p-button>
-                    <p-button icon="pi pi-plus" pTooltip="Nuova E-Label" (click)="createElabelByBrand()"
-                        styleClass="p-button-sm p-button-outlined p-button-secondary" class="hidden md:flex"></p-button>
-                </div>
             </div>
+
 
 
         </div>
@@ -127,52 +136,61 @@
 
             </div>
 
-            <p-tabView orientation="left" class="p-0">
-                <p-tabPanel header="{{ 'pages.dashboard.cards.label' | translate }}" class="line-height-3 p-0 m-0 mb-3">
-
-                    <div *ngFor="let label of labels"
-                        class="flex m-0 h-16 p-0 w-full items-center justify-between rounded-sm border border-solid bg-white px-2 md:pr-4 md:pl-2 my-1"
-                        style="border-color: rgb(203, 213, 225);">
-
-                        <div class="flex min-w-0 items-center gap-2">
+            <p-tabView orientation="left" class="px-0">
+                <p-tabPanel header="{{ 'pages.dashboard.cards.label' | translate }}" class="line-height-3 px-0 mx-0 mb-3">
 
 
-                            <img *ngIf="!label.sub_image" alt="Product image preview"
-                                src="assets/placeholder_bottle.webp" width="auto" height="50" decoding="async"
-                                loading="lazy" class="p-2" style="color: transparent;max-height:50px"
-                                class="hidden md:flex">
-                            <img *ngIf="label.sub_image" alt="Product image preview" src="https://{{label.sub_image}}"
-                                width="auto" height="50" decoding="async" loading="lazy" class="p-2"
-                                style="color: transparent;max-height:50px" class="hidden md:flex">
-                            <a [routerLink]="['/elabel/' + label.id]" class="truncate font-semibold xl:text-base"
-                                href="javascript:void(0)" class="truncate">{{label.product_name}}</a><span
-                                *ngIf="label.sku!=''" class="truncate">-
-                                {{label.sku}}</span>
-                            <div class="ml-1 hidden md:block">
-                                <span *ngIf="label.status==''"><p-tag severity="warning" value="Bozza"></p-tag></span>
-                                <span *ngIf="label.status!=''"><p-tag severity="success"
-                                        value="Pubblicato"></p-tag></span>
+                    <div class="grid flex">
+                        <div class="col-12 my-0 py-0" *ngFor="let label of labels">
+                            <div class="grid flex my-0 py-0">
+                                <div
+                                    class="col-6 flex justify-content-start align-content-center align-items-center my-0 py-0">
+                                    <img *ngIf="!label.sub_image" alt="Product image preview"
+                                        src="assets/placeholder_bottle.webp" width="auto" height="50" decoding="async"
+                                        loading="lazy" class="p-2" style="color: transparent;max-height:50px"
+                                        class="hidden md:flex">
+                                    <img *ngIf="label.sub_image" alt="Product image preview"
+                                        src="https://{{label.sub_image}}" width="auto" height="50" decoding="async"
+                                        loading="lazy" class="p-2" style="color: transparent;max-height:50px"
+                                        class="hidden md:flex">
+                                    <a [routerLink]="['/elabel/' + label.id]"
+                                        class="truncate font-semibold xl:text-base" href="javascript:void(0)"
+                                        class="truncate">{{label.product_name}}</a><span *ngIf="label.sku!=''"
+                                        class="truncate">-
+                                        {{label.sku}}</span>
+                                    <div class="ml-1 hidden md:block">
+                                        <span *ngIf="label.status==''"><p-tag severity="warning"
+                                                value="Bozza"></p-tag></span>
+                                        <span *ngIf="label.status!=''"><p-tag severity="success"
+                                                value="Pubblicato"></p-tag></span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="col-6 flex justify-content-end align-content-center align-items-center my-0 py-0">
+                                    <p-menu #menu [model]="items_elabel" [popup]="true" />
+                                    <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        class="flex md:hidden" />
+
+                                    <p-button icon="pi pi-pencil" pTooltip="Modifica"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                                    <p-button icon="pi pi-qrcode" pTooltip="QrCode"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                                    <p-button icon="pi pi-copy" pTooltip="Duplica"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                                </div>
+
                             </div>
-                        </div>
-
-                        <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2 hidden">
-                            <p-menu #menu [model]="items_elabel" [popup]="true" />
-                            <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
-                                styleClass="p-button-sm p-button-outlined p-button-secondary" class="flex md:hidden" />
-
-                            <p-button icon="pi pi-pencil" pTooltip="Modifica"
-                                styleClass="p-button-sm p-button-outlined p-button-secondary"
-                                [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
-                            <p-button icon="pi pi-qrcode" pTooltip="QrCode"
-                                styleClass="p-button-sm p-button-outlined p-button-secondary"
-                                [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
-                            <p-button icon="pi pi-copy" pTooltip="Duplica"
-                                styleClass="p-button-sm p-button-outlined p-button-secondary"
-                                [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                            <p-divider></p-divider>
                         </div>
 
                     </div>
-                    <div class="container ng-star-inserted flex align-content-center justify-content-center"
+
+
+                    <div class="container ng-star-inserted flex align-content-center justify-content-center mt-3"
                         *ngIf="labels.length == 0">
                         <div class="flex flex-column align-content-center justify-content-center mt-3">
                             <div class="flex align-content-center justify-content-center">

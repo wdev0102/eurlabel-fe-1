@@ -67,7 +67,7 @@ export class PreviewComponent implements OnChanges, OnInit {
 
 
   getPackages(n:number) {
-    if(this.packages.length) {
+    if(this.packages.length>0) {
       const item = this.packages.filter((e)=>e.id==n)
       return item[0].label
     }
