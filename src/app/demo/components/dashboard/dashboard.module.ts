@@ -26,6 +26,7 @@ import { DividerModule } from 'primeng/divider';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
     imports: [
@@ -55,6 +56,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
         DividerModule,
         TooltipModule,
         BreadcrumbModule,
+        PanelModule
     ],
     providers: [
         ConfirmationService

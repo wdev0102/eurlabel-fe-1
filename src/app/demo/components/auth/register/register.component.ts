@@ -24,11 +24,14 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
         }
     `]
 })
+
 export class RegisterComponent implements OnInit{
     @Input() edit = false
     msgs: Message[] = [];
     email = ''
     user : any = {}
+    url
+    loading = false;
     
     @Input() form = this.fb.group({
         id : [null, Validators.required],
@@ -66,7 +69,9 @@ export class RegisterComponent implements OnInit{
     }
 
     constructor(public layoutService: LayoutService,private userService: UserService,  private service: MessageService, private fb: FormBuilder, private authService: AuthService, public router: Router, private route: ActivatedRoute, private http: HttpClient, public messageService: MessageService,) {
+        this.url = this.router.url;
 
+       
     }
 
     ngOnInit() {
@@ -88,6 +93,9 @@ export class RegisterComponent implements OnInit{
             success => {
             this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Message sent' });
                 localStorage.setItem('user', JSON.stringify(success))
+                if(this.url=='/register'){
+                    this.router.navigate(['/userprofile'])
+                }
         },
             error => {
                 this.service.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: 'Validation failed' });
@@ -99,7 +107,12 @@ export class RegisterComponent implements OnInit{
     registerSubmit() {
         this.authService.register(this.form.value).subscribe(()=>{
             this.authService.login(this.form.get('email').value, this.form.get('password').value).subscribe(()=>{
-                this.router.navigate(['/dashboard']);
+                
+                if(this.url=='/register'){
+                    this.router.navigate(['/userprofile'])
+                }else{
+                    this.router.navigate(['/dashboard']);
+                }
             })
             
         })

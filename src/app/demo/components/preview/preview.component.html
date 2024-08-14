@@ -82,7 +82,6 @@
                                     'pages.ingredients.title' |
                                     translate }}</p>
                                 <ng-container *ngIf="form.get('ingredients').value" class="m0 p0">
-                                    {{form.get('ingredients').value | json}}
                                     <p class="info mb-0" *ngFor="let ingredient of form.get('ingredients').value">
                                         {{ingredient.label | translate}}
                                     </p>
@@ -278,22 +277,23 @@
                             </div>
                             <div class="col-12 mt-0 pt-0">
                                 <div class="grid">
-                                    <div class="col-6 text-center info">
-                                        Origine<br>
-                                        <b>Italia</b>
+                                    <div class="col-6 text-center info" *ngIf="form.get('country').value">
+                                        {{ 'pages.elabel.form.country.label' | translate }}<br>
+                                        <b>{{form.get('country').value}}</b>
                                     </div>
                                     <div class="col-6 text-center info" *ngIf="form.get('type').value">
                                         {{ 'pages.elabel.form.type.label' | translate }}<br>
-                                        <b>{{form.get('type').value}}</b>
+                                        <b> {{getType(form.get('type').value) | translate}}</b>
                                     </div>
                                     <div class="col-6 text-center info"
                                         *ngIf="form.get('geographical_indication').value">
                                         {{ 'pages.elabel.form.geographical_indication.label' | translate }}<br>
-                                        <b>{{form.get('geographical_indication').value}}</b>
+                                        <b>{{getGeographicalIndication(form.get('geographical_indication').value) | translate}}</b>
                                     </div>
                                     <div class="col-6 text-center info" *ngIf="form.get('vintage_year').value">
                                         {{ 'pages.elabel.form.vintage_year.label' | translate }}<br>
-                                        <b>{{form.get('vintage_year').value | date : 'Y'}}</b>
+                                        <b>{{form.get('vintage_year').value | date :
+                                            'Y'}}</b>
                                     </div>
                                     <div class="col-12 text-center info" *ngIf="form.get('product_varieties').value">
                                         {{ 'pages.elabel.form.product_varieties.label' | translate }}<br>

@@ -39,7 +39,10 @@
                 <p-tabPanel header="{{ 'pages.elabel.cards.tab1' | translate }}" class="line-height-3 m-0">
                     <div style="height: calc(100vh - 29rem);;overflow: auto;">
                         <div class="grid">
-
+                            <div class="col-12 md:col-9">
+                                {{form.get('user_id').value}}
+                            <input pInputText id="user_id" [formControl]="form.get('user_id')" />
+                        </div>
                             <div class="col-12 md:col-9">
                                 <p class="mt-3">Compila tutte le informazioni che devono essere visualizzate sulla
                                     e-label.
@@ -62,7 +65,7 @@
                                             <app-infobutton
                                                 [label]="'pages.elabel.form.product_sku.helper'"></app-infobutton>
                                             <span style="font-size:0.8rem;margin-left:5px;">(opzionale)</span></label>
-                                        <input pInputText id="prodotto" [formControl]="form.get('product_sku')" />
+                                        <input pInputText id="prodotto" [formControl]="form.get('sku')" />
                                     </div>
 
                                     <div class="col-12 md:col-12">
@@ -70,7 +73,23 @@
                                             <app-infobutton
                                                 [label]="'pages.elabel.form.country.helper'"></app-infobutton>
                                             🇪🇺</label>
-                                        <input pInputText id="prodotto" [formControl]="form.get('country')" />
+                                      <!--   <input pInputText id="country" [formControl]="form.get('country')" /> -->
+                                         {{form.get('country').value | json}}
+                                        <p-dropdown [options]="states" [formControl]="form.get('country')"
+                                        [showClear]="true" placeholder="Seleziona">
+                                        <ng-template let-option pTemplate="selectedItem">
+                                            <span>{{option.nome_stati | translate}}</span>
+                                        </ng-template>
+                                        <ng-template let-option pTemplate="item">
+                                            <span>{{option.nome_stati | translate}}</span>
+                                        </ng-template>
+                                    </p-dropdown>
+                                       <!--  <p-autoComplete 
+                                        [(ngModel)]="selectedCountry" 
+                                        [dropdown]="true" 
+                                        [suggestions]="filteredCountries" 
+                                        (completeMethod)="filterCountry($event)" 
+                                        field="name" /> -->
                                     </div>
 
                                     <div class="field col-12 md:col-6">
@@ -194,19 +213,23 @@
                             </div>
                             <div class="col-12">
                                 <p-dropdown [options]="ingredients" (onChange)="onChangeIngredient($event)"
-                                    [group]="true" [showClear]="true" placeholder="Seleziona">
+                                    [group]="true" [showClear]="true"  placeholder="Seleziona">
+                                    <ng-template let-option pTemplate="selectedItem">
+                                        <span>{{option.label | translate}}</span>
+                                    </ng-template>
                                     <ng-template let-group pTemplate="group">
                                         <div class="flex align-items-center">
                                             <span>{{ group.label | translate }}</span>
                                         </div>
                                     </ng-template>
                                     <ng-template let-option pTemplate="item">
+                                       
                                         <span>{{option.label | translate}}</span> <p-tag *ngIf="option.allergenies!=null" severity="warning" value="Allergene: "/>
                                     </ng-template>
                                 </p-dropdown>
                             </div>
                             <div class="col-12">
-                                <div class="card" *ngFor="let e of ingredientPicked">
+                                    <div class="card" *ngFor="let e of ingredientPicked">
                                     <div class="grid">
                                         <div class="col-9">
                                             <b>{{e.label | translate}}</b>
@@ -215,7 +238,7 @@
                                         <div class="col-3 flex justify-content-end align-items-right">
                                             <p-button icon="pi pi-trash" pTooltip="Rimuovi"
                                                 styleClass="p-button-sm p-button-outlined p-button-secondary"
-                                                [routerLink]="['/elabel/' ]"></p-button>
+                                                (click)="onDeleteIngredient(e.id)"></p-button>
                                         </div>
                                     </div>
                                 </div>
@@ -569,6 +592,7 @@
         [packages]="packages" 
         [ingredients]="ingredients" 
         [types]="types" 
+        [geoGraphicalIndication]="geographical_indication"
         [preview_image]="preview_image" 
         [sub_image]="sub_image" 
         [form]="form"></app-preview>

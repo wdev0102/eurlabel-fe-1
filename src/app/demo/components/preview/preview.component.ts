@@ -25,6 +25,7 @@ export class PreviewComponent implements OnChanges, OnInit {
   companyName
   companyLogo
   primary_color
+  @Input() geoGraphicalIndication = []
 
   constructor(private fb: FormBuilder, public layoutService: LayoutService, private t: TranslateService, private service: ElabelService, private confirmationService: ConfirmationService, private messageService: MessageService, private _location: Location, private route: ActivatedRoute) {
 
@@ -33,6 +34,8 @@ export class PreviewComponent implements OnChanges, OnInit {
     this.companyName=request.company_name
     this.primary_color=request.primary_color
     this.companyLogo=request.image
+    
+
 
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -77,6 +80,13 @@ export class PreviewComponent implements OnChanges, OnInit {
   getType(n:number) {
     if(this.types.length) {
       const item = this.types.filter((e)=>e.id==n)
+      return item[0].label
+    }
+    return ''
+  }
+  getGeographicalIndication(n:number) {
+    if(this.geoGraphicalIndication.length) {
+      const item = this.geoGraphicalIndication.filter((e)=>e.id==n)
       return item[0].label
     }
     return ''

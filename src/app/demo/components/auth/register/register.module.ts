@@ -29,7 +29,8 @@ import { DividerModule } from 'primeng/divider';
         FileUploadModule,
         FormsModule,
         PasswordModule,
-        DividerModule
+        DividerModule,
+        PasswordModule
     ],
     declarations: [RegisterComponent],
     exports: [RegisterComponent],
