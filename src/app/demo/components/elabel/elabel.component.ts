@@ -42,10 +42,12 @@ export class ElabelComponent {
   ingredients = [];
   msgs: Message[] = [];
   sidebarVisible: boolean = false;
+  preview:boolean=false
 
 
 
   constructor(private fb: FormBuilder, private t: TranslateService, private service: ElabelService, private confirmationService: ConfirmationService, private messageService: MessageService, private _location: Location, private route: ActivatedRoute) {
+    this. sidebarVisible = false;
     let request = JSON.parse(localStorage.getItem('user'))
     const user_id = request.id
 

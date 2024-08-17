@@ -593,6 +593,7 @@
         [geoGraphicalIndication]="geographical_indication"
         [preview_image]="preview_image" 
         [sub_image]="sub_image" 
+        [preview]="false"
         [form]="form" class="col-12 lg:col-4 xl:col-3 hidden lg:block"></app-preview>
 
 </div>
@@ -607,8 +608,9 @@
     [geoGraphicalIndication]="geographical_indication"
     [preview_image]="preview_image" 
     [sub_image]="sub_image" 
-    [form]="form" class="col-12 lg:col-4 xl:col-3 block lg:hidden"></app-preview>
+    [preview]="true"
+    [form]="form" class="col-12 lg:col-4 xl:col-3 block lg:hidden flex flex-column justify-content-center align-items-center"></app-preview>
 </p-sidebar>
 <div class="fixed bottom-2 right-2 block lg:hidden">
-<p-button (onClick)="sidebarVisible = true" icon="pi pi-eye" pTooltip="Live preview" />
+<p-button (onClick)="sidebarVisible = true && preview=true" icon="pi pi-eye" pTooltip="Live preview" />
 </div>
