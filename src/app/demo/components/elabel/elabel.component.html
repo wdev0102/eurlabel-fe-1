@@ -223,7 +223,7 @@
                                     </ng-template>
                                     <ng-template let-option pTemplate="item">
                                        
-                                        <span>{{option.label | translate}}</span> <p-tag *ngIf="option.allergenies!=null" severity="warning" value="Allergene: "/>
+                                        <span>{{option.label | translate}}</span> <p-tag *ngIf="option.allergenies!=null" severity="warning" class="ml-3" value="Allergene: {{option.allergenies | translate}}"/>
                                     </ng-template>
                                 </p-dropdown>
                             </div>
@@ -397,9 +397,9 @@
                                         'pages.recycling.link' | translate }}</a>
                             </div>
                             <div class="col-12">
-
                                 <ng-container *ngFor="let rule of rules.controls; let i = index">
                                     <div class="grid">
+                                        
                                         <div class="col-12 md:col-2">
                                             <div class="border-1 flex flex-column">
                                                 <div class="flex flex-col items-center px-2 pb-1.5 pt-2">
@@ -428,6 +428,9 @@
                                                         [formControl]="rules.at(i).get('recycling_rule_containers_id')"
                                                         [options]="containers" [group]="true" [showClear]="true"
                                                         placeholder="Seleziona">
+                                                        <ng-template let-option pTemplate="selectedItem">
+                                                            <span>{{option.label | translate}}</span>
+                                                        </ng-template>
                                                         <ng-template let-group pTemplate="group">
                                                             <div class="flex align-items-center">
                                                                 <span>{{ group.label | translate }}</span>
@@ -445,6 +448,9 @@
                                                     <p-dropdown [options]="materials" [group]="true"
                                                         [formControl]="rules.at(i).get('recycling_rule_materials_id')"
                                                         [showClear]="true" placeholder="Seleziona">
+                                                        <ng-template let-option pTemplate="selectedItem">
+                                                            <span>{{option.label | translate}}</span>
+                                                        </ng-template>
                                                         <ng-template let-group pTemplate="group">
                                                             <div class="flex align-items-center">
                                                                 <span>{{ group.label | translate }}</span>
