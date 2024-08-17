@@ -27,6 +27,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { PreviewComponent } from '../preview/preview.component';
 import { TagModule } from 'primeng/tag';
 import { DividerModule } from 'primeng/divider';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [ElabelComponent, PreviewComponent],
@@ -57,7 +58,8 @@ import { DividerModule } from 'primeng/divider';
     InputTextModule,
     ElabelRoutingModule,
     TagModule,
-    DividerModule
+    DividerModule,
+    SidebarModule
   ]
 })
 export class ElabelModule { }

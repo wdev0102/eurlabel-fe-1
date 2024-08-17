@@ -41,6 +41,7 @@ export class ElabelComponent {
   ingredientPicked = [];
   ingredients = [];
   msgs: Message[] = [];
+  sidebarVisible: boolean = false;
 
 
 
@@ -64,14 +65,14 @@ export class ElabelComponent {
       geographical_indication: [null],
       description: [null],
       product_varieties: [null],
-      energy_kj: [null, Validators.required],
-      energy_kcal: [null, Validators.required],
-      fat: [null, Validators.required],
-      fat_sat: [null, Validators.required],
-      carb: [null, Validators.required],
-      carb_sugar: [null, Validators.required],
-      protein: [null, Validators.required],
-      salt: [null, Validators.required],
+      energy_kj: ['0', Validators.required],
+      energy_kcal: ['0', Validators.required],
+      fat: ['0', Validators.required],
+      fat_sat: ['0', Validators.required],
+      carb: ['0', Validators.required],
+      carb_sugar: ['0', Validators.required],
+      protein: ['0', Validators.required],
+      salt: ['0', Validators.required],
       drive: [false],
       pregnant: [false],
       age: [false],
