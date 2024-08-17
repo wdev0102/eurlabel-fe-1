@@ -1,5 +1,6 @@
 {
   "global": {
+    "select" : "Seleziona",
     "view": "Dettagli",
     "qr": "Codice Qr",
     "add": "Crea una nuova E-Label",
@@ -239,8 +240,21 @@
         "tab2": "Impostazioni"
       },
       "form": {
+        "container" : {
+          "error" : "Lo stesso contenitore non può essere specificato 2 volte"
+        },
+        "material" : {
+          "error" : "Lo stesso materiale non può essere specificato 2 volte"
+        },
+        "container" : {
+          "error" : "Il contenitore non può essere inserito 2 volte"
+        },
         "id": "Identificativo",
         "productName": "Nome del prodotto",
+        "brand": {
+          "label": "Marchio",
+          "helper": ""
+        },
         "upload": {
           "label": "Immagine del prodotto",
           "helper": ""

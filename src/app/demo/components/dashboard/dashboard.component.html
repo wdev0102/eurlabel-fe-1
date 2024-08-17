@@ -109,7 +109,7 @@
                     <p-button icon="pi pi-qrcode" pTooltip="QrCode"
                         styleClass="p-button-sm p-button-outlined p-button-secondary"
                         class="hidden md:flex"></p-button>
-                    <p-button icon="pi pi-plus" pTooltip="Nuova E-Label" (click)="createElabelByBrand()"
+                    <p-button icon="pi pi-plus" pTooltip="Nuova E-Label" (click)="createElabelByBrand(item)"
                         styleClass="p-button-sm p-button-outlined p-button-secondary"
                         class="hidden md:flex"></p-button>
                 </div>
@@ -191,8 +191,8 @@
                         </div>
                     </div>
                 </p-tabPanel>
-                <p-tabPanel header="{{ 'pages.dashboard.cards.published' | translate }} (0)" class="line-height-3 m-0">
-                    <div *ngFor="let label of labels"
+                <p-tabPanel header="{{ 'pages.dashboard.cards.published' | translate }} (({{labelsPublishied.length}}))" class="line-height-3 m-0">
+                    <div *ngFor="let label of labelsPublishied"
                         class="flex m-0 h-16 w-full items-center justify-between rounded-sm border border-solid bg-white px-2 md:pr-4 md:pl-2 my-1"
                         style="border-color: rgb(203, 213, 225);">
 
@@ -241,8 +241,8 @@
                         </div>
                     </div>
                 </p-tabPanel>
-                <p-tabPanel header="{{ 'pages.dashboard.cards.draft' | translate }} (0)" class="line-height-3 m-0">
-                    <div *ngFor="let label of labels"
+                <p-tabPanel header="{{ 'pages.dashboard.cards.draft' | translate }} ({{labelsDraft.length}})" class="line-height-3 m-0">
+                    <div *ngFor="let label of labelsDraft"
                         class="flex m-0 h-16 w-full items-center justify-between rounded-sm border border-solid bg-white px-2 md:pr-4 md:pl-2 my-1"
                         style="border-color: rgb(203, 213, 225);">
 
@@ -343,6 +343,10 @@
                 url="https://app.eulabel.it/backend/brand-image/{{form.get('id').value}}" accept="image/*"
                 maxFileSize="1000000" [auto]="true" (onUpload)="onBasicUploadBrand()"
                 chooseLabel="Browse" />
+        </div>
+
+        <div>
+            <span><b>Colore primario</b><ngx-colors ngx-colors-trigger style="display: inline-block; margin:5px;" [formControl]="form.get('color')"></ngx-colors></span>
         </div>
     </div>
     <ng-template pTemplate="footer">

@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
     step = 0
     brands = []
     labels = []
+    labelsDraft = []
+    labelsPublishied = []
     published = []
     draft = []
     display = false
@@ -38,6 +40,7 @@ export class DashboardComponent implements OnInit {
         id : 0,
         name: ['', Validators.required],
         user_id : null,
+        color : null,
         image : null
     })
     
@@ -48,7 +51,8 @@ export class DashboardComponent implements OnInit {
         this.userid = request.id     
         this.user = request
         this.service.all(this.userid).subscribe((response: any) => {
-            this.labels = response.data
+            this.labelsDraft = response.data.filter((e)=>e.status == 0)
+            this.labelsPublishied = response.data.filter((e)=>e.status == 1)
         })        
         this.brandService.all(this.userid).subscribe((response)=>{
             this.brands = response.data
@@ -149,8 +153,8 @@ export class DashboardComponent implements OnInit {
         })
     }
 
-    createElabelByBrand() {
-        this.router.navigate(['/elabel', 29]);
+    createElabelByBrand(el:any) {
+        this.router.navigate(['/elabel-brand', JSON.stringify(el)]);
     }
 
 
