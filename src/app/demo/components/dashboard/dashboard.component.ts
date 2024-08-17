@@ -73,12 +73,15 @@ export class DashboardComponent implements OnInit {
             { label: 'Duplica', icon: 'pi pi-fw pi-copy' }
         ];
         this.items_brand = [
-            { label: 'Modifica Brand', icon: 'pi pi-fw pi-pencil' },
+            { label: 'Modifica Brand', icon: 'pi pi-fw pi-pencil', 
+                command: () => {
+                this.editBrand(29);
+            }},
             { label: 'Qr Code', icon: 'pi pi-fw pi-qrcode' },
             { label: 'Nuova E-Label', icon: 'pi pi-fw pi-plus' },
         ];
         this.items_elabel = [
-            { label: 'Modifica Brand', icon: 'pi pi-fw pi-pencil' },
+            { label: 'Modifica E-Label', icon: 'pi pi-fw pi-pencil' },
             { label: 'Qr Code', icon: 'pi pi-fw pi-qrcode' },
             { label: 'Duplica', icon: 'pi pi-fw pi-copy' },
         ];

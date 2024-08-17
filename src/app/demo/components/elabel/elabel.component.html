@@ -201,7 +201,12 @@
                                         </div>
                                     </ng-template>
                                     <ng-template let-option pTemplate="item">
+<<<<<<< HEAD
                                         <span>{{option.label | translate}}</span>
+=======
+                                       
+                                        <span>{{option.label | translate}}</span> <p-tag *ngIf="option.allergenies!=null" severity="warning" class="ml-3" value="Allergene: {{option.allergenies | translate}}"/>
+>>>>>>> 1fcf7ce0a96ac64a8fa1a31df1047e2c4845d0d0
                                     </ng-template>
                                 </p-dropdown>
                             </div>
@@ -375,9 +380,9 @@
                                         'pages.recycling.link' | translate }}</a>
                             </div>
                             <div class="col-12">
-
                                 <ng-container *ngFor="let rule of rules.controls; let i = index">
                                     <div class="grid">
+                                        
                                         <div class="col-12 md:col-2">
                                             <div class="border-1 flex flex-column">
                                                 <div class="flex flex-col items-center px-2 pb-1.5 pt-2">
@@ -406,6 +411,9 @@
                                                         [formControl]="rules.at(i).get('recycling_rule_containers_id')"
                                                         [options]="containers" [group]="true" [showClear]="true"
                                                         placeholder="Seleziona">
+                                                        <ng-template let-option pTemplate="selectedItem">
+                                                            <span>{{option.label | translate}}</span>
+                                                        </ng-template>
                                                         <ng-template let-group pTemplate="group">
                                                             <div class="flex align-items-center">
                                                                 <span>{{ group.label | translate }}</span>
@@ -423,6 +431,9 @@
                                                     <p-dropdown [options]="materials" [group]="true"
                                                         [formControl]="rules.at(i).get('recycling_rule_materials_id')"
                                                         [showClear]="true" placeholder="Seleziona">
+                                                        <ng-template let-option pTemplate="selectedItem">
+                                                            <span>{{option.label | translate}}</span>
+                                                        </ng-template>
                                                         <ng-template let-group pTemplate="group">
                                                             <div class="flex align-items-center">
                                                                 <span>{{ group.label | translate }}</span>
@@ -573,4 +584,24 @@
         [sub_image]="sub_image" 
         [form]="form"></app-preview>
     </div>
+        [preview]="false"
+        [form]="form" class="col-12 lg:col-4 xl:col-3 hidden lg:block"></app-preview>
+
+</div>
+
+<p-sidebar [(visible)]="sidebarVisible" [fullScreen]="true">
+    <app-preview 
+    [materials]="materials" 
+    [containers]="containers" 
+    [packages]="packages" 
+    [ingredients]="ingredients" 
+    [types]="types" 
+    [geoGraphicalIndication]="geographical_indication"
+    [preview_image]="preview_image" 
+    [sub_image]="sub_image" 
+    [preview]="true"
+    [form]="form" class="col-12 lg:col-4 xl:col-3 block lg:hidden flex flex-column justify-content-center align-items-center"></app-preview>
+</p-sidebar>
+<div class="fixed bottom-2 right-2 block lg:hidden">
+<p-button (onClick)="sidebarVisible = true && preview=true" icon="pi pi-eye" pTooltip="Live preview" />
 </div>

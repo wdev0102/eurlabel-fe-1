@@ -141,21 +141,98 @@
                         <div class="flex min-w-0 items-center gap-2">
 
 
-                            <img *ngIf="!label.sub_image" alt="Product image preview"
-                                src="assets/placeholder_bottle.webp" width="auto" height="50" decoding="async"
-                                loading="lazy" class="p-2" style="color: transparent;max-height:50px"
-                                class="hidden md:flex">
-                            <img *ngIf="label.sub_image" alt="Product image preview" src="https://{{label.sub_image}}"
-                                width="auto" height="50" decoding="async" loading="lazy" class="p-2"
-                                style="color: transparent;max-height:50px" class="hidden md:flex">
-                            <a [routerLink]="['/elabel/' + label.id]" class="truncate font-semibold xl:text-base"
-                                href="javascript:void(0)" class="truncate">{{label.product_name}}</a><span
-                                *ngIf="label.sku!=''" class="truncate">-
-                                {{label.sku}}</span>
-                            <div class="ml-1 hidden md:block">
-                                <span *ngIf="label.status==''"><p-tag severity="warning" value="Bozza"></p-tag></span>
-                                <span *ngIf="label.status!=''"><p-tag severity="success"
-                                        value="Pubblicato"></p-tag></span>
+
+
+                        <div class="card  pt-1 pb-0 px-2 my-1" *ngFor="let label of labels">
+    
+                            <div class="grid flex flex-row">
+                                <div
+                                    class="col-6 flex justify-content-start align-content-center align-items-center">
+                                    <img *ngIf="!label.sub_image" alt="Product image preview"
+                                        src="assets/placeholder_bottle.webp" width="auto" height="50" decoding="async"
+                                        loading="lazy" class="p-2" style="color: transparent;max-height:50px"
+                                        class="hidden md:flex">
+                                    <img *ngIf="label.sub_image" alt="Product image preview"
+                                        src="https://{{label.sub_image}}" width="auto" height="50" decoding="async"
+                                        loading="lazy" class="p-2" style="color: transparent;max-height:50px"
+                                        class="hidden md:flex">
+                                    <a [routerLink]="['/elabel/' + label.id]"
+                                        class="truncate font-semibold xl:text-base" href="javascript:void(0)"
+                                        class="truncate ml-2">{{label.product_name}}</a><span *ngIf="label.sku!=''"
+                                        class="truncate">-
+                                        {{label.sku}}</span>
+                                    <div class="ml-1 hidden md:block">
+                                        <span *ngIf="label.status==''"><p-tag severity="warning"
+                                                value="Bozza"></p-tag></span>
+                                        <span *ngIf="label.status!=''"><p-tag severity="success"
+                                                value="Pubblicato"></p-tag></span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="col-6 flex justify-content-end align-content-center align-items-center">
+                                    <p-menu #menu_elabel [model]="items_elabel" [popup]="true" />
+                                    <p-button (onClick)="menu_elabel.toggle($event)" icon="pi pi-ellipsis-v"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        class="flex md:hidden" />
+
+                                    <p-button icon="pi pi-pencil" pTooltip="Modifica"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                                    <p-button icon="pi pi-qrcode" pTooltip="QrCode"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        [routerLink]="['/elabel/' + label.id]" class="hidden md:flex m-2"></p-button>
+                                    <p-button icon="pi pi-copy" pTooltip="Duplica"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                                </div>
+
+                            </div>
+                        
+                    </div>
+                    <!-- <div class="grid flex">
+
+                        <div class="col-12"  style="border-color: rgb(203, 213, 225);" *ngFor="let label of labels">
+                            <div class="grid flex my-0 py-0">
+                                <div
+                                    class="col-6 flex justify-content-start align-content-center align-items-center my-0 py-0">
+                                    <img *ngIf="!label.sub_image" alt="Product image preview"
+                                        src="assets/placeholder_bottle.webp" width="auto" height="50" decoding="async"
+                                        loading="lazy" class="p-2" style="color: transparent;max-height:50px"
+                                        class="hidden md:flex">
+                                    <img *ngIf="label.sub_image" alt="Product image preview"
+                                        src="https://{{label.sub_image}}" width="auto" height="50" decoding="async"
+                                        loading="lazy" class="p-2" style="color: transparent;max-height:50px"
+                                        class="hidden md:flex">
+                                    <a [routerLink]="['/elabel/' + label.id]"
+                                        class="truncate font-semibold xl:text-base" href="javascript:void(0)"
+                                        class="truncate ml-2">{{label.product_name}}</a><span *ngIf="label.sku!=''"
+                                        class="truncate">-
+                                        {{label.sku}}</span>
+                                    <div class="ml-1 hidden md:block">
+                                        <span *ngIf="label.status==''"><p-tag severity="warning"
+                                                value="Bozza"></p-tag></span>
+                                        <span *ngIf="label.status!=''"><p-tag severity="success"
+                                                value="Pubblicato"></p-tag></span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="col-6 flex justify-content-end align-content-center align-items-center my-0 py-0">
+                                    <p-menu #menu [model]="items_elabel" [popup]="true" />
+                                    <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        class="flex md:hidden" />
+
+                                    <p-button icon="pi pi-pencil" pTooltip="Modifica"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                                    <p-button icon="pi pi-qrcode" pTooltip="QrCode"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                                    <p-button icon="pi pi-copy" pTooltip="Duplica"
+                                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                        [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                                </div>
+
                             </div>
                         </div>
 

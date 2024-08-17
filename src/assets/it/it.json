@@ -152,6 +152,11 @@
         "argon": "Argon",
         "carbon": "Diossido di carbonio",
         "nitrogen": "Nitrogeno"
+      },
+      "allergienies": {
+        "milk": "Latte",
+        "egg":"Uovo",
+        "sulphites":"Solfiti"
       }
     },
     "acidity_regulator": "Calcola di acidità",
@@ -212,9 +217,9 @@
       "subscription": {
         "title": "Abbonamento",
         "subtitle": "Gestisci il tuo abbonamento",
-        "freeplan":{
-          "title":"Piano Gratuito",
-          "subtitle":"Attualmente sei su un piano gratuito. Esegui l'upgrade per pubblicare e-Label e accedere a tutte le funzionalità."
+        "freeplan": {
+          "title": "Piano Gratuito",
+          "subtitle": "Attualmente sei su un piano gratuito. Esegui l'upgrade per pubblicare e-Label e accedere a tutte le funzionalità."
         }
       }
     },
