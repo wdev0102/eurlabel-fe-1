@@ -32,11 +32,11 @@ export class AppTopBarComponent {
     }
     logout() {
         this.authService.logout()
-        this.router.navigate([''])
+        this.router.navigate(['/auth'])
     }
 
     
     edit() {
-        this.router.navigateByUrl('edit')
+        this.router.navigateByUrl('userprofile')
     }
 }

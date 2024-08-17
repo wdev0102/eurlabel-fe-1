@@ -191,9 +191,11 @@
       "username": "Username",
       "password": "Password",
       "company": "Azienda",
+      "name": "Nome",
+      "surname": "Cognome",
       "address": "Indirizzo",
       "cap": "CAP",
-      "location": "Località",
+      "locality": "Località",
       "pr": "Provincia",
       "state": "Stato",
       "phone": "Telefono",
@@ -202,8 +204,19 @@
       "piva": "Partita iva",
       "sdi": "Codice SDI",
       "submit": "Prosegui",
+      "save": "Salva",
       "text": "Per registrarti premi qui: ",
       "button": "Registrati"
+    },
+    "profile": {
+      "subscription": {
+        "title": "Abbonamento",
+        "subtitle": "Gestisci il tuo abbonamento",
+        "freeplan":{
+          "title":"Piano Gratuito",
+          "subtitle":"Attualmente sei su un piano gratuito. Esegui l'upgrade per pubblicare e-Label e accedere a tutte le funzionalità."
+        }
+      }
     },
     "brand": {
       "form": {

@@ -24,20 +24,25 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
         }
     `]
 })
+
 export class RegisterComponent implements OnInit{
     @Input() edit = false
     msgs: Message[] = [];
     email = ''
     user : any = {}
+    url
+    loading = false;
     
     @Input() form = this.fb.group({
         id : [null, Validators.required],
         username : ['', Validators.required],
         password : ['', Validators.required],
         company_name : ['', Validators.required],
+        name : ['', Validators.required],
+        surname : ['', Validators.required],
         address : ['', Validators.required],
         cap : ['', Validators.required],
-        location : ['', Validators.required],
+        locality : ['', Validators.required],
         pr : ['', Validators.required],
         state : ['', Validators.required],
         phone : ['', Validators.required],
@@ -53,7 +58,7 @@ export class RegisterComponent implements OnInit{
         company_name : 'test',
         address : 'test',
         cap : '00000',
-        location : 'test',
+        locality : 'test',
         pr : 'ss',
         state : 'test',
         phone : '123',
@@ -64,20 +69,22 @@ export class RegisterComponent implements OnInit{
     }
 
     constructor(public layoutService: LayoutService,private userService: UserService,  private service: MessageService, private fb: FormBuilder, private authService: AuthService, public router: Router, private route: ActivatedRoute, private http: HttpClient, public messageService: MessageService,) {
-        if(this.dummyData)
-            this.form.patchValue(this.dummyData)
+        this.url = this.router.url;
+
+       
     }
 
     ngOnInit() {
         if(this.edit) {
             let request = JSON.parse(localStorage.getItem('user'))
+            this.form.patchValue(request)
             this.user = request
             console.log(request)
         }
     }
 
     save() {
-        debugger
+       // debugger
         this.edit ? this.editSubmit() : this.registerSubmit()
     }
 
@@ -85,7 +92,11 @@ export class RegisterComponent implements OnInit{
         this.authService.editProfile(this.form.value).subscribe(
             success => {
             this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Message sent' });
-            },
+                localStorage.setItem('user', JSON.stringify(success))
+                if(this.url=='/register'){
+                    this.router.navigate(['/userprofile'])
+                }
+        },
             error => {
                 this.service.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: 'Validation failed' });
             }
@@ -96,7 +107,12 @@ export class RegisterComponent implements OnInit{
     registerSubmit() {
         this.authService.register(this.form.value).subscribe(()=>{
             this.authService.login(this.form.get('email').value, this.form.get('password').value).subscribe(()=>{
-                this.router.navigate(['/dashboard']);
+                
+                if(this.url=='/register'){
+                    this.router.navigate(['/userprofile'])
+                }else{
+                    this.router.navigate(['/dashboard']);
+                }
             })
             
         })

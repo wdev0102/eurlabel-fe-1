@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
     radio = new FormControl()
     name = new FormControl()
     sku = new FormControl()
+    user_id = new FormControl()
     id = new FormControl()
     brandId=0
     types = []
@@ -87,10 +88,12 @@ export class DashboardComponent implements OnInit {
     }
 
     submit() {
+       
         this.service.create({
             'public_id' : this.id.value,
             'sku' : this.sku.value,
-            'product_name' : this.name.value
+            'product_name' : this.name.value,
+            'user_id': this.userid.toString()
         }).subscribe((response) => {
             this.router.navigateByUrl('/elabel/' + response.id);
         })

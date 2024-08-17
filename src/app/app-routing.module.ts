@@ -15,6 +15,7 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                     { path: 'dashboard', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'login', loadChildren: () => import('./demo/components/auth/login/login.module').then(m => m.LoginModule) },
+                    { path: 'userprofile', loadChildren: () => import('./demo/components/userprofile/userprofile.module').then(m => m.UserProfileModule) },
                     { path: 'edit', loadChildren: () => import('./demo/components/edit-profile/edit-profile.module').then(m => m.EditProfileModule) },
                     { path: 'elabel', loadChildren: () => import('./demo/components/elabel/elabel.module').then(m => m.ElabelModule) },
                     { path: 'elabel/:id', loadChildren: () => import('./demo/components/elabel/elabel.module').then(m => m.ElabelModule) },

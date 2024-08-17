@@ -27,6 +27,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { NgxColorsModule } from 'ngx-colors';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
     imports: [
@@ -57,6 +58,7 @@ import { NgxColorsModule } from 'ngx-colors';
         DividerModule,
         TooltipModule,
         BreadcrumbModule,
+        PanelModule
     ],
     providers: [
         ConfirmationService

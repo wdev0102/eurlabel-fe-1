@@ -31,6 +31,7 @@ import { DividerModule } from 'primeng/divider';
   declarations: [PreviewComponent],
   imports: [
     CommonModule,
+    TranslateModule,
     PanelModule,
     QRCodeModule,
     BreadcrumbModule,

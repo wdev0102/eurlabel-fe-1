@@ -8,27 +8,22 @@
             </div>
 
             <div class="flex align-items-right ">
-                <p-tag styleClass="p-mr-2" con="pi pi-exclamation-triangle" severity="warning" [value]="form.get('status').value == 0 ? 'Bozza' : 'Pubblicato'"></p-tag>
+                <p-tag styleClass="p-mr-2" con="pi pi-exclamation-triangle" severity="warning" value="bozza"></p-tag>
             </div>
+
             <div class="flex align-items-center md:align-items-right text-center">
 
-                <p-button (click)="qrDialog = true" icon="pi pi-qrcode" label="Scarica il QrCode" pTooltip="Scarica il codice QR"
-                    styleClass="p-button-sm p-button-outlined p-button-secondary"
+                <p-button icon="pi pi-qrcode" label="Scarica il QrCode" pTooltip="Scarica il codice QR"
+                    styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/']"
                     class="mr-3"></p-button>
-                <ng-container *ngIf="form.get('status').value == 0">
-                    <p-button (click)="changeStatus()" icon="pi pi-clock" pTooltip="Pubblica E-Label" label="Pubblica E-Label"
-                    styleClass="p-button-sm p-button-outlined p-button-secondary"></p-button>
-                </ng-container>
-                <ng-container *ngIf="form.get('status').value == 1">
-                    <p-button (click)="changeStatus()" icon="pi pi-clock" pTooltip="Sposta in bozza" label="Sposta in bozza"
-                    styleClass="p-button-sm p-button-outlined p-button-secondary"></p-button>
-                </ng-container>
-                    
+                <p-button icon="pi pi-clock" pTooltip="Pubblica E-Label" label="Pubblica E-Label"
+                    styleClass="p-button-sm p-button-outlined p-button-secondary"
+                    [routerLink]="['/elabel/']"></p-button>
             </div>
 
         </div>
     </div>
-    
+
 </div>
 
 <!--ELABEL FORM-->
@@ -68,22 +63,6 @@
                                                 [label]="'pages.elabel.form.product_sku.helper'"></app-infobutton>
                                             <span style="font-size:0.8rem;margin-left:5px;">(opzionale)</span></label>
                                         <input pInputText id="prodotto" [formControl]="form.get('product_sku')" />
-                                    </div>
-
-                                    <div class="col-12 md:col-12">
-                                        <label for="country">{{ 'pages.elabel.form.brand.label' | translate }}
-                                            <app-infobutton
-                                                [label]="'pages.elabel.form.brand.helper'"></app-infobutton>
-                                            </label>
-                                            <p-dropdown [options]="brands" [formControl]="form.get('brand_id')"
-                                                [showClear]="true" placeholder="Seleziona">
-                                                <ng-template let-option pTemplate="selectedItem">
-                                                    <span>{{option.name | translate}}</span>
-                                                </ng-template>
-                                                <ng-template  let-option pTemplate="item">
-                                                    <span>{{option.name | translate}}</span>
-                                                </ng-template>                                                
-                                             </p-dropdown>
                                     </div>
 
                                     <div class="col-12 md:col-12">
@@ -216,31 +195,27 @@
                             <div class="col-12">
                                 <p-dropdown [options]="ingredients" (onChange)="onChangeIngredient($event)"
                                     [group]="true" [showClear]="true" placeholder="Seleziona">
-                                    <ng-template let-option pTemplate="selectedItem">
-                                        <span>{{ 'global.select' | translate }}</span>
-                                    </ng-template>                                    
                                     <ng-template let-group pTemplate="group">
                                         <div class="flex align-items-center">
                                             <span>{{ group.label | translate }}</span>
                                         </div>
                                     </ng-template>
                                     <ng-template let-option pTemplate="item">
-                                        <div [ngClass]="isIngredientNotInUse(option) ? '' : 'optionDisabled'">
-                                            <span>{{ option.label | translate}}</span>
-                                        </div>
+                                        <span>{{option.label | translate}}</span>
                                     </ng-template>
                                 </p-dropdown>
                             </div>
                             <div class="col-12">
-                                <div class="card" *ngFor="let e of ingredientPicked; let i = index">
+                                <div class="card" *ngFor="let e of ingredientPicked">
                                     <div class="grid">
                                         <div class="col-9">
                                             <b>{{e.label | translate}}</b>
                                             <p>{{e.group | translate}}</p>
                                         </div>
                                         <div class="col-3 flex justify-content-end align-items-right">
-                                            <p-button icon="pi pi-trash" pTooltip="Rimuovi" (click)="deleteIngredient(i, e.id)"
-                                                styleClass="p-button-sm p-button-outlined p-button-secondary"></p-button>
+                                            <p-button icon="pi pi-trash" pTooltip="Rimuovi"
+                                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                                [routerLink]="['/elabel/' ]"></p-button>
                                         </div>
                                     </div>
                                 </div>
@@ -431,21 +406,15 @@
                                                         [formControl]="rules.at(i).get('recycling_rule_containers_id')"
                                                         [options]="containers" [group]="true" [showClear]="true"
                                                         placeholder="Seleziona">
-                                                        <ng-template let-option pTemplate="selectedItem">
-                                                            <span>{{option.label | translate}}</span>
-                                                        </ng-template>                                                        
                                                         <ng-template let-group pTemplate="group">
                                                             <div class="flex align-items-center">
                                                                 <span>{{ group.label | translate }}</span>
                                                             </div>
                                                         </ng-template>
                                                         <ng-template let-option pTemplate="item">
-                                                            <div [ngClass]="isContainerNotInUse(option) ? '' : 'optionDisabled'">
-                                                                <span>{{option.label | translate}}</span>
-                                                            </div>
+                                                            <span>{{option.label | translate}}</span>
                                                         </ng-template>
                                                     </p-dropdown>
-                                                    <mat-error>{{(form.hasError('nonUniqueContainer', 'rules') && rules.at(i).get('recycling_rule_containers_id').value) ? ('pages.elabel.form.container.error' | translate) : ''}}</mat-error>
                                                 </div>
                                                 <div class="col-12 md:col-5">
                                                     <label>{{ 'pages.recycling.field.material' | translate }}
@@ -454,21 +423,15 @@
                                                     <p-dropdown [options]="materials" [group]="true"
                                                         [formControl]="rules.at(i).get('recycling_rule_materials_id')"
                                                         [showClear]="true" placeholder="Seleziona">
-                                                        <ng-template let-option pTemplate="selectedItem">
-                                                            <span>{{option.label | translate}}</span>
-                                                        </ng-template>
                                                         <ng-template let-group pTemplate="group">
                                                             <div class="flex align-items-center">
                                                                 <span>{{ group.label | translate }}</span>
                                                             </div>
                                                         </ng-template>
                                                         <ng-template let-option pTemplate="item">
-                                                            <div [ngClass]="isMaterialNotInUse(option) ? '' : 'optionDisabled'">
-                                                                <span>{{option.label | translate}}</span>
-                                                            </div>
+                                                            <span>{{option.label | translate}}</span>
                                                         </ng-template>
                                                     </p-dropdown>
-                                                    <mat-error>{{(form.hasError('nonUniqueMaterial', 'rules') && rules.at(i).get('recycling_rule_materials_id').value ) ? ('pages.elabel.form.material.error' | translate) : ''}}</mat-error>
                                                 </div>
                                                 <div class="col-12 md:col-2 text-right" style="margin-top:23px">
                                                     <p-button icon="pi pi-trash"
@@ -587,7 +550,7 @@
                                 styleClass="p-button-sm p-button-danger"></p-button>
                             <p-button label="Indietro" (click)="back()" icon="pi pi-trash"
                                 styleClass="p-button-sm p-button-secondary"></p-button>
-                            <p-button [disabled]="!form.valid" label="Salva" (click)="save()" icon="pi pi-trash"
+                            <p-button label="Salva" (click)="save()" icon="pi pi-trash"
                                 styleClass="p-button-sm p-button-success"></p-button>
                         </div>
                     </div>
@@ -611,17 +574,3 @@
         [form]="form"></app-preview>
     </div>
 </div>
-
-<p-dialog header="Codice qr" 
-    [(visible)]="qrDialog" 
-    [modal]="true" 
-    showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
-    <div #qrcodewrapper>
-        <qrcode *ngIf="form.get('qr').value" [qrdata]="form.get('qr').value" [errorCorrectionLevel]="'M'"></qrcode>
-        <button pButton icon="pi pi-download" (click)="downloadCanvas()" label="Scarica" class="p-button-outlined"></button>
-
-    </div>
-    <ng-template pTemplate="footer">
-            <button pButton icon="pi pi-check" (click)="display=false" label="Ok" class="p-button-outlined"></button>
-    </ng-template>
-</p-dialog>

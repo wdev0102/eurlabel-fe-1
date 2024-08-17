@@ -28,6 +28,7 @@ import { PreviewComponent } from '../preview/preview.component';
 import { TagModule } from 'primeng/tag';
 import { DividerModule } from 'primeng/divider';
 import { DialogModule } from 'primeng/dialog';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [ElabelComponent, PreviewComponent],
@@ -59,7 +60,8 @@ import { DialogModule } from 'primeng/dialog';
     InputTextModule,
     ElabelRoutingModule,
     TagModule,
-    DividerModule
+    DividerModule,
+    SidebarModule
   ]
 })
 export class ElabelModule { }
