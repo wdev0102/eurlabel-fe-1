@@ -35,7 +35,7 @@
 <!--ELABEL FORM-->
 <div class="grid p-fluid mb-2">
     <!--PROFILO AZIENDALE-->
-    <div class="col-12 lg:col-8 xl:col-9">
+    <div class="col-12 md:col-9">
 
 
         <div class="card pb-0" style="border-radius: 0px;">
@@ -43,11 +43,9 @@
             <p-tabView orientation="left">
                 <!--FORM-->
                 <p-tabPanel header="{{ 'pages.elabel.cards.tab1' | translate }}" class="line-height-3 m-0">
-                  <!--   <div style="height: calc(100vh - 29rem);;overflow: auto;"> -->
+                    <div style="height: calc(100vh - 29rem);;overflow: auto;">
                         <div class="grid">
-                            <div class="col-12 md:col-9">
-<!--                             <input pInputText id="user_id" [formControl]="form.get('user_id')" /> -->
-                        </div>
+
                             <div class="col-12 md:col-9">
                                 <p class="mt-3">Compila tutte le informazioni che devono essere visualizzate sulla
                                     e-label.
@@ -70,7 +68,7 @@
                                             <app-infobutton
                                                 [label]="'pages.elabel.form.product_sku.helper'"></app-infobutton>
                                             <span style="font-size:0.8rem;margin-left:5px;">(opzionale)</span></label>
-                                        <input pInputText id="prodotto" [formControl]="form.get('sku')" />
+                                        <input pInputText id="prodotto" [formControl]="form.get('product_sku')" />
                                     </div>
 
                                     <div class="col-12 md:col-12">
@@ -225,11 +223,8 @@
 
                             </div>
                             <div class="col-12">
-                                <p-dropdown [options]="ingredients" [filter]="true" filterBy="label" (onChange)="onChangeIngredient($event)"
-                                    [group]="true" [showClear]="true"  placeholder="Seleziona">
-                                    <ng-template let-option pTemplate="selectedItem">
-                                        <span>{{option.label | translate}}</span>
-                                    </ng-template>
+                                <p-dropdown [options]="ingredients" (onChange)="onChangeIngredient($event)"
+                                    [group]="true" [showClear]="true" placeholder="Seleziona">
                                     <ng-template let-group pTemplate="group">
                                         <div class="flex align-items-center">
                                             <span>{{ group.label | translate }}</span>
@@ -243,7 +238,7 @@
                                 </p-dropdown>
                             </div>
                             <div class="col-12">
-                                    <div class="card" *ngFor="let e of ingredientPicked; let i = index">
+                                 <div class="card" *ngFor="let e of ingredientPicked; let i = index">
                                     <div class="grid">
                                         <div class="col-9">
                                             <b>{{e.label | translate}}</b>
@@ -412,9 +407,9 @@
                                         'pages.recycling.link' | translate }}</a>
                             </div>
                             <div class="col-12">
-
                                 <ng-container *ngFor="let rule of rules.controls; let i = index">
                                     <div class="grid">
+                                        
                                         <div class="col-12 md:col-2">
                                             <div class="border-1 flex flex-column">
                                                 <div class="flex flex-col items-center px-2 pb-1.5 pt-2">
@@ -530,7 +525,7 @@
                                             </div>
                                             <div
                                             class="flex align-items-center justify-content-center w-4rem h-4rem  m-2">
-                                            <div ngClass="{{form.get('age').value ? '' : 'opacity-40'}}"
+                                            <div ngClass="{{form.get('pregnant').value ? '' : 'opacity-40'}}"
                                                 class="flex align-items-center justify-content-center w-4rem h-4rem  m-2">
                                                 <img (click)="form.get('age').setValue(!form.get('age').value)"
                                                 src="https://firebasestorage.googleapis.com/v0/b/label-scan-1c165.appspot.com/o/public%2FresponsibleConsumption%2Funderage.svg?alt=media&amp;token=ff71068d-93fc-42ec-9fd5-0c0a5cb799d0"
@@ -579,7 +574,7 @@
                             </div>
 
                         </div>
-                   <!--  </div> -->
+                    </div>
                 </p-tabPanel>
 
                 <!--IMPOSTAZIONI-->
@@ -609,16 +604,19 @@
     </div>
 
 
+    <div class="col-12 md:col-3" >
         <app-preview 
         [materials]="materials" 
         [containers]="containers" 
         [packages]="packages" 
         [ingredients]="ingredients" 
         [types]="types" 
-        [geoGraphicalIndication]="geographical_indication"
         [preview_image]="preview_image" 
         [preview]="false"
         [sub_image]="sub_image" 
+        [form]="form"></app-preview>
+    </div>
+        [preview]="false"
         [form]="form" class="col-12 lg:col-4 xl:col-3 hidden lg:block"></app-preview>
 
 </div>

@@ -157,7 +157,7 @@
         "milk": "Latte",
         "egg":"Uovo",
         "sulphites":"Solfiti"
-      }      
+      }
     },
     "acidity_regulator": "Calcola di acidità",
     "anti_caking_agent": "Agente antiagglomerante",
@@ -217,9 +217,9 @@
       "subscription": {
         "title": "Abbonamento",
         "subtitle": "Gestisci il tuo abbonamento",
-        "freeplan":{
-          "title":"Piano Gratuito",
-          "subtitle":"Attualmente sei su un piano gratuito. Esegui l'upgrade per pubblicare e-Label e accedere a tutte le funzionalità."
+        "freeplan": {
+          "title": "Piano Gratuito",
+          "subtitle": "Attualmente sei su un piano gratuito. Esegui l'upgrade per pubblicare e-Label e accedere a tutte le funzionalità."
         }
       }
     },
@@ -270,6 +270,10 @@
         },
         "id": "Identificativo",
         "productName": "Nome del prodotto",
+        "brand": {
+          "label": "Marchio",
+          "helper": ""
+        },
         "upload": {
           "label": "Immagine del prodotto",
           "helper": ""

@@ -26,6 +26,7 @@ import { DividerModule } from 'primeng/divider';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { NgxColorsModule } from 'ngx-colors';
 import { PanelModule } from 'primeng/panel';
 import { NgxColorsModule } from 'ngx-colors';
 

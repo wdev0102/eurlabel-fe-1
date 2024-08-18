@@ -30,6 +30,8 @@
 <div class="grid p-fluid mb-2">
     <!--PROFILO AZIENDALE-->
     <div class="col-12 md:col-6">
+
+
         <div class="card" style="border-radius: 0px;">
             <div class="grid p-fluid mb-2">
                 <div class="col-6">
@@ -37,7 +39,7 @@
                         'pages.dashboard.cards.profile' | translate }}</b>
                 </div>
                 <div class="col-6 text-right">
-                    <span [routerLink]="['/userprofile']" style="cursor: pointer;"><i class="pi pi-file-edit mr-2"></i>
+                    <span [routerLink]="['/register']" style="cursor: pointer;"><i class="pi pi-file-edit mr-2"></i>
                         <b>{{ 'global.edit' | translate }}</b></span>
                 </div>
             </div>
@@ -54,8 +56,8 @@
                         </div>
                         <p-divider></p-divider>
                         <div class="col-12 mt-3 flex justify-content-center align-items-center"
-                            [ngStyle]="{'background-color':(user.primary_color!='') ? user.primary_color : 'black' }">
-                            <img src="assets/icon/color.svg" style="width:20px;">
+                        [ngStyle]="{'background-color':(user.primary_color!='') ? user.primary_color : 'black' }"><img src="assets/icon/color.svg"
+                                style="width:20px;">
                         </div>
 
 
@@ -79,7 +81,7 @@
                     <i class="pi pi-box mr-2"></i> <b>{{
                         'pages.dashboard.cards.brand' | translate }}</b>
                 </div>
-                <div class="col-6 text-right cursor-pointer" (click)="openBrandModal()">
+                <div class="col-6 text-right cursor-pointer"  (click)="openBrandModal()">
                     <i class="pi pi-plus mr-2"></i> <b>{{ 'global.new_brand' | translate }}</b>
                 </div>
 
@@ -117,9 +119,22 @@
                     </div>
                     <p-divider></p-divider>
                 </div>
+                <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2 hidden">
+                    <p-menu #menu [model]="items_brand" [popup]="true" />
+                    <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary" class="flez md:hidden" />
 
+                    <p-button icon="pi pi-pencil" pTooltip="Modifica Brand" (click)="editBrand(item.id)"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                        class="hidden md:flex"></p-button>
+                    <p-button icon="pi pi-qrcode" pTooltip="QrCode"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                        class="hidden md:flex"></p-button>
+                    <p-button icon="pi pi-plus" pTooltip="Nuova E-Label" (click)="createElabelByBrand()"
+                        styleClass="p-button-sm p-button-outlined p-button-secondary"
+                        class="hidden md:flex"></p-button>
+                </div>
             </div>
-
 
 
         </div>
@@ -137,8 +152,14 @@
 
             </div>
 
-            <p-tabView orientation="left" class="px-0">
-                <p-tabPanel header="{{ 'pages.dashboard.cards.label' | translate }}" class="line-height-3 px-0 mx-0 mb-3">
+            <p-tabView orientation="left" class="p-0">
+                <p-tabPanel header="{{ 'pages.dashboard.cards.label' | translate }}" class="line-height-3 p-0 m-0 mb-3">
+
+                    <div *ngFor="let label of labels"
+                        class="flex m-0 h-16 p-0 w-full items-center justify-between rounded-sm border border-solid bg-white px-2 md:pr-4 md:pl-2 my-1"
+                        style="border-color: rgb(203, 213, 225);">
+
+                        <div class="flex min-w-0 items-center gap-2">
 
 
 
@@ -170,8 +191,8 @@
                                 </div>
                                 <div
                                     class="col-6 flex justify-content-end align-content-center align-items-center">
-                                    <p-menu #menu [model]="items_elabel" [popup]="true" />
-                                    <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
+                                    <p-menu #menu_elabel [model]="items_elabel" [popup]="true" />
+                                    <p-button (onClick)="menu_elabel.toggle($event)" icon="pi pi-ellipsis-v"
                                         styleClass="p-button-sm p-button-outlined p-button-secondary"
                                         class="flex md:hidden" />
 
@@ -236,16 +257,34 @@
                             </div>
                         </div>
 
-                    </div> -->
+                        <div class="flex shrink-0 flex-row flex-wrap items-center gap-1 md:my-0 md:gap-2 hidden">
+                            <p-menu #menu [model]="items_elabel" [popup]="true" />
+                            <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary" class="flex md:hidden" />
 
+                            <p-button icon="pi pi-pencil" pTooltip="Modifica"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                            <p-button icon="pi pi-qrcode" pTooltip="QrCode"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                            <p-button icon="pi pi-copy" pTooltip="Duplica"
+                                styleClass="p-button-sm p-button-outlined p-button-secondary"
+                                [routerLink]="['/elabel/' + label.id]" class="hidden md:flex"></p-button>
+                        </div>
 
-                    <div class="container ng-star-inserted flex align-content-center justify-content-center mt-3"
+                    </div>
+                    <div class="container ng-star-inserted flex align-content-center justify-content-center"
                         *ngIf="labels.length == 0">
-                        <div class="flex flex-column align-content-center justify-content-center mt-3">
+                        <div class="flex flex-column align-content-center justify-content-center">
+                            <div class="flex align-content-center justify-content-center"> <i class="pi pi-apple"></i>
+                            </div>
+                            <div class="flex align-content-center justify-content-center">{{
+                                'pages.dashboard.cards.label' | translate }}</div>
                             <div class="flex align-content-center justify-content-center">
                                 <button (click)="display=true" pButton pRipple type="button"
-                                    class="p-button bg-primary p-component p-button-text text-white text-center align-items-center "><i
-                                        class="pi pi-qrcode mr-2"></i>{{ 'global.add' | translate }}</button>
+                                    class="p-button bg-primary p-component p-button-text text-white"><i
+                                        class="pi pi-plus"></i>{{ 'global.add' | translate }}</button>
                             </div>
                         </div>
                     </div>
@@ -364,7 +403,6 @@
         <div class="flex flex-column">
             <div class="flex flex-column col-12 p-0">
                 <div *ngIf="false">
-                
                     <label for="name" class="block text-900 text-xl font-medium mb-2">{{ 'pages.elabel.form.id' |
                         translate }}</label>
                     <input type="text" pInputText [formControl]="id" required autofocus />
@@ -388,8 +426,7 @@
     </ng-template>
 </p-dialog>
 
-<p-dialog header="Nuovo Brand" [(visible)]="brandModal" [modal]="true" showEffect="fade" [style]="{width: '15vw'}"
-    [breakpoints]="{'960px': '75vw'}">
+<p-dialog header="Nuovo Brand" [(visible)]="brandModal" [modal]="true" showEffect="fade" [style]="{width: '15vw'}" [breakpoints]="{'960px': '75vw'}">
     <div class="grid flex flex-wrap justify-content-center">
         <div class="col-12 md:col-12 flex flex-wrap justify-content-center">
             <label for="prodotto">{{ 'pages.brand.form.name.label' | translate }}</label>
@@ -420,7 +457,6 @@
         </div>
     </div>
     <ng-template pTemplate="footer">
-        <button pButton icon="pi pi-check" [disabled]="!form.get('image').value" (click)="saveBrand()" label="Ok"
-            class="p-button-outlined"></button>
+            <button pButton icon="pi pi-check" [disabled]="!form.get('image').value" (click)="saveBrand()" label="Ok" class="p-button-outlined"></button>
     </ng-template>
 </p-dialog>

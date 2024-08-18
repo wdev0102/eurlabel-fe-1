@@ -42,8 +42,7 @@ export class DashboardComponent implements OnInit {
         name: ['', Validators.required],
         user_id : null,
         color : null,        
-        image : null,
-        
+        image : null
     })
     
     constructor(private router: Router,private fb: FormBuilder, private messageService: MessageService, private brandService: BrandService, private userService: UserService, private service: ElabelService, public layoutService: LayoutService) {
@@ -83,7 +82,7 @@ export class DashboardComponent implements OnInit {
             { label: 'Nuova E-Label', icon: 'pi pi-fw pi-plus' },
         ];
         this.items_elabel = [
-            { label: 'Modifica Brand', icon: 'pi pi-fw pi-pencil' },
+            { label: 'Modifica E-Label', icon: 'pi pi-fw pi-pencil' },
             { label: 'Qr Code', icon: 'pi pi-fw pi-qrcode' },
             { label: 'Duplica', icon: 'pi pi-fw pi-copy' },
         ];

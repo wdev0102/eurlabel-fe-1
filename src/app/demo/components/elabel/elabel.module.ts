@@ -27,6 +27,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { PreviewComponent } from '../preview/preview.component';
 import { TagModule } from 'primeng/tag';
 import { DividerModule } from 'primeng/divider';
+import { DialogModule } from 'primeng/dialog';
 import { SidebarModule } from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
 
@@ -38,6 +39,7 @@ import { DialogModule } from 'primeng/dialog';
     DialogModule,
     QRCodeModule,
     BreadcrumbModule,
+    DialogModule,
     TabViewModule,
     CardModule,
     CalendarModule,
