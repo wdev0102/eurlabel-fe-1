@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
         id : 0,
         name: ['', Validators.required],
         user_id : null,
-        color : null,
+        color : null,        
         image : null
     })
     
@@ -54,6 +54,7 @@ export class DashboardComponent implements OnInit {
         this.service.all(this.userid).subscribe((response: any) => {
             this.labelsDraft = response.data.filter((e)=>e.status == 0)
             this.labelsPublishied = response.data.filter((e)=>e.status == 1)
+            this.labels = response.data
         })        
         this.brandService.all(this.userid).subscribe((response)=>{
             this.brands = response.data

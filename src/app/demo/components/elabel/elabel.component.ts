@@ -14,7 +14,6 @@ import { BrandService } from '../../service/brand.service';
 })
 export class ElabelComponent {
   @ViewChild('qrcodewrapper', { static: false }) el: ElementRef<HTMLCanvasElement>;
-
   qrDialog = false
   form: FormGroup
   id = ''
@@ -33,22 +32,21 @@ export class ElabelComponent {
   ingredient = new FormControl()
   tmp = new FormControl()
   brands = []
-  states = []
-  countries = [ ];
-  consumption = [ ];
-  containers = [ ];
-  materials = [ ];
-  packages = [ ];
-  productType = [ ];
-  types = [ ];
-  fullIngredientList = [ ];
-  ingredientPicked = [ ];
-  ingredients = [ ];
+  countries = [];
+  states = [];
+  consumption = [];
+  containers = [];
+  materials = [];
+  packages = [];
+  productType = [];
+  types = [];
+  fullIngredientList = [];
+  ingredientPicked = [];
+  ingredients = [];
   msgs: Message[] = [];
+  preview:boolean=false
   sidebarVisible: boolean = false;
   preview:boolean=false
-
-
 
   constructor(private fb: FormBuilder, private t: TranslateService, private brandService: BrandService, private service: ElabelService, private confirmationService: ConfirmationService, private messageService: MessageService, private _location: Location, private route: ActivatedRoute) {
     this. sidebarVisible = false;
@@ -59,7 +57,9 @@ export class ElabelComponent {
       id: [null, Validators.required],
       qr: [null, Validators.required],
       public_id: [null, Validators.required],
+      user_id: [''],
       brand_id: [null, Validators.required],
+      status: [0],
       name: [null, Validators.required],
       alcohol_content_percentage: [null],
       net_content: [null],
@@ -70,22 +70,22 @@ export class ElabelComponent {
       status: [0],
       packages: [null],
       geographical_indication: [null],
-      description: [null, Validators.required],
-      product_varieties: [null, Validators.required],
-      energy_kj: [null, Validators.required],
-      energy_kcal: [null, Validators.required],
-      fat: [null, Validators.required],
-      fat_sat: [null, Validators.required],
-      carb: [null, Validators.required],
-      carb_sugar: [null, Validators.required],
-      protein: [null, Validators.required],
-      salt: [null, Validators.required],
-      drive: [false, Validators.required],
-      pregnant: [false, Validators.required],
-      age: [false, Validators.required],
-      sustainibility_bio: [null, Validators.required],
-      sustainibility_message: [null, Validators.required],
-      rules: this.fb.array([], [/*this.uniquePropValidator(),this.uniquePropValidator2()*/]),
+      description: [null],
+      product_varieties: [null],
+      energy_kj: ['0', Validators.required],
+      energy_kcal: ['0', Validators.required],
+      fat: ['0', Validators.required],
+      fat_sat: ['0', Validators.required],
+      carb: ['0', Validators.required],
+      carb_sugar: ['0', Validators.required],
+      protein: ['0', Validators.required],
+      salt: ['0', Validators.required],
+      drive: [false],
+      pregnant: [false],
+      age: [false],
+      sustainibility_bio: [null],
+      sustainibility_message: [null],
+      rules: this.fb.array([], [this.uniquePropValidator(),this.uniquePropValidator2()]),
       ingredients: new FormArray([]),
       type: [null, Validators.required]
     })
@@ -98,12 +98,11 @@ export class ElabelComponent {
     this.breadcrumbItems.push({ label: 'E-labels' });
 
     this.route.paramMap.subscribe((params: ParamMap) => {
-       const id = params.get('id');
-       const brand = params.get('brand');
+      const id = params.get('id');
+      const brand = params.get('brand');
       if(brand) {
         this.form.get('brand_id').setValue(JSON.parse(brand))
       }
-
 
       this.service.getOptions().subscribe((response) => {
         const data = response.data
@@ -171,7 +170,6 @@ export class ElabelComponent {
             items: items
           })
         }
-
       })
       this.brandService.all(parseInt(this.user_id)).subscribe((response)=>{
         this.brands = response.data
@@ -296,15 +294,8 @@ export class ElabelComponent {
   isRulePresent(id:number) {
     return this.rules.controls.filter((e)=>e.get('id').value ==id).length != 0
   }
+  
 
-  onDeleteIngredient($event) {
-    const id = $event.value
-    console.log(this.ingredientPicked)
-    const index = this.ingredientPicked.findIndex(item => item.id === $event);
-    const newArray = this.ingredientPicked.filter(item => item.id !== index);
-    this.ingredientPicked.splice(index, 1);
-    this.formIngredients.removeAt(index); // Rimuove il controllo all'indice specificato
-  }
 
   searchCountry(event: any) {
     const filtered: any[] = [];
@@ -353,6 +344,24 @@ export class ElabelComponent {
     this.get()
   }
 
+
+  uniquePropValidator() {
+    return (formArray: FormArray) => {
+      debugger
+      const values = formArray.controls.map(group => group.get('recycling_rule_containers_id')?.value);
+      const hasDuplicates = values.some((value, index) => values.indexOf(value) !== index);
+      return hasDuplicates ? { nonUniqueContainer: true } : null;
+    };
+  }
+
+  uniquePropValidator2() {
+    return (formArray: FormArray) => {
+      debugger
+      const values = formArray.controls.map(group => group.get('recycling_rule_materials_id')?.value);
+      const hasDuplicates = values.some((value, index) => values.indexOf(value) !== index);
+      return hasDuplicates ? { nonUniqueMaterial: true } : null;
+    };
+  }
 
   uniquePropValidator() {
     return (formArray: FormArray) => {

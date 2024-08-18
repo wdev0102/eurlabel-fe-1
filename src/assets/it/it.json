@@ -264,8 +264,9 @@
         "material" : {
           "error" : "Lo stesso materiale non può essere specificato 2 volte"
         },
-        "container" : {
-          "error" : "Il contenitore non può essere inserito 2 volte"
+        "brand": {
+          "label": "Marchio",
+          "helper": ""
         },
         "id": "Identificativo",
         "productName": "Nome del prodotto",

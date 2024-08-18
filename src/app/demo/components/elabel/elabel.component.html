@@ -8,17 +8,23 @@
             </div>
 
             <div class="flex align-items-right ">
-                <p-tag styleClass="p-mr-2" con="pi pi-exclamation-triangle" severity="warning" value="bozza"></p-tag>
+                <p-tag styleClass="p-mr-2" con="pi pi-exclamation-triangle" severity="warning" [value]="form.get('status').value == 0 ? 'Bozza' : 'Pubblicato'"></p-tag>
             </div>
 
             <div class="flex align-items-center md:align-items-right text-center">
 
-                <p-button icon="pi pi-qrcode" label="Scarica il QrCode" pTooltip="Scarica il codice QR"
-                    styleClass="p-button-sm p-button-outlined p-button-secondary" [routerLink]="['/elabel/']"
-                    class="mr-3"></p-button>
-                <p-button icon="pi pi-clock" pTooltip="Pubblica E-Label" label="Pubblica E-Label"
+                <p-button (click)="qrDialog = true" icon="pi pi-qrcode" label="Scarica il QrCode" pTooltip="Scarica il codice QR"
                     styleClass="p-button-sm p-button-outlined p-button-secondary"
-                    [routerLink]="['/elabel/']"></p-button>
+                    class="mr-3"></p-button>
+                <ng-container *ngIf="form.get('status').value == 0">
+                    <p-button (click)="changeStatus()" icon="pi pi-clock" pTooltip="Pubblica E-Label" label="Pubblica E-Label"
+                    styleClass="p-button-sm p-button-outlined p-button-secondary"></p-button>
+                </ng-container>
+                <ng-container *ngIf="form.get('status').value == 1">
+                    <p-button (click)="changeStatus()" icon="pi pi-clock" pTooltip="Sposta in bozza" label="Sposta in bozza"
+                    styleClass="p-button-sm p-button-outlined p-button-secondary"></p-button>
+                </ng-container>
+                    
             </div>
 
         </div>
@@ -70,7 +76,31 @@
                                             <app-infobutton
                                                 [label]="'pages.elabel.form.country.helper'"></app-infobutton>
                                             🇪🇺</label>
-                                        <input pInputText id="prodotto" [formControl]="form.get('country')" />
+                                            <p-dropdown [options]="brands" [formControl]="form.get('brand_id')"
+                                                [showClear]="true" placeholder="Seleziona">
+                                                <ng-template let-option pTemplate="selectedItem">
+                                                    <span>{{option.name | translate}}</span>
+                                                </ng-template>
+                                                <ng-template  let-option pTemplate="item">
+                                                    <span>{{option.name | translate}}</span>
+                                                </ng-template>                                                
+                                             </p-dropdown>
+
+                                        <p-dropdown [options]="states" [formControl]="form.get('country')"
+                                        [showClear]="true" [filter]="true" filterBy="nome_stati" placeholder="Seleziona">
+                                        <ng-template let-option pTemplate="selectedItem">
+                                            <span>{{option.nome_stati | translate}}</span>
+                                        </ng-template>
+                                        <ng-template let-option pTemplate="item">
+                                            <span>{{option.nome_stati | translate}}</span>
+                                        </ng-template>
+                                    </p-dropdown>
+                                       <!--  <p-autoComplete 
+                                        [(ngModel)]="selectedCountry" 
+                                        [dropdown]="true" 
+                                        [suggestions]="filteredCountries" 
+                                        (completeMethod)="filterCountry($event)" 
+                                        field="name" /> -->
                                     </div>
 
                                     <div class="field col-12 md:col-6">
@@ -201,17 +231,14 @@
                                         </div>
                                     </ng-template>
                                     <ng-template let-option pTemplate="item">
-<<<<<<< HEAD
-                                        <span>{{option.label | translate}}</span>
-=======
-                                       
-                                        <span>{{option.label | translate}}</span> <p-tag *ngIf="option.allergenies!=null" severity="warning" class="ml-3" value="Allergene: {{option.allergenies | translate}}"/>
->>>>>>> 1fcf7ce0a96ac64a8fa1a31df1047e2c4845d0d0
+                                        <div  [ngClass]="isIngredientNotInUse(option) ? '' : 'optionDisabled'">
+                                            <span>{{option.label | translate}}</span> <p-tag *ngIf="option.allergenies!=null" severity="warning" class="ml-3" value="Allergene: {{option.allergenies | translate}}"/>
+                                        </div>
                                     </ng-template>
                                 </p-dropdown>
                             </div>
                             <div class="col-12">
-                                <div class="card" *ngFor="let e of ingredientPicked">
+                                 <div class="card" *ngFor="let e of ingredientPicked; let i = index">
                                     <div class="grid">
                                         <div class="col-9">
                                             <b>{{e.label | translate}}</b>
@@ -220,7 +247,7 @@
                                         <div class="col-3 flex justify-content-end align-items-right">
                                             <p-button icon="pi pi-trash" pTooltip="Rimuovi"
                                                 styleClass="p-button-sm p-button-outlined p-button-secondary"
-                                                [routerLink]="['/elabel/' ]"></p-button>
+                                                (click)="onDeleteIngredient(i, e.id)"></p-button>
                                         </div>
                                     </div>
                                 </div>
@@ -420,7 +447,9 @@
                                                             </div>
                                                         </ng-template>
                                                         <ng-template let-option pTemplate="item">
-                                                            <span>{{option.label | translate}}</span>
+                                                            <div [ngClass]="isContainerNotInUse(option) ? '' : 'optionDisabled'">
+                                                                <span>{{option.label | translate}}</span>
+                                                            </div>
                                                         </ng-template>
                                                     </p-dropdown>
                                                 </div>
@@ -440,7 +469,9 @@
                                                             </div>
                                                         </ng-template>
                                                         <ng-template let-option pTemplate="item">
-                                                            <span>{{option.label | translate}}</span>
+                                                            <div [ngClass]="isMaterialNotInUse(option) ? '' : 'optionDisabled'">
+                                                                <span>{{option.label | translate}}</span>
+                                                            </div>
                                                         </ng-template>
                                                     </p-dropdown>
                                                 </div>
@@ -561,7 +592,7 @@
                                 styleClass="p-button-sm p-button-danger"></p-button>
                             <p-button label="Indietro" (click)="back()" icon="pi pi-trash"
                                 styleClass="p-button-sm p-button-secondary"></p-button>
-                            <p-button label="Salva" (click)="save()" icon="pi pi-trash"
+                            <p-button [disabled]="!form.valid"  label="Salva" (click)="save()" icon="pi pi-trash"
                                 styleClass="p-button-sm p-button-success"></p-button>
                         </div>
                     </div>
@@ -581,6 +612,7 @@
         [ingredients]="ingredients" 
         [types]="types" 
         [preview_image]="preview_image" 
+        [preview]="false"
         [sub_image]="sub_image" 
         [form]="form"></app-preview>
     </div>
@@ -605,3 +637,17 @@
 <div class="fixed bottom-2 right-2 block lg:hidden">
 <p-button (onClick)="sidebarVisible = true && preview=true" icon="pi pi-eye" pTooltip="Live preview" />
 </div>
+
+<p-dialog header="Codice qr" 
+    [(visible)]="qrDialog" 
+    [modal]="true" 
+    showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+    <div #qrcodewrapper>
+        <qrcode *ngIf="form.get('qr').value" [qrdata]="form.get('qr').value" [errorCorrectionLevel]="'M'"></qrcode>
+        <button pButton icon="pi pi-download" (click)="downloadCanvas()" label="Scarica" class="p-button-outlined"></button>
+
+    </div>
+    <ng-template pTemplate="footer">
+            <button pButton icon="pi pi-check" (click)="display=false" label="Ok" class="p-button-outlined"></button>
+    </ng-template>
+</p-dialog>

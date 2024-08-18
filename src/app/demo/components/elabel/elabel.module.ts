@@ -29,12 +29,14 @@ import { TagModule } from 'primeng/tag';
 import { DividerModule } from 'primeng/divider';
 import { DialogModule } from 'primeng/dialog';
 import { SidebarModule } from 'primeng/sidebar';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [ElabelComponent, PreviewComponent],
   imports: [
     CommonModule,
     PanelModule,
+    DialogModule,
     QRCodeModule,
     BreadcrumbModule,
     DialogModule,
