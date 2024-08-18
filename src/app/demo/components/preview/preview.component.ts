@@ -16,6 +16,7 @@ export class PreviewComponent implements OnChanges, OnInit {
   @Input() form: FormGroup
   @Input() sub_image = ''
   @Input() preview_image = ''
+  @Input() preview = ''
   show_portion:boolean=false
   @Input() types = []
   @Input() packages = []

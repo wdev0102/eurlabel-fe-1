@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
     step = 0
     brands = []
     labels = []
+    labelsDraft = []
+    labelsPublishied = []
     published = []
     draft = []
     display = false
@@ -39,6 +41,7 @@ export class DashboardComponent implements OnInit {
         id : 0,
         name: ['', Validators.required],
         user_id : null,
+        color : null,        
         image : null,
         
     })
@@ -50,6 +53,8 @@ export class DashboardComponent implements OnInit {
         this.userid = request.id     
         this.user = request
         this.service.all(this.userid).subscribe((response: any) => {
+            this.labelsDraft = response.data.filter((e)=>e.status == 0)
+            this.labelsPublishied = response.data.filter((e)=>e.status == 1)
             this.labels = response.data
         })        
         this.brandService.all(this.userid).subscribe((response)=>{
@@ -70,7 +75,10 @@ export class DashboardComponent implements OnInit {
             { label: 'Duplica', icon: 'pi pi-fw pi-copy' }
         ];
         this.items_brand = [
-            { label: 'Modifica Brand', icon: 'pi pi-fw pi-pencil' },
+            { label: 'Modifica Brand', icon: 'pi pi-fw pi-pencil', 
+                command: () => {
+                this.editBrand(29);
+            }},
             { label: 'Qr Code', icon: 'pi pi-fw pi-qrcode' },
             { label: 'Nuova E-Label', icon: 'pi pi-fw pi-plus' },
         ];
@@ -153,8 +161,8 @@ export class DashboardComponent implements OnInit {
         })
     }
 
-    createElabelByBrand() {
-        this.router.navigate(['/elabel', 29]);
+    createElabelByBrand(el:any) {
+        this.router.navigate(['/elabel-brand', JSON.stringify(el)]);
     }
 
 

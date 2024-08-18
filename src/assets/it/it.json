@@ -1,5 +1,6 @@
 {
   "global": {
+    "select" : "Seleziona",
     "view": "Dettagli",
     "qr": "Codice Qr",
     "add": "Crea una nuova E-Label",
@@ -151,7 +152,12 @@
         "argon": "Argon",
         "carbon": "Diossido di carbonio",
         "nitrogen": "Nitrogeno"
-      }
+      },
+      "allergienies": {
+        "milk": "Latte",
+        "egg":"Uovo",
+        "sulphites":"Solfiti"
+      }      
     },
     "acidity_regulator": "Calcola di acidità",
     "anti_caking_agent": "Agente antiagglomerante",
@@ -252,6 +258,16 @@
         "tab2": "Impostazioni"
       },
       "form": {
+        "container" : {
+          "error" : "Lo stesso contenitore non può essere specificato 2 volte"
+        },
+        "material" : {
+          "error" : "Lo stesso materiale non può essere specificato 2 volte"
+        },
+        "brand": {
+          "label": "Marchio",
+          "helper": ""
+        },
         "id": "Identificativo",
         "productName": "Nome del prodotto",
         "upload": {

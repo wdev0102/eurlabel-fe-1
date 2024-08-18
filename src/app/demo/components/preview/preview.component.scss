@@ -351,6 +351,15 @@ td{
   padding-bottom:5px;
 }
 
+.container_preview {
+  position: absolute;
+  width: 100%;
+  top: 34px;
+  background-color: rgb(255, 255, 255);
+  overflow-y: scroll;
+overflow-x: hidden;
+}
+
 
 
 /* Extra small devices (phones, 600px and down) */

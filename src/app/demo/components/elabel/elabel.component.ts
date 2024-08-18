@@ -1,10 +1,11 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ConfirmationService, MenuItem, Message, MessageService } from 'primeng/api';
 import { ElabelService } from '../../service/elabel.service';
 import { TranslateService } from '@ngx-translate/core';
+import { BrandService } from '../../service/brand.service';
 
 @Component({
   selector: 'app-elabel',
@@ -12,6 +13,9 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./elabel.component.scss']
 })
 export class ElabelComponent {
+  @ViewChild('qrcodewrapper', { static: false }) el: ElementRef<HTMLCanvasElement>;
+  qrDialog = false
+
   form: FormGroup
   id = ''
   brand = ''
@@ -29,6 +33,7 @@ export class ElabelComponent {
   ingredient = new FormControl()
   tmp = new FormControl()
 
+  brands = []
   countries = [];
   states = [];
   consumption = [];
@@ -41,11 +46,12 @@ export class ElabelComponent {
   ingredientPicked = [];
   ingredients = [];
   msgs: Message[] = [];
+  preview:boolean=false
   sidebarVisible: boolean = false;
 
 
-
-  constructor(private fb: FormBuilder, private t: TranslateService, private service: ElabelService, private confirmationService: ConfirmationService, private messageService: MessageService, private _location: Location, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private t: TranslateService, private brandService: BrandService, private service: ElabelService, private confirmationService: ConfirmationService, private messageService: MessageService, private _location: Location, private route: ActivatedRoute) {
+    this. sidebarVisible = false;
     let request = JSON.parse(localStorage.getItem('user'))
     const user_id = request.id
 
@@ -54,6 +60,8 @@ export class ElabelComponent {
       qr: [null, Validators.required],
       public_id: [null, Validators.required],
       user_id: [''],
+      brand_id: [null, Validators.required],
+      status: [0],
       name: [null, Validators.required],
       alcohol_content_percentage: [null],
       net_content: [null],
@@ -78,7 +86,7 @@ export class ElabelComponent {
       age: [false],
       sustainibility_bio: [null],
       sustainibility_message: [null],
-      rules: new FormArray([]),
+      rules: this.fb.array([], [this.uniquePropValidator(),this.uniquePropValidator2()]),
       ingredients: new FormArray([]),
       type: [null, Validators.required]
     })
@@ -93,8 +101,9 @@ export class ElabelComponent {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
       const brand = params.get('brand');
-      if (brand)
-        this.brand = brand
+      if(brand) {
+        this.form.get('brand_id').setValue(JSON.parse(brand))
+      }
       this.service.getOptions().subscribe((response) => {
         const data = response.data
         this.consumption = data.consumption.map(e => { e.value = e.id; return e })
@@ -161,9 +170,10 @@ export class ElabelComponent {
             items: items
           })
         }
-
       })
-
+      this.brandService.all(parseInt(this.user_id)).subscribe((response)=>{
+        this.brands = response.data
+      })   
       if (id) {
         this.id = id
         this.get()
@@ -190,20 +200,51 @@ export class ElabelComponent {
   onChangeIngredient($event) {
     const id = $event.value
     const option = this.fullIngredientList.filter((e) => e.id == id)
-    this.ingredientPicked.push(option[0])
-    this.formIngredients.push(this.fb.group(option))
+    if(!this.isIngredientPresent(id)) {
+      this.ingredientPicked.push(option[0])
+      this.formIngredients.push(this.fb.group(option))
+    }
   }
 
-  onDeleteIngredient($event) {
-    const id = $event.value
-    console.log(this.ingredientPicked)
-    const index = this.ingredientPicked.findIndex(item => item.id === $event);
-    const newArray = this.ingredientPicked.filter(item => item.id !== index);
-    this.ingredientPicked.splice(index, 1);
-    this.formIngredients.removeAt(index); // Rimuove il controllo all'indice specificato
-
-
+  deleteIngredient(i:number, id:number) {
+    this.formIngredients.removeAt(i)
+    this.ingredientPicked = this.ingredientPicked.filter((e)=>e.id !=id)
   }
+
+  isIngredientPresent(id:number) {
+    return this.ingredientPicked.filter((e)=>e.id ==id).length != 0
+  }
+
+  onChangeContainer(id:number) {
+    const rules = this.rules.value
+    return rules.filter((e)=>e.recycling_rule_containers_id ==id).length != 0
+  }
+
+  onChangeMaterial(id:number) {
+    const rules = this.rules.value
+    return rules.filter((e)=>e.recycling_rule_materials_id ==id).length != 0
+  }
+
+  isIngredientNotInUse(option: any) {
+    const items = this.ingredientPicked.filter((e)=> e.id ==option.id )
+    return items.length == 0
+  }
+
+  isContainerNotInUse(option: any) {
+    const rules = this.rules.value
+    return rules.filter((e)=>e.recycling_rule_containers_id ==option.id).length == 0
+  }
+
+  isMaterialNotInUse(option: any) {
+    const rules = this.rules.value
+    return rules.filter((e)=>e.recycling_rule_materials_id ==option.id).length == 0
+  }
+
+  isRulePresent(id:number) {
+    return this.rules.controls.filter((e)=>e.get('id').value ==id).length != 0
+  }
+  
+
 
   searchCountry(event: any) {
     const filtered: any[] = [];
@@ -300,5 +341,43 @@ export class ElabelComponent {
     })
   }
 
+  uniquePropValidator() {
+    return (formArray: FormArray) => {
+      debugger
+      const values = formArray.controls.map(group => group.get('recycling_rule_containers_id')?.value);
+      const hasDuplicates = values.some((value, index) => values.indexOf(value) !== index);
+      return hasDuplicates ? { nonUniqueContainer: true } : null;
+    };
+  }
 
+  uniquePropValidator2() {
+    return (formArray: FormArray) => {
+      debugger
+      const values = formArray.controls.map(group => group.get('recycling_rule_materials_id')?.value);
+      const hasDuplicates = values.some((value, index) => values.indexOf(value) !== index);
+      return hasDuplicates ? { nonUniqueMaterial: true } : null;
+    };
+  }
+
+  changeStatus() {
+    const v = this.form.get('status').value
+    v == 0 ? this.form.get('status').setValue(1) : this.form.get('status').setValue(0)
+  }
+
+  downloadCanvas() {
+    const name = this.toSnakeCase(this.form.get('product_name').value)
+    const canvas =  this.el.nativeElement.firstChild.firstChild.firstChild as any
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = name + 'code.png';
+    link.click();
+  }  
+  toSnakeCase(str: string) {
+    return str
+        .trim()                               // Remove leading/trailing whitespace
+        .toLowerCase()                        // Convert the string to lowercase
+        .replace(/[\s_-]+/g, '_')             // Replace spaces, hyphens, and underscores with a single underscore
+        .replace(/[^\w]+/g, '')               // Remove all non-word characters except underscores
+        .replace(/^_+|_+$/g, '');             // Remove leading or trailing underscores
+}  
 }

@@ -27,10 +27,12 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { PanelModule } from 'primeng/panel';
+import { NgxColorsModule } from 'ngx-colors';
 
 @NgModule({
     imports: [
         CommonModule,
+        NgxColorsModule,
         TranslateModule,
         ToastModule,
         FormsModule,
